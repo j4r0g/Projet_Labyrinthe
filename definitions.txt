@@ -1,0 +1,17 @@
+Structures:
+
+-insecte:
+	{sexe; nourriture; age; (personnalité);}
+
+-labyrinthe:
+	matrice {découvert; état; *insecte;}
+
+*******************************************************************
+Fonctions:
+
+-initialiser labyrinthe
+-afficher labyrinthe
+-prochain mouvement insecte
+-insecte adjacent
+-vie insecte (naissance/vie/mort)
+-fin de partie (victoire/défaite)
