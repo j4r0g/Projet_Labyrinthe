@@ -1,7 +1,7 @@
 Structures:
 
 -insecte:
-	{sexe; nourriture; age; (personnalité);}
+	{sexe; nourriture; âge; (personnalité);}
 
 -labyrinthe:
 	matrice {découvert; état; *insecte;}

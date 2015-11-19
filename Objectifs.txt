@@ -2,7 +2,7 @@ Objectifs:
 	->(Générer un labyrinthe, dans un second temps)
 	->Gérer les entités (déplacements, règles de vie)
 	->Sauvegarde des statistiques (et plus tard de l'état)
-	->(Intéractivité: l'utilisateur choisit à chaque tour de rajouter de la nourriture ou une entité)
+	->(Interactivité: l'utilisateur choisit à chaque tour de rajouter de la nourriture ou une entité)
 	->Conditions de victoire & défaite (tout le labyrinthe découvert: victoire; toutes les entités mortes: défaite)
 
 *********************************************************************
