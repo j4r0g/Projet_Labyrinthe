@@ -15,3 +15,5 @@ Fonctions:
 -insecte adjacent
 -vie insecte (naissance/vie/mort)
 -fin de partie (victoire/défaite)
+
+*******************************************************************

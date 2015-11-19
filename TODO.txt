@@ -1,0 +1,5 @@
+***   A FAIRE   ***
+
+- Initialiser/Afficher une matrice (avec un labyrinthe pré-fait)
+- Declarer les structures "insecte" et "labyrinthe"
+- Faire la fonction de déplacement des insectes 
