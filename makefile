@@ -13,5 +13,5 @@ labyrinthe.o : ./fonctions/labyrinthe.c
 	${CC} ${CFLAG} -c ./fonctions/labyrinthe.c
 
 #Supression des fichiers temporaires
-clean
+clean:
 	rm -i ./fonctions/*.o

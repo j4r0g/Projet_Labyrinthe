@@ -32,7 +32,7 @@ void prochain_deplacement (int num_fourmi, int pos_x, int pos_y) {
 		combat(pos_x, pos_y, pos_x, pos_y+1);
 	} else if (ins_adj == 4) {
 		combat(pos_x, pos_y, pos_x+1, pos_y);
-	} else {
+	} else if (lab[pos_x-1][pos_y].etat != mur && lab[pos_x][pos_y-1].etat != mur && lab[pos_x][pos_y+1].etat != mur && lab[pos_x+1][pos_y].etat != mur) {
 		if (random >= 0 && random < 25) {
 			lab[pos_x-1][pos_y].etat = 3;
 			lab[pos_x][pos_y].etat = 0;
