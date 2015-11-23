@@ -1,16 +1,17 @@
 PROG = VieLab
-CC = gcc -I-
+CC = gcc
+CFLAG = -g -Wall
+OBJ = ./fonctions/labyrinthe.o  main.o
 
-${PROG} : main.o labyrinthe.o 
-	${CC} ./fonctions/labyrinthe.o  main.o -o ${PROG} -lm
+${PROG} : ${OBJ} 
+	${CC} ${CFLAG} ${OBJ} -o ${PROG} -lm
 
 main.o : main.c 
-	${CC} -c main.c  -Wall
+	${CC} ${CFLAG} -c main.c
 
-labyrinthe.o : labyrinthe.c
-	${CC} -c ./fonctions/labyrinthe.c -Wall
+labyrinthe.o : ./fonctions/labyrinthe.c
+	${CC} ${CFLAG} -c ./fonctions/labyrinthe.c
 
 #Supression des fichiers temporaires
-
-
-
+clean
+	rm -i ./fonctions/*.o
