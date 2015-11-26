@@ -2,13 +2,13 @@
 #include <stdlib.h>
 
 //typedef enum t_sexe {MALE, FEMELLE};
-//typedef struct {enum t_sexe sexe; int nourriture; int age;} t_fourmi[];
-//typedef enum {unseen=0, seen=1} t_discover;
-//typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
-//typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
+//typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi[];
+typedef enum {unseen=0, seen=1} t_discover;
+typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
+typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
 
 // renvoie 0 si rien, 1 si victoire, 2 si défaite
-int verifvictoire (t_lab lab[][], int maxx, int maxy) {
+int verifvictoire (int maxx, int maxy, t_lab lab[maxx][maxy]) {
   int i, j;
   int victoire = 1;
   int defaite = 1;
