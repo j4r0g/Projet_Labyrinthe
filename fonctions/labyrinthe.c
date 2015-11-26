@@ -1,8 +1,8 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<time.h> 
-#define X 37 //Définit la taille du labyrinthe
-#define Y 71
+#define X 30 //Définit la taille du labyrinthe
+#define Y 70
 
 typedef enum {unseen=0, seen=1} t_discover;
 typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
@@ -22,6 +22,10 @@ int nbr_rand(){
 void creuser_lab(t_lab lab[X][Y]){
 	
 	
+}
+
+int coord_correctes(t_lab lab[X][Y], int i, int j){
+	return (i<(X-1) && i>0 && j<(Y-1) && j>0);
 }
 
 //*			initialisation du labyrinthe à partir d'un .txt			*//
@@ -79,7 +83,7 @@ int lissage_lab(t_lab lab[X][Y]){	//Cette fonction "lisse" les murs. elle renvoi
 				if(lab[i+1][j].etat == vide){
 					mur_adj++;
 				}
-				if(mur_adj>=3){
+				else if(mur_adj == 3 ){
 					lab[i][j].etat = vide;
 					a_lisse=1;
 				}
@@ -163,6 +167,8 @@ void init_lab_rand (t_lab lab[X][Y]){
 	int cases_extrude = 0;
 	int ite_gauche = 0;
 	int ite_droite = 0;
+	int ite_haut = 0;
+	int ite_bas = 0;
 	int gauche = 0;
 	int droite = 0;
 	int haut = 0;
@@ -184,7 +190,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 		if(direction == 0){
 			i_tmp = i-1;
 			j_tmp = j;
-			if(i_tmp<(X-1) && i_tmp>0 && j_tmp<(Y-1) && j_tmp>0){
+			if(coord_correctes(lab, i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
@@ -196,7 +202,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 		else if(direction == 1){
 			i_tmp = i+1;
 			j_tmp = j;
-			if(i_tmp<(X-1) && i_tmp>0 && j_tmp<(Y-1) && j_tmp>0){
+			if(coord_correctes(lab, i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
@@ -208,7 +214,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 		else if(direction == 2){
 			i_tmp = i;
 			j_tmp = j-1;
-			if(i_tmp<(X-1) && i_tmp>0 && j_tmp<(Y-1) && j_tmp>0){
+			if(coord_correctes(lab, i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
@@ -221,7 +227,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 		else if(direction == 3){
 			i_tmp = i;
 			j_tmp = j+1;
-			if(i_tmp<(X-1) && i_tmp>0 && j_tmp<(Y-1) && j_tmp>0){
+			if(coord_correctes(lab, i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
@@ -230,23 +236,41 @@ void init_lab_rand (t_lab lab[X][Y]){
 				j = j_tmp;
 			}
 		}
-		if(j>3*(Y/4)){
+		if(j>3*(Y/5)){
 			ite_droite++;
 		}
-		else if(j<(Y/4)){
+		else if(j<(Y/5)){
 			ite_gauche++;
 		}
-		if(ite_droite> (X*Y)/5 ){
+		if(i>3*(X/5)){
+			ite_haut++;
+		}
+		else if(i<(X/5)){
+			ite_bas++;
+		}
+		if(ite_droite> (X*Y)/4 ){
 			i = X/2;
-			j = Y/2;
+			j = X/4;
 			ite_gauche = 0;
 			ite_droite = 0;
 		}
-		else if(ite_gauche> (X*Y)/5 ){
+		else if(ite_gauche> (X*Y)/4 ){
 			i = X/2;
-			j = Y/2;
+			j = 3*(X/4);
 			ite_gauche = 0;
 			ite_droite = 0;
+		}
+		if(ite_haut> (X*Y)/4 ){
+			i = X/2;
+			j = X/2;
+			ite_haut = 0;
+			ite_bas = 0;
+		}
+		else if(ite_bas> (X*Y)/4 ){
+			i = X/2;
+			j = X/2;
+			ite_haut = 0;
+			ite_bas = 0;
 		}
 			
 	}
