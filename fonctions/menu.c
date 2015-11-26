@@ -26,5 +26,5 @@ void menu(t_lab lab[][]) {
     }
   }
   while(choix!=3);
-  printf("Au revoir !\n")
+  printf("Au revoir !\n");
 }
