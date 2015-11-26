@@ -21,10 +21,10 @@ void menu(t_lab lab[][]) {
     switch(choix) {
       case 1 : fonc1 ; break;
       case 2 : fonc2 ; break;
-      case 3 : fonc3 ; break;
+      case 3 : break;
 
     }
   }
-  while(choix!=4);
+  while(choix!=3);
   printf("Au revoir !\n")
 }
