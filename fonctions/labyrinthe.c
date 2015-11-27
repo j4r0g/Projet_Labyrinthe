@@ -4,7 +4,7 @@
 #define X 30 //Définit la taille du labyrinthe
 #define Y 70
 
-typedef enum {0 = haut, 1 = bas, 2 = gauche, 3 = droite} t_direction;
+typedef enum {haut = 0, bas = 1, gauche = 2, droite = 3} t_direction;
 typedef enum {unseen=0, seen=1} t_discover;
 typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
 
@@ -316,7 +316,7 @@ void init_lab_rand_2 (t_lab lab[X][Y]){
 		lab[i][j].etat = vide;
 		direction = nbr_rand();
 		
-		if(direction =>1 && direction =<){
+		if(direction ==0){
 			i_tmp = i-1;
 			j_tmp = j;
 			if(coord_correctes(lab, i_tmp, j_tmp)){
@@ -466,7 +466,7 @@ void afficher_lab(t_lab lab[X][Y]){
 
 int main(){
 	srand(time(NULL));
-	init_lab_rand(lab);
+	init_lab_rand_2(lab);
 	afficher_lab(lab);
 	return 0;
 }
