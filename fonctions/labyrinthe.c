@@ -4,6 +4,7 @@
 #define X 30 //Définit la taille du labyrinthe
 #define Y 70
 
+typedef enum {0 = haut, 1 = bas, 2 = gauche, 3 = droite} t_direction;
 typedef enum {unseen=0, seen=1} t_discover;
 typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
 
@@ -19,7 +20,7 @@ int nbr_rand(){
 	return nombre;
 }
 
-void creuser_lab(t_lab lab[X][Y]){
+void direction(t_lab lab[X][Y]){
 	
 	
 }
@@ -71,6 +72,7 @@ int lissage_lab(t_lab lab[X][Y]){	//Cette fonction "lisse" les murs. elle renvoi
 		for (j=0; j<Y; j++){
 			if(lab[i][j].etat == mur){
 				mur_adj=0;
+				
 				if(lab[i][j-1].etat == vide){
 					mur_adj++;
 				}
@@ -83,10 +85,11 @@ int lissage_lab(t_lab lab[X][Y]){	//Cette fonction "lisse" les murs. elle renvoi
 				if(lab[i+1][j].etat == vide){
 					mur_adj++;
 				}
-				else if(mur_adj == 3 ){
+				if(mur_adj >= 3 ){
 					lab[i][j].etat = vide;
 					a_lisse=1;
 				}
+				
 			}
 		}
 	}
@@ -161,7 +164,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 }
 */
 
-//*			initialisation pseudo-aléatoire du labyrinthe			*//
+/*			initialisation pseudo-aléatoire du labyrinthe	(2nd essaie, par extrudage, en partant du centre)
 void init_lab_rand (t_lab lab[X][Y]){
 	int i, j, direction, i_tmp, j_tmp, a_lisse;
 	int cases_extrude = 0;
@@ -274,10 +277,139 @@ void init_lab_rand (t_lab lab[X][Y]){
 		}
 			
 	}
+	
 	a_lisse = lissage_lab(lab);
-	while(a_lisse !=0){
+	while(a_lisse){
 		a_lisse = lissage_lab(lab);
+		printf("test\n");
 	}
+	
+	printf("gauche : %d\n", gauche);
+	printf("droite : %d\n", droite);
+	printf("haut : %d\n", haut);
+	printf("bas : %d\n", bas);
+}*/
+
+//*			initialisation pseudo-aléatoire du labyrinthe			*//
+void init_lab_rand_2 (t_lab lab[X][Y]){
+	int i, j, direction, i_tmp, j_tmp, a_lisse;
+	int cases_extrude = 0;
+	int ite_gauche = 0;
+	int ite_droite = 0;
+	int ite_haut = 0;
+	int ite_bas = 0;
+	int gauche = 0;
+	int droite = 0;
+	int haut = 0;
+	int bas = 0;
+	
+	for(i =0; i<X; i++){		//Ce bloque place des murs partout 
+		for(j =0; j<Y; j++){				
+			lab[i][j].etat = mur;	
+			lab[i][j].decouvert = seen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe (ici en "seen" pour tester, mais normalement "unseen"
+		}
+	}
+	
+	i = X/2;
+	j = Y/2;
+	while(cases_extrude < (X*Y)/2){
+		lab[i][j].etat = vide;
+		direction = nbr_rand();
+		
+		if(direction =>1 && direction =<){
+			i_tmp = i-1;
+			j_tmp = j;
+			if(coord_correctes(lab, i_tmp, j_tmp)){
+				if(lab[i_tmp][j_tmp].etat == mur){
+					lab[i_tmp][j_tmp].etat = vide;
+					cases_extrude++;
+					bas++;
+				}
+				i=i_tmp;
+			}
+		}
+		else if(direction == 1){
+			i_tmp = i+1;
+			j_tmp = j;
+			if(coord_correctes(lab, i_tmp, j_tmp)){
+				if(lab[i_tmp][j_tmp].etat == mur){
+					lab[i_tmp][j_tmp].etat = vide;
+					cases_extrude++;
+					haut++;
+				}
+				i = i_tmp;
+			}
+		}
+		else if(direction == 2){
+			i_tmp = i;
+			j_tmp = j-1;
+			if(coord_correctes(lab, i_tmp, j_tmp)){
+				if(lab[i_tmp][j_tmp].etat == mur){
+					lab[i_tmp][j_tmp].etat = vide;
+					cases_extrude++;
+					gauche++;
+				}
+				j = j_tmp;
+				
+			}
+		}
+		else if(direction == 3){
+			i_tmp = i;
+			j_tmp = j+1;
+			if(coord_correctes(lab, i_tmp, j_tmp)){
+				if(lab[i_tmp][j_tmp].etat == mur){
+					lab[i_tmp][j_tmp].etat = vide;
+					cases_extrude++;
+					droite++;
+				}
+				j = j_tmp;
+			}
+		}
+		if(j>3*(Y/5)){
+			ite_droite++;
+		}
+		else if(j<(Y/5)){
+			ite_gauche++;
+		}
+		if(i>3*(X/5)){
+			ite_haut++;
+		}
+		else if(i<(X/5)){
+			ite_bas++;
+		}
+		if(ite_droite> (X*Y)/4 ){
+			i = X/2;
+			j = X/4;
+			ite_gauche = 0;
+			ite_droite = 0;
+		}
+		else if(ite_gauche> (X*Y)/4 ){
+			i = X/2;
+			j = 3*(X/4);
+			ite_gauche = 0;
+			ite_droite = 0;
+		}
+		if(ite_haut> (X*Y)/4 ){
+			i = X/2;
+			j = X/2;
+			ite_haut = 0;
+			ite_bas = 0;
+		}
+		else if(ite_bas> (X*Y)/4 ){
+			i = X/2;
+			j = X/2;
+			ite_haut = 0;
+			ite_bas = 0;
+		}
+			
+	}
+	
+	a_lisse = lissage_lab(lab);
+	while(a_lisse){
+		a_lisse = lissage_lab(lab);
+		printf("test\n");
+	}
+	
 	printf("gauche : %d\n", gauche);
 	printf("droite : %d\n", droite);
 	printf("haut : %d\n", haut);
