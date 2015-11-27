@@ -80,8 +80,7 @@ void afficher_lab(t_lab lab[X][Y]){
 
 
 int main(){
-	srand(time(NULL));
-	init_lab_rand(lab);
+	init_lab(lab);
 	afficher_lab(lab);
 	return 0;
 }
