@@ -1,6 +1,5 @@
 #include<stdio.h>
 #include<stdlib.h>
-#include<time.h> 
 #define X 20 //Définit la taille du labyrinthe
 #define Y 20
 
@@ -11,29 +10,7 @@ typedef struct {t_discover decouvert; t_etat etat ; int insecte ;} t_lab ;
 t_lab lab[X][Y];
 
 
-
-
-//*			initialisation du labyrinthe à partir d'un .txt			*//
-void init_lab (t_lab lab[X][Y]){
-	int tmp;
-	int i,j;
-	FILE * fic1;
-	fic1 = fopen("../doc/lab_test.txt", "r");
-	
-	while(!feof(fic1))
-	{	
-		for(i =0; i<X; i++){
-			for(j =0; j<Y; j++){				
-				fscanf(fic1, "%d ", &tmp);
-				lab[i][j].etat = tmp;
-				lab[i][j].decouvert = unseen;
-			}
-		}
-	}
-	fclose(fic1);
-}
-
-//*			affichage du labyrinthe en ASCII			*//
+/*			affichage du labyrinthe en ASCII			*/
 void afficher_lab(t_lab lab[X][Y]){
 	
 	int char_unseen = 63;
@@ -78,9 +55,28 @@ void afficher_lab(t_lab lab[X][Y]){
 	printf("\n\n");
 }
 
+void init_lab(t_lab lab[X][Y]){
+	int tmp;
+	int i,j;
+	FILE * fic1;
+	fic1 = fopen("../doc/lab_test.txt", "r");
+	
+	while(!feof(fic1)){	
+		for(i =0; i<X; i++){
+			for(j =0; j<Y; j++){				
+				fscanf(fic1, "%d ", &tmp);
+				lab[i][j].etat = tmp;
+				lab[i][j].decouvert = seen;
+			}
+		}
+	}
+	fclose(fic1);
+}
+
 
 int main(){
 	init_lab(lab);
 	afficher_lab(lab);
+	printf("coucou\n");
 	return 0;
 }
