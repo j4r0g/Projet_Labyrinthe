@@ -4,16 +4,16 @@
 #define X 20 //Définit la taille du labyrinthe
 #define Y 20
 
-typedef enum {MALE, FEMELLE} t_sexe;
-typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
-t_fourmi fourmi[];
+//typedef enum {MALE, FEMELLE} t_sexe;
+//typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
+//t_fourmi fourmi[];
 
 typedef enum {unseen=0, seen=1} t_discover;
 typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
 typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
 t_lab lab[X][Y];
 
-void main(int maxx, int maxy, t_lab lab[maxx][maxy]) {
+void main() {
   int choix;
   // Affichage du menu
   do {
@@ -35,13 +35,15 @@ void main(int maxx, int maxy, t_lab lab[maxx][maxy]) {
   printf("Au revoir !\n");
 }
 
-void regles() {
+int regles() {
   printf("\n Les règles sont les suivantes :\n");
   printf("A chaque tour vous pouvez choisir de :\n");
   printf("- Placer soit 0 ou 1 insecte (géré aléatoirement)\n");
   printf("- Placer entre 1 et 3 de nourriture (géré aléatoirement)");
+  return 0;
 }
 
-void lancement() {
+int lancement() {
   genelab(lab);
+  return 0;
 }
