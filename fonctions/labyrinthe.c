@@ -253,7 +253,6 @@ void init_lab_rand (t_lab lab[X][Y]){
 	a_lisse = lissage_lab(lab);
 	while(a_lisse){
 		a_lisse = lissage_lab(lab);
-		printf("test\n");
 	}
 }
 
