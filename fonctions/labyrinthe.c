@@ -2,7 +2,7 @@
 #include<stdlib.h>
 #include<time.h> 
 #define X 30 //Définit la taille du labyrinthe
-#define Y 70
+#define Y 60
 
 typedef enum {haut = 0, bas = 1, gauche = 2, droite = 3} t_direction;
 typedef enum {unseen=0, seen=1} t_discover;
@@ -13,10 +13,9 @@ t_lab lab[X][Y];
 
 
 //*			fonction qui renvoie un nombre aleatoire entre 0 et max			*//
-int nbr_rand(){
-	int m=100; 
+int nbr_rand(int max){
 	int nombre;
-	nombre = rand()%m;
+	nombre = rand()%max;
 	return nombre;
 }
 
@@ -30,7 +29,7 @@ int coord_correctes(t_lab lab[X][Y], int i, int j){
 }
 
 //*			initialisation du labyrinthe à partir d'un .txt			*//
-void init_lab (t_lab lab[X][Y]){
+void init_lab(t_lab lab[X][Y]){
 	int tmp;
 	int i,j;
 	FILE * fic1;
@@ -96,6 +95,13 @@ int lissage_lab(t_lab lab[X][Y]){	//Cette fonction "lisse" les murs. elle renvoi
 	return a_lisse;
 }
 
+void creuser_lab (t_lab lab[X][Y], int i_tmp, int j_tmp){
+	if(coord_correctes(lab, i_tmp, j_tmp)){
+		if(lab[i_tmp][j_tmp].etat == mur){
+			lab[i_tmp][j_tmp].etat = vide;
+		}
+	}	
+}
 
 /*			initialisation pseudo-aléatoire du labyrinthe	(1er essai, par "ilots")		
 void init_lab_rand (t_lab lab[X][Y]){
@@ -164,18 +170,17 @@ void init_lab_rand (t_lab lab[X][Y]){
 }
 */
 
-/*			initialisation pseudo-aléatoire du labyrinthe	(2nd essaie, par extrudage, en partant du centre)
+//			initialisation pseudo-aléatoire du labyrinthe	(2nd essaie, par extrudage, en partant du centre)
 void init_lab_rand (t_lab lab[X][Y]){
 	int i, j, direction, i_tmp, j_tmp, a_lisse;
 	int cases_extrude = 0;
 	int ite_gauche = 0;
 	int ite_droite = 0;
-	int ite_haut = 0;
-	int ite_bas = 0;
 	int gauche = 0;
 	int droite = 0;
 	int haut = 0;
 	int bas = 0;
+	int orientation = 0;
 	
 	for(i =0; i<X; i++){		//Ce bloque place des murs partout 
 		for(j =0; j<Y; j++){				
@@ -188,23 +193,25 @@ void init_lab_rand (t_lab lab[X][Y]){
 	j = Y/2;
 	while(cases_extrude < (X*Y)/2){
 		lab[i][j].etat = vide;
-		direction = nbr_rand()/25;
+		direction = nbr_rand(100);
+		printf("%d\n", direction);
 		
-		if(direction == 0){
-			i_tmp = i-1;
-			j_tmp = j;
+		if(direction > 75 + orientation){
+			i_tmp = i;
+			j_tmp = j-1;
 			if(coord_correctes(lab, i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
 					bas++;
 				}
-				i=i_tmp;
+				i = i_tmp;
+				j = j_tmp;
 			}
 		}
-		else if(direction == 1){
-			i_tmp = i+1;
-			j_tmp = j;
+		else if(direction >50){
+			i_tmp = i;
+			j_tmp = j+1;
 			if(coord_correctes(lab, i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
@@ -212,24 +219,26 @@ void init_lab_rand (t_lab lab[X][Y]){
 					haut++;
 				}
 				i = i_tmp;
+				j = j_tmp;
 			}
 		}
-		else if(direction == 2){
-			i_tmp = i;
-			j_tmp = j-1;
+		else if(direction >25){
+			i_tmp = i-1;
+			j_tmp = j;
 			if(coord_correctes(lab, i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
 					gauche++;
 				}
+				i = i_tmp;
 				j = j_tmp;
 				
 			}
 		}
-		else if(direction == 3){
-			i_tmp = i;
-			j_tmp = j+1;
+		else{
+			i_tmp = i+1;
+			j_tmp = j;
 			if(coord_correctes(lab, i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
@@ -237,6 +246,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 					droite++;
 				}
 				j = j_tmp;
+				i = i_tmp;
 			}
 		}
 		if(j>3*(Y/5)){
@@ -245,161 +255,19 @@ void init_lab_rand (t_lab lab[X][Y]){
 		else if(j<(Y/5)){
 			ite_gauche++;
 		}
-		if(i>3*(X/5)){
-			ite_haut++;
-		}
-		else if(i<(X/5)){
-			ite_bas++;
-		}
 		if(ite_droite> (X*Y)/4 ){
 			i = X/2;
-			j = X/4;
+			j = Y/2;
 			ite_gauche = 0;
 			ite_droite = 0;
+			orientation = -10;
 		}
 		else if(ite_gauche> (X*Y)/4 ){
 			i = X/2;
-			j = 3*(X/4);
+			j = Y/2;
 			ite_gauche = 0;
 			ite_droite = 0;
-		}
-		if(ite_haut> (X*Y)/4 ){
-			i = X/2;
-			j = X/2;
-			ite_haut = 0;
-			ite_bas = 0;
-		}
-		else if(ite_bas> (X*Y)/4 ){
-			i = X/2;
-			j = X/2;
-			ite_haut = 0;
-			ite_bas = 0;
-		}
-			
-	}
-	
-	a_lisse = lissage_lab(lab);
-	while(a_lisse){
-		a_lisse = lissage_lab(lab);
-		printf("test\n");
-	}
-	
-	printf("gauche : %d\n", gauche);
-	printf("droite : %d\n", droite);
-	printf("haut : %d\n", haut);
-	printf("bas : %d\n", bas);
-}*/
-
-//*			initialisation pseudo-aléatoire du labyrinthe			*//
-void init_lab_rand_2 (t_lab lab[X][Y]){
-	int i, j, direction, i_tmp, j_tmp, a_lisse;
-	int cases_extrude = 0;
-	int ite_gauche = 0;
-	int ite_droite = 0;
-	int ite_haut = 0;
-	int ite_bas = 0;
-	int gauche = 0;
-	int droite = 0;
-	int haut = 0;
-	int bas = 0;
-	
-	for(i =0; i<X; i++){		//Ce bloque place des murs partout 
-		for(j =0; j<Y; j++){				
-			lab[i][j].etat = mur;	
-			lab[i][j].decouvert = seen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe (ici en "seen" pour tester, mais normalement "unseen"
-		}
-	}
-	
-	i = X/2;
-	j = Y/2;
-	while(cases_extrude < (X*Y)/2){
-		lab[i][j].etat = vide;
-		direction = nbr_rand();
-		
-		if(direction ==0){
-			i_tmp = i-1;
-			j_tmp = j;
-			if(coord_correctes(lab, i_tmp, j_tmp)){
-				if(lab[i_tmp][j_tmp].etat == mur){
-					lab[i_tmp][j_tmp].etat = vide;
-					cases_extrude++;
-					bas++;
-				}
-				i=i_tmp;
-			}
-		}
-		else if(direction == 1){
-			i_tmp = i+1;
-			j_tmp = j;
-			if(coord_correctes(lab, i_tmp, j_tmp)){
-				if(lab[i_tmp][j_tmp].etat == mur){
-					lab[i_tmp][j_tmp].etat = vide;
-					cases_extrude++;
-					haut++;
-				}
-				i = i_tmp;
-			}
-		}
-		else if(direction == 2){
-			i_tmp = i;
-			j_tmp = j-1;
-			if(coord_correctes(lab, i_tmp, j_tmp)){
-				if(lab[i_tmp][j_tmp].etat == mur){
-					lab[i_tmp][j_tmp].etat = vide;
-					cases_extrude++;
-					gauche++;
-				}
-				j = j_tmp;
-				
-			}
-		}
-		else if(direction == 3){
-			i_tmp = i;
-			j_tmp = j+1;
-			if(coord_correctes(lab, i_tmp, j_tmp)){
-				if(lab[i_tmp][j_tmp].etat == mur){
-					lab[i_tmp][j_tmp].etat = vide;
-					cases_extrude++;
-					droite++;
-				}
-				j = j_tmp;
-			}
-		}
-		if(j>3*(Y/5)){
-			ite_droite++;
-		}
-		else if(j<(Y/5)){
-			ite_gauche++;
-		}
-		if(i>3*(X/5)){
-			ite_haut++;
-		}
-		else if(i<(X/5)){
-			ite_bas++;
-		}
-		if(ite_droite> (X*Y)/4 ){
-			i = X/2;
-			j = X/4;
-			ite_gauche = 0;
-			ite_droite = 0;
-		}
-		else if(ite_gauche> (X*Y)/4 ){
-			i = X/2;
-			j = 3*(X/4);
-			ite_gauche = 0;
-			ite_droite = 0;
-		}
-		if(ite_haut> (X*Y)/4 ){
-			i = X/2;
-			j = X/2;
-			ite_haut = 0;
-			ite_bas = 0;
-		}
-		else if(ite_bas> (X*Y)/4 ){
-			i = X/2;
-			j = X/2;
-			ite_haut = 0;
-			ite_bas = 0;
+			orientation = 10;
 		}
 			
 	}
@@ -416,9 +284,89 @@ void init_lab_rand_2 (t_lab lab[X][Y]){
 	printf("bas : %d\n", bas);
 }
 
+/*			initialisation pseudo-aléatoire du labyrinthe			
+void init_lab_rand_2 (t_lab lab[X][Y]){
+	int i, j, direction, i_tmp, j_tmp, a_lisse;
+	int cases_extrude = 0;
+	
+	for(i =0; i<X; i++){		//Ce bloque place des murs partout 
+		for(j =0; j<Y; j++){				
+			lab[i][j].etat = mur;	
+			lab[i][j].decouvert = seen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe (ici en "seen" pour tester, mais normalement "unseen"
+		}
+	}
+	
+	i = X/2;
+	j = 1;
+	while(j<(Y-2)){
+		lab[i][j].etat = vide;
+		direction = nbr_rand(100);
+		if(direction >60){
+			i_tmp = i;
+			j_tmp = j+1;
+			if(coord_correctes(lab, i_tmp, j_tmp)){
+				if(lab[i_tmp][j_tmp].etat == mur){
+					lab[i_tmp][j_tmp].etat = vide;
+					cases_extrude++;
+				}
+				j=j_tmp;
+			}
+		}
+		else if(direction >35){
+			i_tmp = i-1;
+			j_tmp = j;
+			if(coord_correctes(lab, i_tmp, j_tmp)){
+				if(lab[i_tmp][j_tmp].etat == mur){
+					lab[i_tmp][j_tmp].etat = vide;
+					cases_extrude++;
+				}
+				i = i_tmp;
+			}
+		}
+		else if(direction > 10){
+			i_tmp = i+1;
+			j_tmp = j;
+			if(coord_correctes(lab, i_tmp, j_tmp)){
+				if(lab[i_tmp][j_tmp].etat == mur){
+					lab[i_tmp][j_tmp].etat = vide;
+					cases_extrude++;
+				}
+				i = i_tmp;
+				
+			}
+		}
+		else {
+			i_tmp = i;
+			j_tmp = j-1;
+			if(coord_correctes(lab, i_tmp, j_tmp)){
+				if(lab[i_tmp][j_tmp].etat == mur){
+					lab[i_tmp][j_tmp].etat = vide;
+					cases_extrude++;
+				}
+				j = j_tmp;
+			}
+		}
+		
+			
+	}
+	
+	a_lisse = lissage_lab(lab);
+	while(a_lisse){
+		a_lisse = lissage_lab(lab);
+		printf("test\n");
+	}
+	
+	printf("gauche : %d\n", gauche);
+	printf("droite : %d\n", droite);
+	printf("haut : %d\n", haut);
+	printf("bas : %d\n", bas);
+}/*
 
 
-//*			affichage du labyrinthe en ASCII			*//
+
+//*			affichage du labyrinthe en ASCII			*/
+
+
 void afficher_lab(t_lab lab[X][Y]){
 	
 	int char_unseen = 63;
@@ -466,7 +414,7 @@ void afficher_lab(t_lab lab[X][Y]){
 
 int main(){
 	srand(time(NULL));
-	init_lab_rand_2(lab);
+	init_lab_rand(lab);
 	afficher_lab(lab);
 	return 0;
 }

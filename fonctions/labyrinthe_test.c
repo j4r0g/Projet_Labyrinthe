@@ -88,5 +88,6 @@ void init_lab(t_lab lab[X][Y]){
 int genelab(t_lab lab[X][Y]){
 	init_lab(lab);
 	afficher_lab(lab);
+
 	return 0;
 }
