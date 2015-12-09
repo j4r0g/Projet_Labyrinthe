@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define X 20 //Définit la taille du labyrinthe
-#define Y 20
+#define X 30 //Définit la taille du labyrinthe
+#define Y 60
 
 typedef enum {MALE, FEMELLE} t_sexe;
 typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
@@ -44,11 +44,13 @@ int regles() {
 }
 
 int lancement() {
+  int i;
   int bouffe=10;
   int dureevie=30;
   genelab(lab); //Génération du labyrinthe
-  /*for(i=0;i<5;i++) {
-    gene_deb(X, Y, bouffe, dureevie, lab); //Génération de chaque insecte
-  }*/
+  for(i=0;i<10;i++) {
+    gene_deb(bouffe, dureevie, lab, i); //Génération de chaque insecte
+  }
+  afficher_lab(lab);
   return 0;
 }
