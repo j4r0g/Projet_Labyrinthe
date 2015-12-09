@@ -6,7 +6,7 @@
 
 typedef enum {haut = 0, bas = 1, gauche = 2, droite = 3} t_direction;
 typedef enum {unseen=0, seen=1} t_discover;
-typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
+typedef enum {vide=' ', mur='#', food='*', insecte='%'} t_etat;
 
 typedef struct {t_discover decouvert; t_etat etat ; int insecte ;} t_lab ;
 t_lab lab[X][Y];
@@ -19,11 +19,7 @@ int nbr_rand(int max){
 	return nombre;
 }
 
-void direction(t_lab lab[X][Y]){
-	
-	
-}
-
+//*			fonctions qui vérifient que les coordonnées mise en arguments font parties de la matrice		*//
 int coord_correctes(t_lab lab[X][Y], int i, int j){
 	return (i<(X-1) && i>0 && j<(Y-1) && j>0);
 }
@@ -48,8 +44,8 @@ void init_lab(t_lab lab[X][Y]){
 	fclose(fic1);
 }
 
-
-int nbr_cases_vide(t_lab lab[X][Y]){ //Cette fonction compte le nombre de cases vide
+//*			Cette fonction compte le nombre de cases vide			*//
+int nbr_cases_vide(t_lab lab[X][Y]){ 
 	int i, j;
 	int nbr_cases_vide = 0;
 	for (i=0; i<X; i++){
@@ -62,8 +58,8 @@ int nbr_cases_vide(t_lab lab[X][Y]){ //Cette fonction compte le nombre de cases 
 	return nbr_cases_vide;
 }
 
-
-int lissage_lab(t_lab lab[X][Y]){	//Cette fonction "lisse" les murs. elle renvoit 1 si elle a effectué des modifications, 0 sinon
+//*			Cette fonction "lisse" les murs. elle renvoit 1 si elle a effectué des modifications, 0 sinon		*//
+int lissage_lab(t_lab lab[X][Y]){	
 	int i, j;
 	int mur_adj=0;
 	int a_lisse=0;
@@ -95,16 +91,9 @@ int lissage_lab(t_lab lab[X][Y]){	//Cette fonction "lisse" les murs. elle renvoi
 	return a_lisse;
 }
 
-void creuser_lab (t_lab lab[X][Y], int i_tmp, int j_tmp){
-	if(coord_correctes(lab, i_tmp, j_tmp)){
-		if(lab[i_tmp][j_tmp].etat == mur){
-			lab[i_tmp][j_tmp].etat = vide;
-		}
-	}	
-}
 
-/*			initialisation pseudo-aléatoire du labyrinthe	(1er essai, par "ilots")		
-void init_lab_rand (t_lab lab[X][Y]){
+//*			initialisation pseudo-aléatoire du labyrinthe	(1er essai, par "ilots")		*//
+/*void init_lab_rand (t_lab lab[X][Y]){
 	int i,j, x, y, x_tmp, y_tmp, compteur_ilot, branche, rand_branche, a_lisse;
 	int nbr_ilot=0;
 		
@@ -167,19 +156,15 @@ void init_lab_rand (t_lab lab[X][Y]){
 			printf("test\n");
 		}
 	}
-}
-*/
+}*/
 
-//			initialisation pseudo-aléatoire du labyrinthe	(2nd essaie, par extrudage, en partant du centre)
+
+//			initialisation pseudo-aléatoire du labyrinthe	(2nd essaie, par extrudage, en partant du centre)	*//
 void init_lab_rand (t_lab lab[X][Y]){
 	int i, j, direction, i_tmp, j_tmp, a_lisse;
 	int cases_extrude = 0;
 	int ite_gauche = 0;
 	int ite_droite = 0;
-	int gauche = 0;
-	int droite = 0;
-	int haut = 0;
-	int bas = 0;
 	int orientation = 0;
 	
 	for(i =0; i<X; i++){		//Ce bloque place des murs partout 
@@ -203,7 +188,6 @@ void init_lab_rand (t_lab lab[X][Y]){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
-					bas++;
 				}
 				i = i_tmp;
 				j = j_tmp;
@@ -216,7 +200,6 @@ void init_lab_rand (t_lab lab[X][Y]){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
-					haut++;
 				}
 				i = i_tmp;
 				j = j_tmp;
@@ -229,7 +212,6 @@ void init_lab_rand (t_lab lab[X][Y]){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
-					gauche++;
 				}
 				i = i_tmp;
 				j = j_tmp;
@@ -243,7 +225,6 @@ void init_lab_rand (t_lab lab[X][Y]){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
-					droite++;
 				}
 				j = j_tmp;
 				i = i_tmp;
@@ -268,24 +249,17 @@ void init_lab_rand (t_lab lab[X][Y]){
 			ite_gauche = 0;
 			ite_droite = 0;
 			orientation = 10;
-		}
-			
+		}	
 	}
-	
 	a_lisse = lissage_lab(lab);
 	while(a_lisse){
 		a_lisse = lissage_lab(lab);
 		printf("test\n");
 	}
-	
-	printf("gauche : %d\n", gauche);
-	printf("droite : %d\n", droite);
-	printf("haut : %d\n", haut);
-	printf("bas : %d\n", bas);
 }
 
-/*			initialisation pseudo-aléatoire du labyrinthe			
-void init_lab_rand_2 (t_lab lab[X][Y]){
+//*			initialisation pseudo-aléatoire du labyrinthe	(3eme essaie, de gauche a droite)			*//	
+/*void init_lab_rand_2 (t_lab lab[X][Y]){
 	int i, j, direction, i_tmp, j_tmp, a_lisse;
 	int cases_extrude = 0;
 	
@@ -360,20 +334,13 @@ void init_lab_rand_2 (t_lab lab[X][Y]){
 	printf("droite : %d\n", droite);
 	printf("haut : %d\n", haut);
 	printf("bas : %d\n", bas);
-}/*
+}*/
 
 
-
-//*			affichage du labyrinthe en ASCII			*/
-
-
+//			affichage du labyrinthe en ASCII			
 void afficher_lab(t_lab lab[X][Y]){
 	
-	int char_unseen = 63;
-	int char_mur = 35;
-	int char_insecte = 37;
-	int char_rien = 32;
-	int char_food = 42;
+	int char_unseen = '?';
 	
 	t_etat etat_tmp;
 	t_discover decouvert_tmp;
@@ -388,23 +355,8 @@ void afficher_lab(t_lab lab[X][Y]){
 				printf("%c ", char_unseen);
 			}
 			else{
-				switch (etat_tmp){
-					case vide:
-						printf("%c ", char_rien);
-						break;
-					case mur:
-						printf("%c ", char_mur);
-						break;
-					case food:
-						printf("%c ", char_food);
-						break;
-					case insecte:
-						printf("%c ", char_insecte);
-						break;
-					default:
-						printf("x ");
-				} 
-			}
+				printf("%c ", etat_tmp);
+			} 
 		}
 		printf("\n");
 	}
