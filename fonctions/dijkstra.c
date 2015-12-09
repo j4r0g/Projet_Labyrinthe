@@ -33,7 +33,22 @@ void dijkstra(t_lab labyrinthe, int xdep, int ydep) {
 }
 */
 
-void deplacement(t_lab labyrinthe, int xdep, int ydep, int xarr, int yarr)  {
+void deplacement (t_lab lab, int xdep, int ydep) {
+	int i, j;
+	int nb_nourr = 0;
+	int manger[15];
+	for (i=0; i<X; i++) {
+		for (j=0; j<Y; j++) {
+			if (lab[i][j]==food){
+				manger[nb]=pluscourte_dist(xdep, ydep, i, j);
+				nb_nourr++;
+			}
+		}
+	}
+}
+
+
+int pluscourte_dist(t_lab labyrinthe, int xdep, int ydep, int xarr, int yarr)  {
 	int matr_dist[X][Y];
 	int i, j;
 	int dist = 0;
@@ -79,5 +94,5 @@ void deplacement(t_lab labyrinthe, int xdep, int ydep, int xarr, int yarr)  {
 			}
 		}
 	}
-	printf("%i", matr_dist[xarr][yarr]);
+	return matr_dist[xarr][yarr];
 }
