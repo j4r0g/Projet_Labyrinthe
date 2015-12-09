@@ -77,6 +77,6 @@ void init_lab(t_lab lab[X][Y]){
 int main(){
 	init_lab(lab);
 	afficher_lab(lab);
-	printf("coucou\n");
+	printf("coucou keryann\n");
 	return 0;
 }
