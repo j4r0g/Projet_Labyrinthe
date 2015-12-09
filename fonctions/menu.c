@@ -6,7 +6,7 @@
 
 typedef enum {MALE, FEMELLE} t_sexe;
 typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
-t_fourmi fourmi[];
+t_fourmi fourmi[10];
 
 typedef enum {unseen=0, seen=1} t_discover;
 typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
@@ -46,9 +46,9 @@ int regles() {
 int lancement() {
   int bouffe=10;
   int dureevie=30;
-  genelab(lab);
-  for(i=0;i<5;i++) {
-    gene_deb(X, Y, bouffe, dureevie, lab);
-  }
+  genelab(lab); //Génération du labyrinthe
+  /*for(i=0;i<5;i++) {
+    gene_deb(X, Y, bouffe, dureevie, lab); //Génération de chaque insecte
+  }*/
   return 0;
 }
