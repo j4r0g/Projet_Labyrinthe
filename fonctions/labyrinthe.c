@@ -179,7 +179,6 @@ void init_lab_rand (t_lab lab[X][Y]){
 	while(cases_extrude < (X*Y)/2){
 		lab[i][j].etat = vide;
 		direction = nbr_rand(100);
-		printf("%d\n", direction);
 		
 		if(direction > 75 + orientation){
 			i_tmp = i;
