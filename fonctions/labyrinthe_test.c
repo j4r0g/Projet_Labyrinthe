@@ -5,30 +5,27 @@
 
 typedef enum {unseen=0, seen=1} t_discover;
 typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
-
-typedef struct {t_discover decouvert; t_etat etat ; int insecte ;} t_lab ;
-t_lab lab[X][Y];
-
+typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
 
 /*			affichage du labyrinthe en ASCII			*/
 void afficher_lab(t_lab lab[X][Y]){
-	
+
 	int char_unseen = 63;
 	int char_mur = 35;
 	int char_insecte = 37;
 	int char_rien = 32;
 	int char_food = 42;
-	
+
 	t_etat etat_tmp;
 	t_discover decouvert_tmp;
 	int i,j;
-	
+
 	printf("\n\n");
 	for(i =0; i<X; i++){
 		for(j =0; j<Y; j++){
 			etat_tmp = lab[i][j].etat;
 			decouvert_tmp = lab[i][j].decouvert;
-			if(decouvert_tmp == 0){ 
+			if(decouvert_tmp == 0){
 				printf("%c ", char_unseen);
 			}
 			else{
@@ -47,7 +44,7 @@ void afficher_lab(t_lab lab[X][Y]){
 						break;
 					default:
 						printf("x ");
-				} 
+				}
 			}
 		}
 		printf("\n");
@@ -60,10 +57,10 @@ void init_lab(t_lab lab[X][Y]){
 	int i,j;
 	FILE * fic1;
 	fic1 = fopen("../doc/lab_test.txt", "r");
-	
-	while(!feof(fic1)){	
+
+	while(!feof(fic1)){
 		for(i =0; i<X; i++){
-			for(j =0; j<Y; j++){				
+			for(j =0; j<Y; j++){
 				fscanf(fic1, "%d ", &tmp);
 				lab[i][j].etat = tmp;
 				lab[i][j].decouvert = seen;
@@ -74,9 +71,9 @@ void init_lab(t_lab lab[X][Y]){
 }
 
 
-int main(){
+int genelab(t_lab lab[X][Y]){
 	init_lab(lab);
 	afficher_lab(lab);
-	printf("coucou keryann\n");
+
 	return 0;
 }
