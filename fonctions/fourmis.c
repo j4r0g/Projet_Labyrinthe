@@ -3,7 +3,7 @@
 #include <time.h>
 
 typedef enum t_sexe {MALE, FEMELLE};
-typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi[];
+typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
 
 int insecte_adjacent(int px, int py) {
 	if (lab[px-1][py].etat == insecte) {
@@ -18,7 +18,7 @@ int insecte_adjacent(int px, int py) {
 	return 0;
 }
 
-void prochain_deplacement (int num_fourmi, int pos_x, int pos_y) {
+void prochain_deplacement (int pos_x, int pos_y) {
 	int ins_adj = insecte_adjacent();
 	time_t t;
 	srand((unsigned) time(&t));

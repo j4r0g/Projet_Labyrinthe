@@ -51,6 +51,20 @@ int lancement() {
   for(i=0;i<10;i++) {
     gene_deb(bouffe, dureevie, lab, i); //Génération de chaque insecte
   }
-  afficher_lab(lab);
+  while(!verifvictoire(X, Y, lab)){
+    int i,j,nbre=0;
+    // Il serait judicieux d'ajouter dans l'énumération l'emplacement de l'insecte afin de ne pas
+    parcourir entièrement la matrice
+    for(i=0;i<X;i++) {
+      for(j=0;j<Y;j++) {
+        if(lab[i][j].etat=insecte){
+          nbre++;
+          prochain_deplacement (i,j);
+        }
+      }
+    }
+    afficher_lab(lab);
+    actionUser(X, Y, lab, bouffe, dureevie)
+  }
   return 0;
 }
