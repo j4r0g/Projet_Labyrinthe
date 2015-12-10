@@ -9,7 +9,7 @@ typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
 
 t_fourmi fourmi[];
 
-void actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureevie){
+int actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureevie){
   int choix;
   char reponse;
   do {
@@ -34,7 +34,11 @@ void actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int duree
 
     }
   }
-  while(choix!=3);
+  while(choix==4);
+  if(choix==3)
+    return 0;
+  else
+    return 1;
 }
 
 void ajoutNourriture (int maxx, int maxy, t_lab lab[maxx][maxy]) {

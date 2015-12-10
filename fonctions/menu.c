@@ -53,8 +53,8 @@ int lancement() {
   }
   while(!verifvictoire(X, Y, lab)){
     int i,j,nbre=0;
-    // Il serait judicieux d'ajouter dans l'énumération l'emplacement de l'insecte afin de ne pas
-    parcourir entièrement la matrice
+    /* Il serait judicieux d'ajouter dans l'énumération l'emplacement de l'insecte afin de ne pas
+    parcourir entièrement la matrice*/
     for(i=0;i<X;i++) {
       for(j=0;j<Y;j++) {
         if(lab[i][j].etat=insecte){
@@ -64,7 +64,9 @@ int lancement() {
       }
     }
     afficher_lab(lab);
-    actionUser(X, Y, lab, bouffe, dureevie)
+    res=actionUser(X, Y, lab, bouffe, dureevie)
+    if(res==0)
+      return 1;
   }
   return 0;
 }
