@@ -62,9 +62,9 @@ int lancement() {
     for(i=0;i<X;i++) {
       for(j=0;j<Y;j++) {
         if(lab[i][j].etat=insecte){
-          issue=prochain_deplacement (i, j, lab, fourmi);
-          if (issue==1)
-            nbre++;
+          deplacement (lab, i, j);
+          /*if (issue==1)
+            nbre++;*/
         }
       }
     }

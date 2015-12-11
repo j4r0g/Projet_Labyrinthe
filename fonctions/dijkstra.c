@@ -5,6 +5,15 @@
 #define X 30
 #define Y 60
 
+typedef enum {MALE, FEMELLE} t_sexe;
+typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
+
+typedef enum {haut = 0, bas = 1, gauche = 2, droite = 3} t_direction;
+typedef enum {unseen=0, seen=1} t_discover;
+typedef enum {vide=' ', mur='#', food='*', insecte='%'} t_etat;
+
+typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
+
 /*
 typedef struct noeud {t_noeud * pred; int dist_dep; int ponderation; int parcouru;}t_noeud;
 t_noeud matr_dest[X][Y];
@@ -62,7 +71,7 @@ void deplacement (t_lab lab, int xdep, int ydep) {
 		lab[pos_x-1][pos_y].insecte = lab[pos_x][pos_y].insecte;
 		lab[pos_x][pos_y].insecte = 0;
 	} else if ((plusproche.x - xdep) > 0 && (plusproche.y - ydep) < 0) {
-		//deplacement a l'ouest (sud ouest)	
+		//deplacement a l'ouest (sud ouest)
 		lab[pos_x][pos_y-1].etat = 3;
 		lab[pos_x][pos_y].etat = 0;
 		lab[pos_x][pos_y-1].insecte = lab[pos_x][pos_y].insecte;
