@@ -4,7 +4,8 @@
 //typedef enum t_sexe {MALE, FEMELLE};
 //typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi[];
 typedef enum {unseen=0, seen=1} t_discover;
-typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
+typedef enum {vide=' ', mur='#', food='*', insecte='%'} t_etat;
+
 typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
 
 // renvoie 0 si rien, 1 si victoire, 2 si défaite
@@ -28,4 +29,6 @@ int verifvictoire (int maxx, int maxy, t_lab lab[maxx][maxy]) {
     return 1;
   else if(defaite)
     return 2;
+  else
+    return 4;
 }

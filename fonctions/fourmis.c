@@ -2,10 +2,18 @@
 #include <stdlib.h>
 #include <time.h>
 
-typedef enum t_sexe {MALE, FEMELLE};
+#define X 30
+#define Y 60
+
+typedef enum {MALE, FEMELLE} t_sexe;
 typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
 
-int insecte_adjacent(int px, int py) {
+typedef enum {unseen=0, seen=1} t_discover;
+typedef enum {vide=' ', mur='#', food='*', insecte='%'} t_etat;
+
+typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
+
+int insecte_adjacent(int px, int py, t_lab lab[X][Y]) {
 	if (lab[px-1][py].etat == insecte) {
 		return 1;
 	} else if (lab[px][py-1].etat == insecte) {
@@ -18,41 +26,53 @@ int insecte_adjacent(int px, int py) {
 	return 0;
 }
 
-void prochain_deplacement (int pos_x, int pos_y) {
-	int ins_adj = insecte_adjacent();
+int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], t_fourmi fourmi[]) {
+	int ins_adj = insecte_adjacent(pos_x, pos_y, lab);
+	int issue = 2;
 	time_t t;
 	srand((unsigned) time(&t));
 	int random = rand()%100;
 
 	if (ins_adj == 1) {
-		combat(pos_x, pos_y, pos_x-1, pos_y);
-	} else if (ins_adj == 2) {
-		combat(pos_x, pos_y, pos_x, pos_y-1);
-	} else if (ins_adj == 3) {
-		combat(pos_x, pos_y, pos_x, pos_y+1);
-	} else if (ins_adj == 4) {
-		combat(pos_x, pos_y, pos_x+1, pos_y);
-	} else if (lab[pos_x-1][pos_y].etat != mur && lab[pos_x][pos_y-1].etat != mur && lab[pos_x][pos_y+1].etat != mur && lab[pos_x+1][pos_y].etat != mur) {
+		issue=combat(pos_x, pos_y, pos_x-1, pos_y, fourmi);
+	}
+	else if (ins_adj == 2) {
+		issue=combat(pos_x, pos_y, pos_x, pos_y-1, fourmi);
+	}
+	else if (ins_adj == 3) {
+		issue=combat(pos_x, pos_y, pos_x, pos_y+1, fourmi);
+	}
+	else if (ins_adj == 4) {
+		issue=combat(pos_x, pos_y, pos_x+1, pos_y, fourmi);
+	}
+	else if (lab[pos_x-1][pos_y].etat != mur && lab[pos_x][pos_y-1].etat != mur && lab[pos_x][pos_y+1].etat != mur && lab[pos_x+1][pos_y].etat != mur) {
 		if (random >= 0 && random < 25 && lab[pos_x-1][pos_y].etat!=mur) {
 			lab[pos_x-1][pos_y].etat = 3;
 			lab[pos_x][pos_y].etat = 0;
 			lab[pos_x-1][pos_y].insecte = lab[pos_x][pos_y].insecte;
 			lab[pos_x][pos_y].insecte = 0;
-		} else if (random >= 25 && random < 50 && lab[pos_x][pos_y-1].etat!=mur) {
+		}
+		else if (random >= 25 && random < 50 && lab[pos_x][pos_y-1].etat!=mur) {
 			lab[pos_x][pos_y-1].etat = 3;
 			lab[pos_x][pos_y].etat = 0;
 			lab[pos_x][pos_y-1].insecte = lab[pos_x][pos_y].insecte;
 			lab[pos_x][pos_y].insecte = 0;
-		} else if (random >= 50 && random < 75 && lab[pos_x][pos_y+1]!=mur) {
+		}
+		else if (random >= 50 && random < 75 && lab[pos_x][pos_y+1].etat!=mur) {
 			lab[pos_x][pos_y+1].etat = 3;
 			lab[pos_x][pos_y].etat = 0;
 			lab[pos_x][pos_y+1].insecte = lab[pos_x][pos_y].insecte;
 			lab[pos_x][pos_y].insecte = 0;
-		} else if (random >= 75 && random < 100 && lab[pos_x+1][pos_y]!=mur) {
+		}
+		else if (random >= 75 && random < 100 && lab[pos_x+1][pos_y].etat!=mur) {
 			lab[pos_x+1][pos_y].etat = 3;
 			lab[pos_x][pos_y].etat = 0;
 			lab[pos_x+1][pos_y].insecte = lab[pos_x][pos_y].insecte;
 			lab[pos_x][pos_y].insecte = 0;
 		}
 	}
+	if(issue==1)
+		return 1;
+	else
+		return 0;
 }

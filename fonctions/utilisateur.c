@@ -7,9 +7,7 @@ typedef enum {unseen=0, seen=1} t_discover;
 typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
 typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
 
-t_fourmi fourmi[];
-
-int actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureevie){
+int actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins){
   int choix;
   char reponse;
   do {
@@ -21,7 +19,7 @@ int actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureev
 
     switch(choix) {
       case 1 : ajoutNourriture(maxx, maxy, lab) ; break;
-      case 2 : ajoutInsecte(maxx, maxy, lab, bouffe, dureevie) ; break;
+      case 2 : ajoutInsecte(maxx, maxy, lab, bouffe, dureevie, fourmi, nb_ins) ; ; break;
       case 3 : {  printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
                   scanf("%c ", &reponse);
                   while(reponse!='y' && reponse!='n') {
@@ -37,11 +35,13 @@ int actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureev
   while(choix==4);
   if(choix==3)
     return 0;
+  else if (choix==2)
+    return 2;
   else
     return 1;
 }
 
-void ajoutNourriture (int maxx, int maxy, t_lab lab[maxx][maxy]) {
+int ajoutNourriture (int maxx, int maxy, t_lab lab[maxx][maxy]) {
   int x, y, i;
   srand(time(NULL));
   int nombre = rand()%3 + 1;
@@ -56,10 +56,11 @@ void ajoutNourriture (int maxx, int maxy, t_lab lab[maxx][maxy]) {
     }
     lab[x][y].etat=food;
   }
+  return 0;
 }
 
-void ajoutInsecte (int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureevie) {
-  int x, y, i;
+int ajoutInsecte (int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins) {
+  int x, y;
   srand(time(NULL));
   int nombre = rand()%100;
   if(nombre<50){
@@ -75,6 +76,8 @@ void ajoutInsecte (int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int du
       scanf("%i%i", x, y);
     }
     lab[x][y].etat=insecte;
+    nb_ins++;
+    lab[x][y].insecte=nb_ins;
     int sexe=rand()%100;
   	if(sexe<50)
   		fourmi[lab[x][y].insecte].sexe = MALE;
@@ -84,4 +87,5 @@ void ajoutInsecte (int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int du
   	fourmi[lab[x][y].insecte].nourriture = bouffe;
   	fourmi[lab[x][y].insecte].age = dureevie;
   }
+  return 0;
 }

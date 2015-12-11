@@ -169,7 +169,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 	for(i =0; i<X; i++){		//Ce bloque place des murs partout
 		for(j =0; j<Y; j++){
 			lab[i][j].etat = mur;
-			lab[i][j].decouvert = seen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe (ici en "seen" pour tester, mais normalement "unseen"
+			lab[i][j].decouvert = unseen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe (ici en "seen" pour tester, mais normalement "unseen"
 		}
 	}
 	i = X/2;

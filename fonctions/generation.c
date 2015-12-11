@@ -7,7 +7,6 @@
 
 typedef enum {MALE, FEMELLE} t_sexe;
 typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
-t_fourmi fourmi[10];
 
 typedef enum {haut = 0, bas = 1, gauche = 2, droite = 3} t_direction;
 typedef enum {unseen=0, seen=1} t_discover;
@@ -15,7 +14,7 @@ typedef enum {vide=' ', mur='#', food='*', insecte='%'} t_etat;
 
 typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
 
-void gene_deb(int bouffe, int dureevie, t_lab lab[X][Y], int i) {
+void gene_deb(int bouffe, int dureevie, t_lab lab[X][Y], int i, t_fourmi fourmi[]) {
 	srand(time(NULL));
 	int nombrex, nombrey, sexe;
 	nombrex = rand()%X;
