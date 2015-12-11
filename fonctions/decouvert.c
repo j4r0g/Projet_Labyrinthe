@@ -45,7 +45,7 @@ void decouvrir(int maxx, int maxy, t_lab lab[maxx][maxy]) {
           if(i+1<maxx && j-1>0)
             lab[i+1][j-1].decouvert=seen;
           if(i-1>0 && j+1<maxy)
-            lab[i-0][j+1].decouvert=seen;
+            lab[i-1][j+1].decouvert=seen;
       }
     }
   }
