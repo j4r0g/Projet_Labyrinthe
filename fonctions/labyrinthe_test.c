@@ -1,11 +1,6 @@
-#include<stdio.h>
-#include<stdlib.h>
-#define X 20 //Définit la taille du labyrinthe
-#define Y 20
-
-typedef enum {unseen=0, seen=1} t_discover;
-typedef enum {vide=0, mur='#', food=2, insecte=3} t_etat;
-typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
+#include <stdio.h>
+#include <stdlib.h>
+#include "./../header/struct.h"
 
 int int_vers_etat(int e, t_etat *petat ){
  int res=1;

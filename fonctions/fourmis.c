@@ -1,17 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-#define X 30
-#define Y 60
-
-typedef enum {MALE, FEMELLE} t_sexe;
-typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
-
-typedef enum {unseen=0, seen=1} t_discover;
-typedef enum {vide=' ', mur='#', food='*', insecte='%'} t_etat;
-
-typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
+#include "./../header/struct.h"
+#include "./../header/fourmis.h"
 
 int insecte_adjacent(int px, int py, t_lab lab[X][Y]) {
 	if (lab[px-1][py].etat == insecte) {

@@ -1,11 +1,56 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include "./../header/struct.h"
 
-typedef enum {MALE, FEMELLE} t_sexe;
-typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
-typedef enum {unseen=0, seen=1} t_discover;
-typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
-typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
+int ajoutNourriture (int maxx, int maxy, t_lab lab[maxx][maxy]) {
+  int x, y, i;
+  srand(time(NULL));
+  int nombre = rand()%3 + 1;
+  printf("Vous avez le droit à %i cases de nourriture\n", nombre);
+  for(i=0;i<nombre;i++) {
+    printf("Entrez les coordonnées x et y de la nourriture %i séparées par un espace : ", i+1);
+    scanf("%i%i", &x, &y);
+    while(x<0 || x>maxx || y<0 || y>maxy || lab[x][y].etat!=vide || lab[x][y].decouvert!=seen){
+      printf("Erreur, shame, recommencez\n");
+      printf("Entrez les coordonnées x et y de la nourriture %i séparées par un espace : ", i+1);
+      scanf("%i%i", &x, &y);
+    }
+    lab[x][y].etat=food;
+  }
+  return 0;
+}
+
+int ajoutInsecte (int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins) {
+  int x, y;
+  srand(time(NULL));
+  int nombre = rand()%100;
+  if(nombre<50){
+    printf("Vous n'avez aucun insecte à placer");
+  }
+  else {
+    printf("Vous pouvez placer un insecte");
+    printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
+    scanf("%i%i", &x, &y);
+    while(x<0 || x>maxx || y<0 || y>maxy || lab[x][y].etat!=vide || lab[x][y].decouvert!=seen){
+      printf("Erreur, shame, recommencez\n");
+      printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
+      scanf("%i%i", &x, &y);
+    }
+    lab[x][y].etat=insecte;
+    nb_ins++;
+    lab[x][y].insecte=nb_ins;
+    int sexe=rand()%100;
+  	if(sexe<50)
+  		fourmi[lab[x][y].insecte].sexe = MALE;
+  	else
+  		fourmi[lab[x][y].insecte].sexe = FEMELLE;
+
+  	fourmi[lab[x][y].insecte].nourriture = bouffe;
+  	fourmi[lab[x][y].insecte].age = dureevie;
+  }
+  return 0;
+}
 
 int actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins){
   int choix;
@@ -39,53 +84,4 @@ int actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureev
     return 2;
   else
     return 1;
-}
-
-int ajoutNourriture (int maxx, int maxy, t_lab lab[maxx][maxy]) {
-  int x, y, i;
-  srand(time(NULL));
-  int nombre = rand()%3 + 1;
-  printf("Vous avez le droit à %i cases de nourriture\n", nombre);
-  for(i=0;i<nombre;i++) {
-    printf("Entrez les coordonnées x et y de la nourriture %i séparées par un espace : ", i+1);
-    scanf("%i%i", x, y);
-    while(x<0 || x>maxx || y<0 || y>maxy || lab[x][y].etat!=vide || lab[x][y].decouvert!=seen){
-      printf("Erreur, shame, recommencez\n");
-      printf("Entrez les coordonnées x et y de la nourriture %i séparées par un espace : ", i+1);
-      scanf("%i%i", x, y);
-    }
-    lab[x][y].etat=food;
-  }
-  return 0;
-}
-
-int ajoutInsecte (int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins) {
-  int x, y;
-  srand(time(NULL));
-  int nombre = rand()%100;
-  if(nombre<50){
-    printf("Vous n'avez aucun insecte à placer");
-  }
-  else {
-    printf("Vous pouvez placer un insecte");
-    printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
-    scanf("%i%i", x, y);
-    while(x<0 || x>maxx || y<0 || y>maxy || lab[x][y].etat!=vide || lab[x][y].decouvert!=seen){
-      printf("Erreur, shame, recommencez\n");
-      printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
-      scanf("%i%i", x, y);
-    }
-    lab[x][y].etat=insecte;
-    nb_ins++;
-    lab[x][y].insecte=nb_ins;
-    int sexe=rand()%100;
-  	if(sexe<50)
-  		fourmi[lab[x][y].insecte].sexe = MALE;
-  	else
-  		fourmi[lab[x][y].insecte].sexe = FEMELLE;
-
-  	fourmi[lab[x][y].insecte].nourriture = bouffe;
-  	fourmi[lab[x][y].insecte].age = dureevie;
-  }
-  return 0;
 }

@@ -1,12 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-
-typedef enum {MALE, FEMELLE} t_sexe;
-typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
-typedef enum {unseen=0, seen=1} t_discover;
-typedef enum {vide=0, mur=1, food=2, insecte=3} t_etat;
-typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
+#include "./../header/struct.h"
 
 
 // maxx et maxy représentent la taille du labyrinthe

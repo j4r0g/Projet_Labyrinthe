@@ -1,16 +1,7 @@
-#include<stdio.h>
-#include<stdlib.h>
-#include<time.h>
-#define X 30 //Définit la taille du labyrinthe
-#define Y 60
-
-typedef enum {haut = 0, bas = 1, gauche = 2, droite = 3} t_direction;
-typedef enum {unseen=0, seen=1} t_discover;
-typedef enum {vide=' ', mur='#', food='*', insecte='%'} t_etat;
-
-typedef struct {t_discover decouvert; t_etat etat ; int insecte ;} t_lab ;
-//t_lab lab[X][Y];
-
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include "./../header/struct.h"
 
 //*			fonction qui renvoie un nombre aleatoire entre 0 et max			*//
 int nbr_rand(int max){
@@ -361,7 +352,7 @@ void afficher_lab(t_lab lab[X][Y]){
 }
 
 
-int /*main(){*/genelab(t_lab lab[X][Y]){
+int genelab(t_lab lab[X][Y]){
 	srand(time(NULL));
 	init_lab_rand(lab);
 	//afficher_lab(lab);

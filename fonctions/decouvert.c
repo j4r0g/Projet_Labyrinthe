@@ -1,15 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef enum {MALE, FEMELLE} t_sexe;
-typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
-
-typedef enum {unseen=0, seen=1} t_discover;
-typedef enum {vide=' ', mur='#', food='*', insecte='%'} t_etat;
-
-typedef struct {t_discover decouvert; t_etat etat ; int insecte ;} t_lab ;
-
-//t_fourmi fourmis[MAXFOURMI];
+#include "./../header/struct.h"
 
 void decouvrir(int maxx, int maxy, t_lab lab[maxx][maxy]) {
   int i, j;

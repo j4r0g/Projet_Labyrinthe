@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "dijkstra.h"
+#include "./../header/struct.h"
+#include "./../header/dijkstra.h"
 
 /*
 #define INFINI 10000
