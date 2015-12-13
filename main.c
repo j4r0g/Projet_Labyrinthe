@@ -23,8 +23,13 @@ int lancement() {
   int dureevie=30;
   genelab(lab); //Génération du labyrinthe
   for(nbre=0;nbre<10;nbre++) {
-    gene_deb(bouffe, dureevie, lab, nbre, fourmi); //Génération de chaque insecte
+    gene_ins(bouffe, dureevie, lab, nbre, fourmi); //Génération de chaque insecte
   }
+
+  for(i=0;i<10;i++) {
+    gene_nour(lab); //Génération de chaque case de nourriture
+  }
+
   decouvrir(lab);
   afficher_lab(lab);
   vic=verifvictoire(lab);
