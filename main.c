@@ -14,7 +14,7 @@ int regles() {
 }
 
 int lancement() {
-  int i, j, vic, res, issue=2;
+  int i, j, vic, res=5, issue=2;
   int nbre=0;
   int bouffe=10;
   int dureevie=30;
@@ -31,7 +31,8 @@ int lancement() {
     for(i=0;i<X;i++) {
       for(j=0;j<Y;j++) {
         if(lab[i][j].etat==insecte){
-          deplacement (lab, i, j);
+          deplacement(lab, i, j);
+          decouvrir(X, Y, lab);
           if (issue==1)
             nbre++;
         }

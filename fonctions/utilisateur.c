@@ -54,7 +54,7 @@ int ajoutInsecte (int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dur
 
 int actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins){
   int choix;
-  char reponse;
+  char reponse='\0';
   do {
     printf(" 1 - Ajouter trois nourritures\n");
     printf(" 2 - Ajouter un insecte\n");
@@ -64,12 +64,11 @@ int actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureev
 
     switch(choix) {
       case 1 : ajoutNourriture(maxx, maxy, lab) ; break;
-      case 2 : ajoutInsecte(maxx, maxy, lab, bouffe, dureevie, fourmi, nb_ins) ; ; break;
-      case 3 : {  printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
-                  scanf("%c ", &reponse);
+      case 2 : ajoutInsecte(maxx, maxy, lab, bouffe, dureevie, fourmi, nb_ins) ; break;
+      case 3 : {  scanf("%c", &reponse);
                   while(reponse!='y' && reponse!='n') {
                     printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
-                    scanf("%c ", &reponse);
+                    scanf("%c", &reponse);
                   }
                   if(reponse=='n')
                     choix=4;

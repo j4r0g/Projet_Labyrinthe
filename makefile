@@ -8,8 +8,8 @@ all: ${PROG}
 ${PROG}: ${OBJ}
 	${CC} ${CFLAG} ${OBJ} -o ${PROG}
 
-main.o: ./main.c ./header/struct.h ./header/main.h
-	${CC} ${CFLAG} -c ./main.c ./header/struct.h ./header/main.h
+main.o: ./main.c
+	${CC} ${CFLAG} -c ./main.c
 
 labyrinthe.o: ./fonctions/labyrinthe.c
 	${CC} ${CFLAG} -c ./fonctions/labyrinthe.c
@@ -29,13 +29,14 @@ contigue.o: ./fonctions/contigue.c
 decouvert.o: ./fonctions/decouvert.c
 	${CC} ${CFLAG} -c ./fonctions/decouvert.c
 
-dijkstra.o: ./fonctions/dijkstra.c ./header/dijkstra.h
-	${CC} ${CFLAG} -c ./fonctions/dijkstra.c ./header/dijkstra.h
+dijkstra.o: ./fonctions/dijkstra.c
+	${CC} ${CFLAG} -c ./fonctions/dijkstra.c
 
 #Supression des fichiers temporaires
 clean:
 	rm -f *.o
 	rm -f ./fonctions/*.o
+	rm -f ./header/*.gch
 
 mrproper: clean
 	rm -f VieLab.*
