@@ -11,6 +11,8 @@ int regles() {
   printf("A chaque tour vous pouvez choisir de :\n");
   printf("- Placer soit 0 ou 1 insecte (géré aléatoirement)\n");
   printf("- Placer entre 1 et 3 de nourriture (géré aléatoirement)\n");
+  printf("Vous gagnez si vous découvrez tout le labyrinthe\n");
+  printf("Vous perdez si tout vos insectes sont morts\n");
   return 0;
 }
 

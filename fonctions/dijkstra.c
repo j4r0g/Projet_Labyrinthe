@@ -92,7 +92,7 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y) {
 		lab[pos_x][pos_y+1].insecte = lab[pos_x][pos_y].insecte;
 		lab[pos_x][pos_y].insecte = 0;
 	} else {
-		printf("Erreur! \n");
+		printf("Erreur lors du déplacement\n");
 	}
 }
 

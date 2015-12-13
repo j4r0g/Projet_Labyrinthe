@@ -29,7 +29,7 @@ int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[], 
     printf("Vous n'avez aucun insecte à placer");
   }
   else {
-    printf("Vous pouvez placer un insecte");
+    printf("Vous pouvez placer un insecte\n");
     printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
     scanf("%i%i", &x, &y);
     while(x<0 || x>X || y<0 || y>Y || lab[x][y].etat!=vide || lab[x][y].decouvert!=seen){
@@ -56,7 +56,7 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[], int
   int choix;
   char reponse='\0';
   do {
-    printf(" 1 - Ajouter trois nourritures\n");
+    printf(" 1 - Ajouter de la nourriture\n");
     printf(" 2 - Ajouter un insecte\n");
     printf(" 3 - Abandonner la partie\n");
     printf("Votre choix : ");
