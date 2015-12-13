@@ -4,6 +4,7 @@
 #include "./header/main.h"
 
 t_lab lab[X][Y];
+t_fourmi fourmi[40];
 
 int regles() {
   printf("\n Les règles sont les suivantes :\n");

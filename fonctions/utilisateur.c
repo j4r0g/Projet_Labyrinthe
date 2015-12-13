@@ -60,18 +60,21 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[], int
     printf(" 2 - Ajouter un insecte\n");
     printf(" 3 - Abandonner la partie\n");
     printf("Votre choix : ");
-    scanf("%d", &choix);
+    scanf("%i%*c", &choix);
 
     switch(choix) {
       case 1 : ajoutNourriture(lab) ; break;
       case 2 : ajoutInsecte(lab, bouffe, dureevie, fourmi, nb_ins) ; break;
-      case 3 : {  scanf("%c", &reponse);
-                  while(reponse!='y' && reponse!='n') {
-                    printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
-                    scanf("%c", &reponse);
+      case 3 : {  printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
+                  scanf("%c%*c", &reponse);
+                  if(reponse!='y' || reponse!='n') {
+                    while(reponse!='y' && reponse!='n') {
+                      printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
+                      scanf("%c%*c", &reponse);
+                    }
+                    if(reponse=='n')
+                      choix=4;
                   }
-                  if(reponse=='n')
-                    choix=4;
                 } ; break;
 
     }
