@@ -4,15 +4,15 @@
 #include "./../header/struct.h"
 
 
-// maxx et maxy représentent la taille du labyrinthe
-void generation(int maxx, int maxy, int bouffe, int dureevie, t_lab lab[maxx][maxy], t_fourmi fourmi[], int nb_ins) {
+// Y et Y représentent la taille du labyrinthe
+void generation(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], int nb_ins) {
 	srand(time(NULL));
 	int nombrex, nombrey, sexe;
-	nombrex = rand()%maxx;
-	nombrey = rand()%maxy;
+	nombrex = rand()%X;
+	nombrey = rand()%Y;
 	while(lab[nombrex][nombrey].etat!=vide && lab[nombrex][nombrey].decouvert!=seen){
-		nombrex = rand()%maxx;
-		nombrey = rand()%maxy;
+		nombrex = rand()%X;
+		nombrey = rand()%Y;
 	}
 	lab[nombrex][nombrey].etat=insecte;
 	nb_ins++;
@@ -28,9 +28,9 @@ void generation(int maxx, int maxy, int bouffe, int dureevie, t_lab lab[maxx][ma
 }
 
 // x et y correspondent à l'emplacement de la première fourmi et a et b à l'emplacement de la deuxième
-int combat(int x, int y, int a, int b, int maxx, int maxy, int bouffe, int dureevie, t_lab lab[maxx][maxy], t_fourmi fourmi[], int nb_ins) {
+int combat(int x, int y, int a, int b, int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], int nb_ins) {
 	if(fourmi[lab[x][y].insecte].sexe!=fourmi[lab[a][b].insecte].sexe){
-		generation(maxx, maxy, bouffe, dureevie, lab, fourmi, nb_ins);
+		generation(bouffe, dureevie, lab, fourmi, nb_ins);
 		return 1;
 	}
 	else {

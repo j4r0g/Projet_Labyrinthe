@@ -3,7 +3,7 @@
 #include <time.h>
 #include "./../header/struct.h"
 
-int ajoutNourriture (int maxx, int maxy, t_lab lab[maxx][maxy]) {
+int ajoutNourriture (t_lab lab[X][Y]) {
   int x, y, i;
   srand(time(NULL));
   int nombre = rand()%3 + 1;
@@ -11,7 +11,7 @@ int ajoutNourriture (int maxx, int maxy, t_lab lab[maxx][maxy]) {
   for(i=0;i<nombre;i++) {
     printf("Entrez les coordonnées x et y de la nourriture %i séparées par un espace : ", i+1);
     scanf("%i%i", &x, &y);
-    while(x<0 || x>maxx || y<0 || y>maxy || lab[x][y].etat!=vide || lab[x][y].decouvert!=seen){
+    while(x<0 || x>X || y<0 || y>Y || lab[x][y].etat!=vide || lab[x][y].decouvert!=seen){
       printf("Erreur, shame, recommencez\n");
       printf("Entrez les coordonnées x et y de la nourriture %i séparées par un espace : ", i+1);
       scanf("%i%i", &x, &y);
@@ -21,7 +21,7 @@ int ajoutNourriture (int maxx, int maxy, t_lab lab[maxx][maxy]) {
   return 0;
 }
 
-int ajoutInsecte (int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins) {
+int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins) {
   int x, y;
   srand(time(NULL));
   int nombre = rand()%100;
@@ -32,7 +32,7 @@ int ajoutInsecte (int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dur
     printf("Vous pouvez placer un insecte");
     printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
     scanf("%i%i", &x, &y);
-    while(x<0 || x>maxx || y<0 || y>maxy || lab[x][y].etat!=vide || lab[x][y].decouvert!=seen){
+    while(x<0 || x>X || y<0 || y>Y || lab[x][y].etat!=vide || lab[x][y].decouvert!=seen){
       printf("Erreur, shame, recommencez\n");
       printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
       scanf("%i%i", &x, &y);
@@ -52,7 +52,7 @@ int ajoutInsecte (int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dur
   return 0;
 }
 
-int actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins){
+int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins){
   int choix;
   char reponse='\0';
   do {
@@ -63,8 +63,8 @@ int actionUser(int maxx, int maxy, t_lab lab[maxx][maxy], int bouffe, int dureev
     scanf("%d", &choix);
 
     switch(choix) {
-      case 1 : ajoutNourriture(maxx, maxy, lab) ; break;
-      case 2 : ajoutInsecte(maxx, maxy, lab, bouffe, dureevie, fourmi, nb_ins) ; break;
+      case 1 : ajoutNourriture(lab) ; break;
+      case 2 : ajoutInsecte(lab, bouffe, dureevie, fourmi, nb_ins) ; break;
       case 3 : {  scanf("%c", &reponse);
                   while(reponse!='y' && reponse!='n') {
                     printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");

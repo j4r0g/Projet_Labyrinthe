@@ -22,29 +22,29 @@ int lancement() {
   for(nbre=0;nbre<10;nbre++) {
     gene_deb(bouffe, dureevie, lab, nbre, fourmi); //Génération de chaque insecte
   }
-  decouvrir(X, Y, lab);
+  decouvrir(lab);
   afficher_lab(lab);
-  vic=verifvictoire(X, Y, lab);
+  vic=verifvictoire(lab);
   while(vic==0){
     /* Il serait judicieux d'ajouter dans l'énumération l'emplacement de l'insecte afin de ne pas
     parcourir entièrement la matrice*/
+    res=actionUser(lab, bouffe, dureevie, fourmi, nbre);
+    if(res==0) // Si on force l'abandon
+      return 1;
+    if(res==2) // Si on a ajouté un insecte
+      nbre++;
     for(i=0;i<X;i++) {
       for(j=0;j<Y;j++) {
         if(lab[i][j].etat==insecte){
           deplacement(lab, i, j);
-          decouvrir(X, Y, lab);
+          decouvrir(lab);
           if (issue==1)
             nbre++;
         }
       }
     }
     afficher_lab(lab);
-    res=actionUser(X, Y, lab, bouffe, dureevie, fourmi, nbre);
-    if(res==0) // Si on force l'abandon
-      return 1;
-    if(res==2) // Si on a ajouté un insecte
-      nbre++;
-    vic=verifvictoire(X, Y, lab);
+    vic=verifvictoire(lab);
   }
   if(vic==1)
     printf("Vous avez gagné");

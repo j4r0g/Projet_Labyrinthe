@@ -3,12 +3,12 @@
 #include "./../header/struct.h"
 
 // renvoie 0 si rien, 1 si victoire, 2 si défaite
-int verifvictoire (int maxx, int maxy, t_lab lab[maxx][maxy]) {
+int verifvictoire (t_lab lab[X][Y]) {
   int i, j;
   int victoire = 1;
   int defaite = 1;
-  for(i=0;i<maxx;i++) {
-    for(j=0;j<maxy;j++) {
+  for(i=0;i<X;i++) {
+    for(j=0;j<Y;j++) {
       if(victoire && lab[i][j].decouvert==unseen && lab[i][j].etat!=mur){
         victoire=0;
       }
