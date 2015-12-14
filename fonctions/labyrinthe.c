@@ -403,10 +403,10 @@ void afficher_lab(t_lab lab[X][Y]){
 						printf("\033[0;37;47m%c \033[00m", etat_tmp);
 					}
 					else if(etat_tmp == insecte){
-						printf("\033[1;33;43m%c \033[00m", etat_tmp);
+						printf("\033[1;36;43m%c \033[00m", etat_tmp);
 					}
 					else if(etat_tmp == food){
-						printf("\033[1;32;43m%c \033[00m", etat_tmp);
+						printf("\033[1;34;43m%c \033[00m", etat_tmp);
 					}
 					else{	
 						printf("%c ", etat_tmp);
