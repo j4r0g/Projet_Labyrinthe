@@ -1,3 +1,14 @@
+/**
+ * \file 			main.c
+ * \author    Boisson Léo, Bussereau Keryann, Ciron Fabien
+ * \version   1.0
+ * \date      14 décembre 2015
+ * \brief     Gère l'interface générale avec l'utilisateur
+ * \details   Ce module à pour but de demander à l'utilisateur via un menu
+ *            l'action qu'il souhaite effectuer, le lancement du programme
+ *            ou la visualisation des règles du jeu.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "./header/struct_lab.h"
@@ -7,7 +18,11 @@
 t_lab lab[X][Y];
 t_fourmi fourmi[40];
 
-// renvoie 0 si rien, 1 si victoire, 2 si défaite
+/**
+ * \brief   Gère la vérification d'une victoire, une défaite ou aucun des deux.
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \return  Un 0 si on a rien, un 1 si on a gagné et un 2 si on a perdu.
+ */
 int verifvictoire (t_lab lab[X][Y]) {
   int i, j;
   int victoire = 1;
@@ -31,7 +46,10 @@ int verifvictoire (t_lab lab[X][Y]) {
   else
     return 4;
 }
-
+/**
+ * \brief   Affiche les règles du jeu.
+ * \return  Un 0 si l'exécution a réussi.
+ */
 int regles() {
   printf("\n Les règles sont les suivantes :\n\n");
   printf("A chaque tour vous pouvez choisir de :\n");
@@ -44,15 +62,17 @@ int regles() {
   return 0;
 }
 
+/**
+ * \brief   Lance le jeux avec une génération du labyrinthe, puis un lancement.
+ * \return  Un 0 si l'exécution a réussi.
+ */
 int lancement() {
   int i, j, vic, res=5;
   int nbre=0;
   int bouffe=10;
   int dureevie=30;
   genelab(lab); //Génération du labyrinthe
-  for(nbre=0;nbre<10;nbre++) {
-    gene_ins(bouffe, dureevie, lab, fourmi, nbre); //Génération de chaque insecte
-  }
+  gene_ins_deb(bouffe, dureevie, lab, fourmi); //Génération des insectes de départ
 
   for(i=0;i<10;i++) {
     gene_nour(lab); //Génération de chaque case de nourriture
@@ -89,6 +109,11 @@ int lancement() {
   return 0;
 }
 
+/**
+ * \brief   Affiche le menu principal et lance soit le lancement soit les
+ *          règles du jeu, sinon quitte.
+ * \return  Un 0 si l'exécution a réussi.
+ */
 int main() {
   int choix;
   // Affichage du menu
