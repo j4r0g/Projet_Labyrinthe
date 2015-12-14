@@ -4,25 +4,27 @@
 #include "./../header/struct.h"
 
 int ajoutNourriture (t_lab lab[X][Y]) {
-  int x, y, i;
+  int a, b, i;
   srand(time(NULL));
   int nombre = rand()%3 + 1;
   printf("Vous avez le droit à %i cases de nourriture\n", nombre);
   for(i=0;i<nombre;i++) {
-    printf("Entrez les coordonnées x et y de la nourriture %i séparées par un espace : ", i+1);
-    scanf("%i%i", &x, &y);
-    while(x<0 || x>X || y<0 || y>Y || lab[x][y].etat!=vide || lab[x][y].decouvert!=seen){
+    printf("Entrez les coordonnées x et y de la nourriture %i séparées par un espace (doit être découvert) : ", i+1);
+    scanf("%i%i", &a, &b);
+    printf("a=%i\n", a);
+    printf("b=%i\n", b);
+    while(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide || lab[a][b].decouvert!=seen){
       printf("Erreur, shame, recommencez\n");
       printf("Entrez les coordonnées x et y de la nourriture %i séparées par un espace : ", i+1);
-      scanf("%i%i", &x, &y);
+      scanf("%i%i", &a, &b);
     }
-    lab[x][y].etat=food;
+    lab[a][b].etat=food;
   }
   return 0;
 }
 
 int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins) {
-  int x, y;
+  int a, b;
   srand(time(NULL));
   int nombre = rand()%100;
   if(nombre<50){
@@ -31,23 +33,23 @@ int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[], 
   else {
     printf("Vous pouvez placer un insecte\n");
     printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
-    scanf("%i%i", &x, &y);
-    while(x<0 || x>X || y<0 || y>Y || lab[x][y].etat!=vide || lab[x][y].decouvert!=seen){
+    scanf("%i%i", &a, &b);
+    while(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide || lab[a][b].decouvert!=seen){
       printf("Erreur, shame, recommencez\n");
       printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
-      scanf("%i%i", &x, &y);
+      scanf("%i%i", &a, &b);
     }
-    lab[x][y].etat=insecte;
+    lab[a][b].etat=insecte;
     nb_ins++;
-    lab[x][y].insecte=nb_ins;
+    lab[a][b].insecte=nb_ins;
     int sexe=rand()%100;
   	if(sexe<50)
-  		fourmi[lab[x][y].insecte].sexe = MALE;
+  		fourmi[lab[a][b].insecte].sexe = MALE;
   	else
-  		fourmi[lab[x][y].insecte].sexe = FEMELLE;
+  		fourmi[lab[a][b].insecte].sexe = FEMELLE;
 
-  	fourmi[lab[x][y].insecte].nourriture = bouffe;
-  	fourmi[lab[x][y].insecte].age = dureevie;
+  	fourmi[lab[a][b].insecte].nourriture = bouffe;
+  	fourmi[lab[a][b].insecte].age = dureevie;
   }
   return 0;
 }

@@ -44,7 +44,7 @@ int lancement() {
     for(i=0;i<X;i++) {
       for(j=0;j<Y;j++) {
         if(lab[i][j].etat==insecte){
-          deplacement(lab, i, j);
+          //deplacement(lab, i, j);
           decouvrir(lab);
           if (issue==1)
             nbre++;
