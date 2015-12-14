@@ -339,9 +339,15 @@ void afficher_lab(t_lab lab[X][Y]){
 	int i,j;
 
 	printf("\n\n");
-	for(i =-1; i<X; i++){
-		for(j =-1; j<Y; j++){					//Toute la partie qui suit gère l'affichage des bordures (avec les espacements
-			if(i == -1 && j != -1 && j != 0){	//particuliers pour que tout soit aligné)
+	for(i =-1; i<(X+1); i++){					//*Toute la partie qui suit gère l'affichage des bordures (avec les espacements	*//
+		for(j =-1; j<(Y+1); j++){					//*particuliers pour que tout soit aligné)
+			if(i == -1 && j != -1 ){							//*nombres de l'axe horizontal du haut
+				if(j==0){										//*affichage du "Y" sur l'axe horizontal
+					printf("\033[1;33;40m Y\033[00m");
+				}
+				else if(j == 58){
+					printf("\033[1;33;40m Y\033[00m");
+				}
 				if((j%2)!=0){
 					if(j == 9){
 						printf(" %i ", j);
@@ -360,8 +366,37 @@ void afficher_lab(t_lab lab[X][Y]){
 					printf("  ");
 				}
 			}
-			else if(j == -1 && i != -1 && i !=0){
-				if(i < 10 ){
+			else if(i == (X) && j!= -1 ){						//*nombres de l'axe horizontal du bas
+				if((j%2)==0){
+					if(j == 0){
+						printf("\033[1;33;40m  Y  \033[00m");
+					}
+					else if( j == 60){
+						printf(" ");
+					}
+					else if(j < 10 ){
+						printf(" %i  ", j);
+					}
+					else if(j == (Y-1) && i == -1){
+						printf(" ");
+					}
+					else{
+						printf(" %i ", j);
+					}
+				}
+				
+				else if(j == 59){
+					printf("\033[1;33;40mY \033[00m");
+				}
+			}
+			else if(j == -1 && i != -1 && i != X){				//*nombres de l'axe vertical, a gauche
+				if(i == 0){									//*affichage du "X" sur l'axe vertical
+					printf("\033[1;33;40m X \033[00m");
+				}
+				else if(i == 29){									//*affichage du "X" sur l'axe vertical
+					printf("\033[1;33;40m X \033[00m");
+				}
+				else if(i < 10 ){
 					printf(" %i ", i);
 				}
 				else if(j == -1 && i == (X-1)){
@@ -371,23 +406,33 @@ void afficher_lab(t_lab lab[X][Y]){
 					printf("%i ", i);
 				}
 			}
-			else if(j == -1 && i == -1){
+			else if(j == Y && i != -1 && i != X){				//*nombres de l'axe vertical, a droite
+				if(i == 0){
+					printf("\033[1;33;40m X \033[00m");
+				}
+				else if(i ==29){
+					printf("\033[1;33;40m X \033[00m");
+				}
+				else if(i < 10 ){
+					printf(" %i ", i);
+				}
+				else if(j == -1 && i == (X-1) && i == (X)){
+				printf("  ");
+				}
+				else{
+					printf(" %i ", i);
+				}
+			}
+			else if(j == -1 && i == -1){						//*coin supérieur gauche
 				printf("  ");
 			}
-			else if(j == -1 && i == 0){
-				printf(" X ");
-			}
-			else if(j == 0 && i == -1){
-				printf(" Y");
-			}
-			else if(j == -1 && i == (X)){
+			else if(j == -1 && i == (X)){						//*pas de nombre en bas a gauche
 				printf(" ");
 			}
-			else if(j == (Y) && i == -1){
+			else if(j == -1 && i == (X)){						//*pas de nombre en bas a gauche
 				printf(" ");
 			}
-
-			else{
+			else{									//*le else gère tout ce qui est a l'intérieur des bordures
 				etat_tmp = lab[i][j].etat;
 				decouvert_tmp = lab[i][j].decouvert;
 
