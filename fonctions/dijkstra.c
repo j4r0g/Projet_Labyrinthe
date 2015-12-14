@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
-#include "./../header/dijkstra.h"
+#include "./../header/deplacement.h"
 
 /*
 #define INFINI 10000

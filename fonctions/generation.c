@@ -1,10 +1,19 @@
+/**
+ * \file 			generation.c
+ * \author    Boisson Léo, Bussereau Keryann, Ciron Fabien
+ * \version   1.0
+ * \date      14 décembre 2015
+ * \brief     Gère la génération des insectes et nourritures au début du programme
+ * \details   Ce module à pour but de générer un insecte de façon aléatoire dans le labyrinthe
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
 
-void gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int i, t_fourmi fourmi[]) {
+void gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], int nb_ins) {
 	srand(time(NULL));
 	int nombrex, nombrey, sexe;
 	nombrex = rand()%X;
@@ -14,7 +23,8 @@ void gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int i, t_fourmi fourmi[
 		nombrey = rand()%Y;
 	}
 	lab[nombrex][nombrey].etat=insecte;
-  lab[nombrex][nombrey].insecte=i;
+	nb_ins++;
+  lab[nombrex][nombrey].insecte=nb_ins;
   sexe=rand()%100;
 	if(sexe>=0 && sexe<50)
 		fourmi[lab[nombrex][nombrey].insecte].sexe = MALE;
