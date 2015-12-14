@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "./../header/struct.h"
+#include "./../header/struct_lab.h"
+#include "./../header/struct_ins.h"
 
 int ajoutNourriture (t_lab lab[X][Y]) {
   int a, b, i;

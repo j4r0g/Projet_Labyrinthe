@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "./../header/struct.h"
+#include "./../header/struct_lab.h"
 
 //*			fonction qui renvoie un nombre aleatoire entre 0 et max			*//
 int nbr_rand(int max){
@@ -386,11 +386,11 @@ void afficher_lab(t_lab lab[X][Y]){
 			else if(j == (Y) && i == -1){
 				printf(" ");
 			}
-			
+
 			else{
 				etat_tmp = lab[i][j].etat;
 				decouvert_tmp = lab[i][j].decouvert;
-				
+
 				if(decouvert_tmp == 0){
 				printf("\033[0;30;40m%c \033[00m", char_unseen);
 				}
@@ -407,13 +407,13 @@ void afficher_lab(t_lab lab[X][Y]){
 					else if(etat_tmp == food){
 						printf("\033[1;34;43m%c \033[00m", etat_tmp);
 					}
-					else{	
+					else{
 						printf("%c ", etat_tmp);
 					}
 				}
 			}
-			
-			
+
+
 		}
 		printf("\n");
 	}

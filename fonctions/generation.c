@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "./../header/struct.h"
+#include "./../header/struct_lab.h"
+#include "./../header/struct_ins.h"
 
 void gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int i, t_fourmi fourmi[]) {
 	srand(time(NULL));
