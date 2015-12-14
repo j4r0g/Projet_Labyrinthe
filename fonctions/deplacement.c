@@ -17,10 +17,11 @@
 #include "./../header/deplacement.h"
 
 /**
- * \brief      Génère aléatoirement un insecte dans une case vide du labyrinthe.
+ * \brief      Génère aléatoirement un insecte dans une case vide du labyrinthe mais qui doit être découverte.
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \param 	fourmi[] 					Reçoie le tableau d'insectes.
  * \param 	nb_ins 						Reçoie le nombre d'insectes du labyrinthe.
  */
 void generation(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], int nb_ins) {
@@ -56,6 +57,7 @@ void generation(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], in
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param 	fourmi[] 					Reçoie le tableau d'insectes.
  * \param 	nb_ins 						Reçoie le nombre d'insectes du labyrinthe.
+ * \return 	Un 1 si on a ajouté un insecte et un 0 sinon.
  */
 int combat(int x, int y, int a, int b, int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], int nb_ins) {
 	if(fourmi[lab[x][y].insecte].sexe!=fourmi[lab[a][b].insecte].sexe){
