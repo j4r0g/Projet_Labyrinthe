@@ -12,8 +12,6 @@ int ajoutNourriture (t_lab lab[X][Y]) {
   for(i=0;i<nombre;i++) {
     printf("Entrez les coordonnées x et y de la nourriture %i séparées par un espace (doit être découvert) : ", i+1);
     scanf("%i%i", &a, &b);
-    printf("a=%i\n", a);
-    printf("b=%i\n", b);
     while(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide || lab[a][b].decouvert!=seen){
       printf("Erreur, shame, recommencez\n");
       printf("Entrez les coordonnées x et y de la nourriture %i séparées par un espace : ", i+1);
