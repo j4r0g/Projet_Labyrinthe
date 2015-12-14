@@ -1,4 +1,4 @@
-void gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], int nb_ins);
+void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]);
 
 void gene_nour(t_lab lab[X][Y]);
 
