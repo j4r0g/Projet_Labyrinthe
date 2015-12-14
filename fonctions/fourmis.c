@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "./../header/struct.h"
-#include "./../header/fourmis.h"
+#include "./../header/struct_lab.h"
+#include "./../header/struct_ins.h"
+#include "./../header/deplacement.h"
 
 int insecte_adjacent(int px, int py, t_lab lab[X][Y]) {
 	if (lab[px-1][py].etat == insecte) {

@@ -1,10 +1,36 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "./header/struct.h"
+#include "./header/struct_lab.h"
+#include "./header/struct_ins.h"
 #include "./header/main.h"
 
 t_lab lab[X][Y];
 t_fourmi fourmi[40];
+
+// renvoie 0 si rien, 1 si victoire, 2 si défaite
+int verifvictoire (t_lab lab[X][Y]) {
+  int i, j;
+  int victoire = 1;
+  int defaite = 1;
+  for(i=0;i<X;i++) {
+    for(j=0;j<Y;j++) {
+      if(victoire && lab[i][j].decouvert==unseen && lab[i][j].etat!=mur){
+        victoire=0;
+      }
+      if(defaite && lab[i][j].etat==insecte){
+        defaite=0;
+      }
+      if(!defaite && !victoire)
+        return 0;
+    }
+  }
+  if(victoire)
+    return 1;
+  else if(defaite)
+    return 2;
+  else
+    return 4;
+}
 
 int regles() {
   printf("\n Les règles sont les suivantes :\n\n");
@@ -25,7 +51,7 @@ int lancement() {
   int dureevie=30;
   genelab(lab); //Génération du labyrinthe
   for(nbre=0;nbre<10;nbre++) {
-    gene_ins(bouffe, dureevie, lab, nbre, fourmi); //Génération de chaque insecte
+    gene_ins(bouffe, dureevie, lab, fourmi, nbre); //Génération de chaque insecte
   }
 
   for(i=0;i<10;i++) {
