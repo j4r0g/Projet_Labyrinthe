@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "./header/struct.h"
+#include "./header/struct_lab.h"
+#include "./header/struct_ins.h"
 #include "./header/main.h"
 
 t_lab lab[X][Y];
