@@ -1,7 +1,7 @@
 PROG= VieLab
 CC=gcc
 CFLAG= -g -Wall
-OBJ= ./fonctions/labyrinthe.o ./main.o ./fonctions/finpartie.o ./fonctions/utilisateur.o ./fonctions/generation.o ./fonctions/contigue.o ./fonctions/decouvert.o ./fonctions/dijkstra.o
+OBJ= ./fonctions/labyrinthe.o ./main.o ./fonctions/finpartie.o ./fonctions/utilisateur.o ./fonctions/generation.o ./fonctions/contigue.o ./fonctions/decouvert.o ./fonctions/dijkstra.o ./fonctions/fourmis.c
 
 all: ${PROG}
 
@@ -31,6 +31,9 @@ decouvert.o: ./fonctions/decouvert.c
 
 dijkstra.o: ./fonctions/dijkstra.c
 	${CC} ${CFLAG} -c ./fonctions/dijkstra.c
+
+fourmis.o: ./fonctions/fourmis.c
+	${CC} ${CFLAG} -c ./fonctions/fourmis.c
 
 #Supression des fichiers temporaires
 clean:
