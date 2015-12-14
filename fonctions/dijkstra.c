@@ -52,7 +52,7 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y) {
 	typedef struct {int dist; int x; int y;} nourr;
 	nourr plusproche;
 	nourr manger[15];
-	for (i=0; i<X; i++) {
+	for (i=0; i<X; i++) {									//on parcourt la matrice pour trouver toutes les cases de nourriture
 		for (j=0; j<Y; j++) {
 			if (lab[i][j].etat==food){
 				manger[nb_nourr].dist=pluscourte_dist(lab, pos_x, pos_y, i, j);
@@ -63,7 +63,7 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y) {
 		}
 	}
 	plusproche=manger[0];
-	for (i=1; i<15; i++){
+	for (i=1; i<15; i++){									//on parcourt le tableau pour trouber la nourriture la plus proche
 		if (manger[i-1].dist<manger[i].dist){
 			plusproche=manger[i-1];
 		}
@@ -103,7 +103,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 	int i, j;
 	int dist = 0;
 	int parcouru=0;
-	for(i=0; i<X; i++){
+	for(i=0; i<X; i++){				//initialisation de la matrice
 		for(j=0; j<Y; j++){
 			matr_dist[i][j]=0;
 		}
@@ -117,7 +117,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 				if (labyrinthe[i][j].etat==mur){
 					matr_dist[i][j]=-1;
 				}
-				if (i==xdep && j==ydep && dist==1) {
+				if (i==xdep && j==ydep && dist==1) {		//si on est au début, on fixe la distance à 0
 					if (matr_dist[i-1][j]==0){
 						matr_dist[i-1][j]=dist;
 					}if (matr_dist[i][j-1]==0){
@@ -127,7 +127,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 					}if (matr_dist[i+1][j]==0) {
 						matr_dist[i+1][j]=dist;
 					}
-				} else if (matr_dist[i][j]==dist-1 && dist>1){
+				} else if (matr_dist[i][j]==dist-1 && dist>1){		//sinon on indique la distance en cercles concentriques
 					if (matr_dist[i-1][j]==0 && i-1>=0){
 						matr_dist[i-1][j]=dist;
 					}if (matr_dist[i][j-1]==0 && j-1>=0){
@@ -138,7 +138,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 						matr_dist[i+1][j]=dist;
 					}
 				}
-				if (matr_dist[i][j]==0){
+				if (matr_dist[i][j]==0){							//si on a parcouru toute la matrice, on sort de la boucle
 					parcouru=0;
 				}
 			}
