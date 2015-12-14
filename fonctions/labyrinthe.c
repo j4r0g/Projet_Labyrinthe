@@ -160,7 +160,12 @@ void init_lab_rand (t_lab lab[X][Y]){
 	for(i =0; i<X; i++){		//Ce bloque place des murs partout
 		for(j =0; j<Y; j++){
 			lab[i][j].etat = mur;
-			lab[i][j].decouvert = unseen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe (ici en "seen" pour tester, mais normalement "unseen"
+			if(j==0 || i==0 || j==(Y-1) || i==(X-1)){
+				lab[i][j].decouvert = seen;
+			}
+			else{
+				lab[i][j].decouvert = unseen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe (ici en "seen" pour tester, mais normalement "unseen"
+			}
 		}
 	}
 	i = X/2;
@@ -336,21 +341,32 @@ void afficher_lab(t_lab lab[X][Y]){
 
 	printf("\n\n");
 	for(i =-1; i<X; i++){
-		for(j =-1; j<Y; j++){
-			if(i == -1 && j != -1){
-				if(j == 9){
-					printf(" %i ", j);
-				}
-				else if(j < 10 ){
-					printf(" %i", j);
+		for(j =-1; j<Y; j++){					//Toute la partie qui suit gère l'affichage des bordures (avec les espacements
+			if(i == -1 && j != -1 && j != 0){	//particuliers pour que tout soit aligné)
+				if((j%2)!=0){
+					if(j == 9){
+						printf(" %i ", j);
+					}
+					else if(j < 10 ){
+						printf(" %i", j);
+					}
+					else if(j == (Y-1) && i == -1){
+					printf(" ");
+					}
+					else{
+						printf("%i", j);
+					}
 				}
 				else{
-					printf("%i", j);
+					printf("  ");
 				}
 			}
-			else if(j == -1 && i != -1){
+			else if(j == -1 && i != -1 && i !=0){
 				if(i < 10 ){
 					printf(" %i ", i);
+				}
+				else if(j == -1 && i == (X-1)){
+				printf("   ");
 				}
 				else{
 					printf("%i ", i);
@@ -359,15 +375,42 @@ void afficher_lab(t_lab lab[X][Y]){
 			else if(j == -1 && i == -1){
 				printf("  ");
 			}
+			else if(j == -1 && i == 0){
+				printf(" X ");
+			}
+			else if(j == 0 && i == -1){
+				printf(" Y");
+			}
+			else if(j == -1 && i == (X)){
+				printf(" ");
+			}
+			else if(j == (Y) && i == -1){
+				printf(" ");
+			}
+			
 			else{
 				etat_tmp = lab[i][j].etat;
 				decouvert_tmp = lab[i][j].decouvert;
 				
 				if(decouvert_tmp == 0){
-				printf("%c ", char_unseen);
+				printf("\033[0;30;40m%c \033[00m", char_unseen);
 				}
 				else{
-					printf("%c ", etat_tmp);
+					if(etat_tmp == vide){
+						printf("\033[0;33;43m%c \033[00m", etat_tmp);
+					}
+					else if(etat_tmp == mur){
+						printf("\033[0;37;47m%c \033[00m", etat_tmp);
+					}
+					else if(etat_tmp == insecte){
+						printf("\033[1;33;43m%c \033[00m", etat_tmp);
+					}
+					else if(etat_tmp == food){
+						printf("\033[1;32;43m%c \033[00m", etat_tmp);
+					}
+					else{	
+						printf("%c ", etat_tmp);
+					}
 				}
 			}
 			
