@@ -1,7 +1,7 @@
 PROG= VieLab
 CC=gcc
 CFLAG= -g -Wall
-OBJ= ./fonctions/labyrinthe.o ./main.o ./fonctions/utilisateur.o ./fonctions/generation.o ./fonctions/deplacement.c ./fonctions/dijkstra.o ./fonctions/fourmis.c
+OBJ= ./fonctions/labyrinthe.o ./main.o ./fonctions/utilisateur.o ./fonctions/generation.o ./fonctions/deplacement.o ./fonctions/dijkstra.o ./fonctions/fourmis.o
 
 all: ${PROG}
 

@@ -1,11 +1,29 @@
+/**
+ * \file 			deplacement.c
+ * \author    Boisson Léo, Bussereau Keryann, Ciron Fabien
+ * \version   1.0
+ * \date      14 décembre 2015
+ * \brief     Gère les déplcement des fourmis
+ * \details   Ce module à pour but de gérer les déplacements des fourmis.
+ * 						ainsi que leurs actions lorsqu'elles croisent d'autres insectes
+ * 						elle gère aussi les défloutage des cases.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
+#include "./../header/deplacement.h"
 
-
-// Y et Y représentent la taille du labyrinthe
+/**
+ * \brief      Génère aléatoirement un insecte dans une case vide du labyrinthe mais qui doit être découverte.
+ * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
+ * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \param 	fourmi[] 					Reçoie le tableau d'insectes.
+ * \param 	nb_ins 						Reçoie le nombre d'insectes du labyrinthe.
+ */
 void generation(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], int nb_ins) {
 	srand(time(NULL));
 	int nombrex, nombrey, sexe;
@@ -28,7 +46,19 @@ void generation(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], in
 	fourmi[lab[nombrex][nombrey].insecte].age = dureevie;
 }
 
-// x et y correspondent à l'emplacement de la première fourmi et a et b à l'emplacement de la deuxième
+/**
+ * \brief   Gère la rencontre entre deux fourmis
+ * \param 	x									Reçoie l'emplacement x du premier insecte.
+ * \param 	y									Reçoie l'emplacement y du premier insecte.
+ * \param 	a									Reçoie l'emplacement x du deuxième insecte.
+ * \param 	b									Reçoie l'emplacement y du deuxième insecte.
+ * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
+ * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \param 	fourmi[] 					Reçoie le tableau d'insectes.
+ * \param 	nb_ins 						Reçoie le nombre d'insectes du labyrinthe.
+ * \return 	Un 1 si on a ajouté un insecte et un 0 sinon.
+ */
 int combat(int x, int y, int a, int b, int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], int nb_ins) {
 	if(fourmi[lab[x][y].insecte].sexe!=fourmi[lab[a][b].insecte].sexe){
 		generation(bouffe, dureevie, lab, fourmi, nb_ins);
@@ -49,7 +79,10 @@ int combat(int x, int y, int a, int b, int bouffe, int dureevie, t_lab lab[X][Y]
 	}
 }
 
-// découverte du labyrinthe
+/**
+ * \brief   Gère la découverte de certaines case du labyrinthe
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ */
 void decouvrir(t_lab lab[X][Y]) {
   int i, j;
   for(i=0;i<X;i++) {
