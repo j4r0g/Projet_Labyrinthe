@@ -335,16 +335,43 @@ void afficher_lab(t_lab lab[X][Y]){
 	int i,j;
 
 	printf("\n\n");
-	for(i =0; i<X; i++){
-		for(j =0; j<Y; j++){
-			etat_tmp = lab[i][j].etat;
-			decouvert_tmp = lab[i][j].decouvert;
-			if(decouvert_tmp == 0){
-				printf("%c ", char_unseen);
+	for(i =-1; i<X; i++){
+		for(j =-1; j<Y; j++){
+			if(i == -1 && j != -1){
+				if(j == 9){
+					printf(" %i ", j);
+				}
+				else if(j < 10 ){
+					printf(" %i", j);
+				}
+				else{
+					printf("%i", j);
+				}
+			}
+			else if(j == -1 && i != -1){
+				if(i < 10 ){
+					printf(" %i ", i);
+				}
+				else{
+					printf("%i ", i);
+				}
+			}
+			else if(j == -1 && i == -1){
+				printf("  ");
 			}
 			else{
-				printf("%c ", etat_tmp);
+				etat_tmp = lab[i][j].etat;
+				decouvert_tmp = lab[i][j].decouvert;
+				
+				if(decouvert_tmp == 0){
+				printf("%c ", char_unseen);
+				}
+				else{
+					printf("%c ", etat_tmp);
+				}
 			}
+			
+			
 		}
 		printf("\n");
 	}
