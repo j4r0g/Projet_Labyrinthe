@@ -93,7 +93,7 @@ int lancement() {
         int posx=fourmi[i].x;
         int posy=fourmi[i].y;
         if(posx>=0 && posx<X && posy>=0 && posy<Y && lab[posx][posy].etat==insecte) {
-          deplacement(lab, posx, posy, fourmi);
+          deplacement(lab, posx, posy, fourmi, bouffe, dureevie);
           decouvrir(lab);
         }
       }
