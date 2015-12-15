@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
 #include "./../header/utilisateur.h"
@@ -40,30 +41,59 @@ int ajoutNourriture (t_lab lab[X][Y]) {
   return 0;
 }
 
+
 /**
  * \brief   Permet de sauvegarder la partie en cours
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  */
-/*void sauver_lab(t_lab lab[X][Y]){
+void sauver_lab(t_lab lab[X][Y]){
+	FILE * fic1;
+	int tmp;
+	int i,j;
+	fic1 = fopen("../doc/SAVED_GAME.txt", "w");
+	
+	for(i =0; i<X; i++){
+		for(j =0; j<Y; j++){
+			lab[i][j].etat = tmp;
+			fprintf(fic1, "%c ", tmp);
+		}
+		fprintf(fic1, "\n");
+	}
+	
+	fclose(fic1);
+}
+
+/**
+ * \brief   Permet de charger une partie sauvegardée
+ * \param 	lab[x][Y] Reçoie le labyrinthe de taille X, Y.
+ */
+void charger_lab(t_lab lab[X][Y]){
 	int tmp;
 	int i,j;
 	FILE * fic1;
-	fic1 = fopen("../doc/SAVED_GAME.txt", "w");
+	fic1 = fopen("../doc/SAVED_GAME.txt", "r");
 
-	while(!feof(fic1))
-	{
-		for(i =0; i<X; i++){
-			for(j =0; j<Y; j++){
-				lab[i][j].etat = tmp;
-				lab[i][j].decouvert = unseen;
-				fprintf(fic1, "%c %c ", &tmp, &unseen);
+	if(fic1 == 0){
+		printf("Pas de partie sauvegardee.\n\n");
+	}
+	else{
+		while(!feof(fic1))
+		{
+			for(i =0; i<X; i++){
+				for(j =0; j<Y; j++){
+					fscanf(fic1, "%c %c ", &tmp);
+					lab[i][j].etat = tmp;
+					lab[i][j].decouvert = unseen;
 
+				}
+				fprintf(fic1, "\n");
 			}
-			fprintf(fic1, "\n");
 		}
 	}
+		
 	fclose(fic1);
-}*/
+}
+
 
 /**
  * \brief   Gére le menu d'interface utilisateur à chaque tour.
@@ -80,28 +110,36 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
     printf(" 2 - Ajouter un insecte\n");
     printf(" 3 - Passer\n");
     printf(" 4 - Abandonner la partie\n");
+    printf(" 5 - Sauvegarder la partie\n");
+    printf(" 6 - Charger la partie\n");
     printf("Votre choix : ");
     scanf("%i%*c", &choix);
 
     switch(choix) {
-      case 1 : ajoutNourriture(lab) ; break;
-      case 2 : ajoutInsecte(lab, bouffe, dureevie, fourmi) ; break;
-      case 3 : break;
-      case 4 : {  printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
-                  scanf("%c%*c", &reponse);
-                  if(reponse!='y' || reponse!='n') {
-                    while(reponse!='y' && reponse!='n') {
-                      printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
-                      scanf("%c%*c", &reponse);
-                    }
-                    if(reponse=='n')
-                      choix=5;
-                  }
-                } ; break;
+		case 1 : ajoutNourriture(lab) ; break;
+		case 2 : ajoutInsecte(lab, bouffe, dureevie, fourmi) ; break;
+		case 3 : break;
+		case 4 : {  printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
+					scanf("%c%*c", &reponse);
+					if(reponse!='y' || reponse!='n') {
+						while(reponse!='y' && reponse!='n') {
+							printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
+							scanf("%c%*c", &reponse);
+						}
+						if(reponse=='n')
+							choix=6;
+						}
+				 } ; break;
+		case 5 :{
+					sauver_lab(lab);
+				} ; break;
+		case 6 :{
+					charger_lab(lab);
+				} ; break;
 
     }
   }
-  while(choix==5);
+  while(choix==7);
   if(choix==4)
     return 0;
   else
