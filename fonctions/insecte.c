@@ -125,21 +125,21 @@ int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) 
  * \brief   Modifie la position d'un insecte
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param 	fourmi [] 				Reçoie le tableau de foumis.
- * \param 	indice						indice de la fourmi à déplacer
+ * \param 	a									emplacement de la fourmi en x
+ * \param 	b									emplacement de la fourmi en y
  * \param 	a									emplacement à donner à la fourmi en x
  * \param 	b									emplacement à donner à la fourmi en y
  * \return  Un 0 si aucun insecte n'est placé, un 1 sinon.
  */
-int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int indice, int a, int b){
-	if(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide)
+int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b){
+	if(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide || lab[x][y].etat!=insecte)
     return 1;
 	else{
-		int posinitx=fourmi[indice].x;
-		int posinity=fourmi[indice].y;
+		int indice=lab[x][y].insecte;
 		lab[a][b].etat=insecte;
-		lab[posinitx][posinity].etat=vide;
+		lab[x][y].etat=vide;
 		lab[a][b].insecte=indice;
-		lab[posinitx][posinity].insecte=-1;
+		lab[x][y].insecte=-1;
 		fourmi[indice].x=a;
 		fourmi[indice].y=b;
 	}
