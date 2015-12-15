@@ -1,3 +1,14 @@
+/**
+ * \file	  labyrinthe.c
+ * \author    Boisson Léo, Bussereau Keryann, Ciron Fabien
+ * \version   1.0
+ * \date      14 décembre 2015
+ * \brief     génère un labyrinthe aléatoire
+ * \details   Ce module génère un labyrinthe de manière aléatoire.
+ * 						ainsi que leurs actions lorsqu'elles croisent d'autres insectes
+ * 						elle gère aussi les défloutage des cases.
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -241,7 +252,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 				lab[i][j].decouvert = seen;
 			}
 			else{
-				lab[i][j].decouvert = unseen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe (ici en "seen" pour tester, mais normalement "unseen"
+				lab[i][j].decouvert = unseen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe
 			}
 		}
 	}
