@@ -15,7 +15,6 @@
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
 #include "./../header/deplacement.h"
-#include "./../header/labyrinthe.h"
 
 
 void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[]) {
