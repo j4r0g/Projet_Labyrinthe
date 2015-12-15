@@ -252,7 +252,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 				lab[i][j].decouvert = seen;
 			}
 			else{
-				lab[i][j].decouvert = seen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe
+				lab[i][j].decouvert = unseen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe
 			}
 		}
 	}
