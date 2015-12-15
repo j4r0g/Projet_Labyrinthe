@@ -15,6 +15,7 @@
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
 #include "./../header/deplacement.h"
+#include "./../header/labyrinthe.h"
 
 
 void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int bouffe, int dureevie) {
@@ -107,7 +108,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 			}
 		}
 	}
-//	matr_dist[xarr][yarr]='#'-'0';
+/*	matr_dist[xarr][yarr]='#'-'0';
 	for (i=0; i<X; i++){
 		for (j=0; j<Y; j++){
 			printf("%2d ", matr_dist[i][j]);
@@ -115,10 +116,10 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 		printf("\n");
 	}
 	printf("%i %i\n\n", xarr, yarr);
-	xcur = xarr; ycur=yarr;
+*/	xcur = xarr; ycur=yarr;
 	i = 0;
 	while(matr_dist[xcur][ycur] != 1){
-		printf("on est en %d %d/n", xcur, ycur);
+		//printf("on est en %d %d\n", xcur, ycur);
 		// chercher matr_dist[xcur][ycur]-1
 		if(coord_correctes(xcur-1,ycur) && (matr_dist[xcur-1][ycur] == matr_dist[xcur][ycur]-1))
 			xcur--;
@@ -131,7 +132,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 		i++;
 		if(i>100) break;
 	}
-	printf("il faut se deplacer en %i %i\n\n", xcur, ycur);
+//	printf("il faut se deplacer en %i %i\n\n", xcur, ycur);
 	*xdir = xcur; *ydir=ycur;
 	return matr_dist[xarr][yarr];
 }
