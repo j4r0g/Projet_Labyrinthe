@@ -57,7 +57,8 @@ int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi f
  */
 void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
 	int i;
-	for(i=0;i<10;i++) {
+	int nbr_ins_deb = 1;
+	for(i=0;i<nbr_ins_deb;i++) {
 		srand(time(NULL));
 		int nombrex, nombrey, sexe;
 		nombrex = rand()%X;
