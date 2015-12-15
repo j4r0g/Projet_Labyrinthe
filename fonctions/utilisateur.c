@@ -14,6 +14,7 @@
 #include <time.h>
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
+#include "./../header/utilisateur.h"
 
 /**
  * \brief   Génère de la nourriture dans une case vide du labyrinthe découverte
