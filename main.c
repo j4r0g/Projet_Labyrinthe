@@ -71,16 +71,17 @@ int lancement() {
   int nbre=0;
   int bouffe=10;
   int dureevie=30;
-  genelab(lab); //Génération du labyrinthe
+  genelab(lab); 								//Génération du labyrinthe
   gene_ins_deb(bouffe, dureevie, lab, fourmi); //Génération des insectes de départ
 
   for(i=0;i<10;i++) {
-    gene_nour(lab); //Génération de chaque case de nourriture
+    gene_nour(lab); 							//Génération de chaque case de nourriture
   }
 
   decouvrir(lab);
   afficher_lab(lab);
   vic=verifvictoire(lab);
+  
   while(vic==0){
     /* Il serait judicieux d'ajouter dans l'énumération l'emplacement de l'insecte afin de ne pas
     parcourir entièrement la matrice*/
@@ -89,10 +90,11 @@ int lancement() {
       return 1;
     else if(res==2) // Si on a ajouté un insecte
       nbre++;
+      
     for(i=0;i<X;i++) {
       for(j=0;j<Y;j++) {
         if(lab[i][j].etat==insecte){
-          prochain_deplacement(i, j, lab, fourmi, bouffe, dureevie, nbre);//deplacement(lab, i, j);
+          prochain_deplacement(i, j, lab, fourmi, bouffe, dureevie, nbre);		//deplacement(lab, i, j);
           decouvrir(lab);
         }
       }
