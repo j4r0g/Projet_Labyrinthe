@@ -7,7 +7,7 @@
  * \details   Ce module génère un labyrinthe de manière aléatoire.
  * 				Sa taille est définie dans struct_lab.h
  */
- 
+
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -491,12 +491,15 @@ int genelab(t_lab lab[X][Y]){
 
 void gene_nour(t_lab lab[X][Y]) {
 	srand(time(NULL));
-	int nombrex, nombrey;
-	nombrex = rand()%X;
-	nombrey = rand()%Y;
-	while(lab[nombrex][nombrey].etat!=vide){
-		nombrex = rand()%X;
-		nombrey = rand()%Y;
-	}
-	lab[nombrex][nombrey].etat=food;
+  int i, nb_nourr=10;
+  for(i=0; i<nb_nourr; i++) {
+    int nombrex, nombrey;
+  	nombrex = rand()%X;
+  	nombrey = rand()%Y;
+  	while(lab[nombrex][nombrey].etat!=vide){
+  		nombrex = rand()%X;
+  		nombrey = rand()%Y;
+  	}
+  	lab[nombrex][nombrey].etat=food;
+  }
 }

@@ -70,13 +70,10 @@ int lancement() {
   int i, vic, res=5;
   int bouffe=10;
   int dureevie=30;
-  int nbr_bouffe_debut = 1;
   genelab(lab); 								//Génération du labyrinthe
   gene_ins_deb(bouffe, dureevie, lab, fourmi); //Génération des insectes de départ
 
-  for(i=0;i<nbr_bouffe_debut;i++) {
-    gene_nour(lab); 							//Génération de chaque case de nourriture
-  }
+  gene_nour(lab); 							//Génération de chaque case de nourriture
 
   decouvrir(lab);
   afficher_lab(lab);
@@ -97,16 +94,6 @@ int lancement() {
           decouvrir(lab);
         }
       }
-    /*for(i=0;i<X;i++) {
-      for(j=0;j<Y;j++) {
-
-        if(lab[i][j].etat==insecte){*/
-          /*prochain_deplacement(i, j, lab, bouffe, dureevie, fourmi);//*//*deplacement(lab, i, j, fourmi);
-
-          decouvrir(lab);
-        }
-      }
-    }*/
 
     afficher_lab(lab);
     vic=verifvictoire(lab);
