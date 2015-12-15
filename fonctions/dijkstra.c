@@ -17,7 +17,7 @@
 #include "./../header/deplacement.h"
 
 
-void deplacement (t_lab lab[X][Y], int pos_x, int pos_y) {
+void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[]) {
 	int i, j;
 	int nb_nourr = 0;
 	typedef struct {int dist; int x; int y;} nourr;
@@ -42,28 +42,16 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y) {
 	}*/
 	if ((plusproche.x - pos_x) < 0 && (plusproche.y - pos_y) < 0 && lab[pos_x-1][pos_y].etat!=mur) {
 		//deplacement au nord (nord ouest)
-		lab[pos_x-1][pos_y].etat = insecte;
-		lab[pos_x][pos_y].etat = vide;
-		lab[pos_x-1][pos_y].insecte = lab[pos_x][pos_y].insecte;
-		lab[pos_x][pos_y].insecte = -1;
+		modifpos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y);
 	} else if ((plusproche.x - pos_x) > 0 && (plusproche.y - pos_y) < 0 && lab[pos_x][pos_y-1].etat!=mur) {
 		//deplacement a l'ouest (sud ouest)
-		lab[pos_x][pos_y-1].etat = insecte;
-		lab[pos_x][pos_y].etat = vide;
-		lab[pos_x][pos_y-1].insecte = lab[pos_x][pos_y].insecte;
-		lab[pos_x][pos_y].insecte = -1;
+		modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y-1);
 	} else if ((plusproche.x - pos_x) > 0 && (plusproche.y - pos_y) > 0 && lab[pos_x+1][pos_y].etat!=mur) {
 		//deplacement au sud (sud est)
-		lab[pos_x+1][pos_y].etat = insecte;
-		lab[pos_x][pos_y].etat = vide;
-		lab[pos_x+1][pos_y].insecte = lab[pos_x][pos_y].insecte;
-		lab[pos_x][pos_y].insecte = -1;
+		modifpos(lab, fourmi, pos_x, pos_y, pos_x+1, pos_y);
 	} else if ((plusproche.x - pos_x) < 0 && (plusproche.y - pos_y) > 0 && lab[pos_x][pos_y+1].etat!=mur) {
 		//deplacement a l'est (nord est)
-		lab[pos_x][pos_y+1].etat = insecte;
-		lab[pos_x][pos_y].etat = vide;
-		lab[pos_x][pos_y+1].insecte = lab[pos_x][pos_y].insecte;
-		lab[pos_x][pos_y].insecte = -1;
+		modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y+1);
 	} else {
 		printf("Erreur lors du déplacement\n");
 	}
