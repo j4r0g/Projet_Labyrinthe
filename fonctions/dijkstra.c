@@ -1,50 +1,21 @@
+/**
+ * \file		dijkstra.c
+ * \author		Boisson Léo, Bussereau Keryann, Ciron Fabien
+ * \version		1.0
+ * \date		15 décembre 2015
+ * \brief		Gère les déplacements des fourmis
+ * \details		Ce module gère les déplacements des fourmis grâce à une matrice
+ *				des distances fourmis-nourriture qui permet de repérer ou la fourmi
+ *				doit aller pour se rapprocher de les nourriture
+ */
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
 #include "./../header/deplacement.h"
 
-/*
-#define INFINI 10000
-#define X 30
-#define Y 60
-
-typedef enum {MALE, FEMELLE} t_sexe;
-typedef struct {t_sexe sexe; int nourriture; int age;} t_fourmi;
-
-typedef enum {haut = 0, bas = 1, gauche = 2, droite = 3} t_direction;
-typedef enum {unseen=0, seen=1} t_discover;
-typedef enum {vide=' ', mur='#', food='*', insecte='%'} t_etat;
-
-typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
-
-
-typedef struct noeud {t_noeud * pred; int dist_dep; int ponderation; int parcouru;}t_noeud;
-t_noeud matr_dest[X][Y];
-
-void dijkstra(t_lab labyrinthe, int xdep, int ydep) {
-	int i, j;
-	for (i=0; i<X; i++){
-		for(j=0; j<Y; j++) {
-			if(labyrinthe[i][j].etat==mur) {
-				matr_dest[i][j].dist_dep=INFINI;
-				matr_dest[i][j]->pred=NULL;
-				matr_dest[i][j].ponderation=-1;
-				matr_dest[i][j].
-			} else if (labyrinthe[i][j]==food) {
-				if (i-xdep>0 && j-ydep>0) {
-					matr_dest[i][j].dist_dep=(i-xdep)+(j-ydep);
-				} else if (i-xdep <0 && j-ydep<0) {
-					matr_dest[i][j].dist_dep=(xdep-i)+(ydep-j);
-				} else if (i-xdep>0 && j-ydep<0) {
-					matr_dest[i][j].dist_dep=(i-xdep)+(ydep-j);
-				} else if (i-xdep<0 && j-ydep>0) {
-					matr_dest[i][j].dist_dep=(xdep-i)+(j-ydep);
-				}
-				matr_dest[i][j].ponderation=10;
-				matr_dest[i][j].parcouru=1;
-}
-*/
 
 void deplacement (t_lab lab[X][Y], int pos_x, int pos_y) {
 	int i, j;
@@ -63,7 +34,7 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y) {
 		}
 	}
 	plusproche=manger[0];
-	for (i=1; i<15; i++){									//on parcourt le tableau pour trouber la nourriture la plus proche
+	for (i=1; i<15; i++){									//on parcourt le tableau pour trouver la nourriture la plus proche
 		if (manger[i-1].dist<manger[i].dist){
 			plusproche=manger[i-1];
 		}
