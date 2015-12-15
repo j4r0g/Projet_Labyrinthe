@@ -44,10 +44,10 @@ int ajoutNourriture (t_lab lab[X][Y]) {
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
- * \return  Un 0 si on force l'abandon, un 2 si on a ajouté un insecte et un 1 sinon.
+ * \return  Un 0 si on force l'abandon, un 1 sinon.
  */
 int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
-  int choix, res;
+  int choix;
   char reponse='\0';
   do {
     printf(" 1 - Ajouter de la nourriture\n");
@@ -59,7 +59,7 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
 
     switch(choix) {
       case 1 : ajoutNourriture(lab) ; break;
-      case 2 : res=ajoutInsecte(lab, bouffe, dureevie, fourmi) ; break;
+      case 2 : ajoutInsecte(lab, bouffe, dureevie, fourmi) ; break;
       case 3 : break;
       case 4 : {  printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
                   scanf("%c%*c", &reponse);
@@ -78,8 +78,6 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
   while(choix==5);
   if(choix==4)
     return 0;
-  else if (choix==2 && res==1)
-    return 2;
   else
     return 1;
 }
