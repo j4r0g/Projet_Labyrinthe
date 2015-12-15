@@ -67,7 +67,7 @@ int regles() {
  * \return  Un 0 si l'exécution a réussi, un 1 si elle a été stopée.
  */
 int lancement() {
-  int i, j, vic, res=5;
+  int i, vic, res=5;
   int bouffe=10;
   int dureevie=30;
   int nbr_bouffe_debut = 1;
@@ -89,15 +89,25 @@ int lancement() {
     if(res==0)
       return 1;
 
-    for(i=0;i<X;i++) {
+      for(i=0; i<40; i++) {
+        int posx=fourmi[i].x;
+        int posy=fourmi[i].y;
+        if(posx>=0 && posx<X && posy>=0 && posy<Y && lab[posx][posy].etat==insecte) {
+          deplacement(lab, posx, posy, fourmi);
+          decouvrir(lab);
+        }
+      }
+    /*for(i=0;i<X;i++) {
       for(j=0;j<Y;j++) {
-        if(lab[i][j].etat==insecte){
-          /*prochain_deplacement(i, j, lab, bouffe, dureevie, fourmi);//*/deplacement(lab, i, j, fourmi);
+
+        if(lab[i][j].etat==insecte){*/
+          /*prochain_deplacement(i, j, lab, bouffe, dureevie, fourmi);//*//*deplacement(lab, i, j, fourmi);
 
           decouvrir(lab);
         }
       }
-    }
+    }*/
+
     afficher_lab(lab);
     vic=verifvictoire(lab);
   }
