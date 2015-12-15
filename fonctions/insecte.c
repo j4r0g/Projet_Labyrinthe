@@ -16,7 +16,7 @@
 int nb_ins=0;
 
 /**
- * \brief      Génère aléatoirement un insecte dans une case vide du labyrinthe mais qui doit être découverte.
+ * \brief   Génère aléatoirement un insecte dans une case vide du labyrinthe mais qui doit être découverte.
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
@@ -57,7 +57,7 @@ int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi f
  */
 void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
 	int i;
-	int nbr_ins_deb = 1;
+	int nbr_ins_deb = 5;
 	for(i=0;i<nbr_ins_deb;i++) {
 		srand(time(NULL));
 		int nombrex, nombrey, sexe;
@@ -122,25 +122,42 @@ int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) 
 }
 
 /**
- * \brief   Modifie la position d'un insecte
+ * \brief   Modifie la position d'un insecte ainsi que le temps qu'il lui reste à vivre.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param 	fourmi [] 				Reçoie le tableau de foumis.
  * \param 	a									emplacement de la fourmi en x
  * \param 	b									emplacement de la fourmi en y
  * \param 	a									emplacement à donner à la fourmi en x
  * \param 	b									emplacement à donner à la fourmi en y
- * \return  Un 0 si aucun insecte n'est placé, un 1 sinon.
+ * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
+ * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
+ * \return  Un 0 si la fonction s'est exécutée avec succès, 1 si erreur.
  */
-int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b){
+int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int bouffe, int dureevie){
 	if(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide || lab[x][y].etat!=insecte)
     return 1;
 	else{
 		int indice=lab[x][y].insecte;
-		lab[a][b].etat=insecte;
+		// On décrémente la nourriture de l'insecte
+		fourmi[indice].nourriture--;
+		fourmi[indice].age--;
+		// On vérifie si on va sur une case de nourriture
+		if(lab[a][b].etat==food)
+			fourmi[indice].nourriture=bouffe;
+
+		if(fourmi[indice].nourriture!=0 && fourmi[indice].age!=0) {
+			// modif de l'état de la case
+			lab[a][b].etat=insecte;
+			// modif de l'indice de l'insecte dans la case
+			lab[a][b].insecte=indice;
+			// maj de la position de l'insecte
+			fourmi[indice].x=a;
+			fourmi[indice].y=b;
+		}
+		// modif de l'état de la case
 		lab[x][y].etat=vide;
-		lab[a][b].insecte=indice;
+		// modif de l'indice de l'insecte dans la case
 		lab[x][y].insecte=-1;
-		fourmi[indice].x=a;
-		fourmi[indice].y=b;
 	}
+	return 0;
 }
