@@ -18,7 +18,7 @@
 #include "./../header/labyrinthe.h"
 
 
-void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[]) {
+void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int bouffe, int dureevie) {
 	int i, j, xdir, ydir;
 	int nb_nourr = 0;
 	typedef struct {int dist; int x; int y;} nourr;
@@ -42,7 +42,7 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[]) {
 		}
 	}
 
-	modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y);
+	modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
 	/*if ((plusproche.x - pos_x) < 0 && (plusproche.y - pos_y) < 0 && lab[pos_x-1][pos_y].etat!=mur) {
 		//deplacement au nord (nord ouest)
 		modifpos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y);
