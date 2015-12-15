@@ -92,7 +92,7 @@ int lancement() {
     for(i=0;i<X;i++) {
       for(j=0;j<Y;j++) {
         if(lab[i][j].etat==insecte){
-          prochain_deplacement(i, j, lab, bouffe, dureevie, fourmi);//deplacement(lab, i, j);
+          /*prochain_deplacement(i, j, lab, bouffe, dureevie, fourmi);//*/deplacement(lab, i, j, fourmi);
 
           decouvrir(lab);
         }
