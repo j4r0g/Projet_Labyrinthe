@@ -49,15 +49,18 @@ int ajoutNourriture (t_lab lab[X][Y]) {
 void sauver_lab(t_lab lab[X][Y]){
 	FILE * fic1;
 	int tmp;
+	int seen;
 	int i,j;
-	fic1 = fopen("../doc/SAVED_GAME.txt", "w");
+	fic1 = fopen("SAVED_GAME", "w");
 	
 	for(i =0; i<X; i++){
 		for(j =0; j<Y; j++){
-			lab[i][j].etat = tmp;
-			fprintf(fic1, "%c ", tmp);
+			tmp = lab[i][j].etat;
+			seen = lab[i][j].decouvert;
+			fprintf(fic1, "%c", tmp);
+			fprintf(fic1, "%d", seen);
 		}
-		fprintf(fic1, "\n");
+		//fprintf(fic1, "\n");
 	}
 	
 	fclose(fic1);
@@ -68,30 +71,29 @@ void sauver_lab(t_lab lab[X][Y]){
  * \param 	lab[x][Y] Reçoie le labyrinthe de taille X, Y.
  */
 void charger_lab(t_lab lab[X][Y]){
-	int tmp;
+	FILE * fic2;
+	char tmp;
+	int seen;
 	int i,j;
-	FILE * fic1;
-	fic1 = fopen("../doc/SAVED_GAME.txt", "r");
-
-	if(fic1 == 0){
+	fic2 = fopen("SAVED_GAME", "r");
+	if(fic2 == 0){
 		printf("Pas de partie sauvegardee.\n\n");
 	}
 	else{
-		while(!feof(fic1))
+		while(!feof(fic2))
 		{
 			for(i =0; i<X; i++){
 				for(j =0; j<Y; j++){
-					fscanf(fic1, "%c %c ", &tmp);
+					fscanf(fic2, "%c", &tmp);
 					lab[i][j].etat = tmp;
-					lab[i][j].decouvert = unseen;
+					fscanf(fic2, "%i", &seen);
+					lab[i][j].decouvert = seen;
 
 				}
-				fprintf(fic1, "\n");
 			}
 		}
+		fclose(fic2);
 	}
-		
-	fclose(fic1);
 }
 
 

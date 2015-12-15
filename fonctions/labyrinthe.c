@@ -360,10 +360,10 @@ void afficher_lab(t_lab lab[X][Y]){
 				}
 				if((j%2)!=0){
 					if(j == 9){
-						printf(" %i ", j);
+						printf("%i ", j);
 					}
 					else if(j < 10 ){
-						printf(" %i", j);
+						printf("%i ", j);
 					}
 					else if(j == (Y-1) && i == -1){
 					printf(" ");
