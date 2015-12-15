@@ -14,6 +14,7 @@
 #include <time.h>
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
+#include "./../header/utilisateur.h"
 
 /**
  * \brief   Génère de la nourriture dans une case vide du labyrinthe découverte
@@ -40,58 +41,39 @@ int ajoutNourriture (t_lab lab[X][Y]) {
 }
 
 /**
- * \brief   Génère un insecte dans une case vide du labyrinthe découverte
- *          à la demande de l'utilisateur.
+ * \brief   Permet de sauvegarder la partie en cours
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
- * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
- * \param 	fourmi[] 					Reçoie le tableau d'insectes.
- * \param 	nb_ins 						Reçoie le nombre d'insectes du labyrinthe.
- * \return  Un 0 si aucun insecte n'est placé, un 1 sinon.
  */
-int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins) {
-  int a, b;
-  srand(time(NULL));
-  int nombre = rand()%100;
-  if(nombre<50){
-    printf("Vous n'avez aucun insecte à placer");
-    return 0;
-  }
-  else {
-    printf("Vous pouvez placer un insecte\n");
-    printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
-    scanf("%i%i", &a, &b);
-    while(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide || lab[a][b].decouvert!=seen){
-      printf("Erreur, shame, recommencez\n");
-      printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
-      scanf("%i%i", &a, &b);
-    }
-    lab[a][b].etat=insecte;
-    nb_ins++;
-    lab[a][b].insecte=nb_ins;
-    int sexe=rand()%100;
-  	if(sexe<50)
-  		fourmi[lab[a][b].insecte].sexe = MALE;
-  	else
-  		fourmi[lab[a][b].insecte].sexe = FEMELLE;
+/*void sauver_lab(t_lab lab[X][Y]){
+	int tmp;
+	int i,j;
+	FILE * fic1;
+	fic1 = fopen("../doc/SAVED_GAME.txt", "w");
 
-  	fourmi[lab[a][b].insecte].nourriture = bouffe;
-  	fourmi[lab[a][b].insecte].age = dureevie;
-  }
-  return 1;
-}
+	while(!feof(fic1))
+	{
+		for(i =0; i<X; i++){
+			for(j =0; j<Y; j++){
+				lab[i][j].etat = tmp;
+				lab[i][j].decouvert = unseen;
+				fprintf(fic1, "%c %c ", &tmp, &unseen);
+
+			}
+			fprintf(fic1, "\n");
+		}
+	}
+	fclose(fic1);
+}*/
 
 /**
  * \brief   Gére le menu d'interface utilisateur à chaque tour.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
- * \param 	fourmi[] 					Reçoie le tableau d'insectes.
- * \param 	nb_ins 						Reçoie le nombre d'insectes du labyrinthe.
- * \return  Un 0 si on force l'abandon, un 2 si on a ajouté un insecte et un 1 sinon.
+ * \return  Un 0 si on force l'abandon, un 1 sinon.
  */
-int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[], int nb_ins){
-  int choix, res;
+int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
+  int choix;
   char reponse='\0';
   do {
     printf(" 1 - Ajouter de la nourriture\n");
@@ -103,7 +85,7 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[], int
 
     switch(choix) {
       case 1 : ajoutNourriture(lab) ; break;
-      case 2 : res=ajoutInsecte(lab, bouffe, dureevie, fourmi, nb_ins) ; break;
+      case 2 : ajoutInsecte(lab, bouffe, dureevie, fourmi) ; break;
       case 3 : break;
       case 4 : {  printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
                   scanf("%c%*c", &reponse);
@@ -122,8 +104,6 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[], int
   while(choix==5);
   if(choix==4)
     return 0;
-  else if (choix==2 && res==1)
-    return 2;
   else
     return 1;
 }

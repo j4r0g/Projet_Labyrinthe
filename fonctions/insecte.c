@@ -13,20 +13,18 @@
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
 
-//t_fourmi fourmi[40];
+int nb_ins=0;
 
 /**
  * \brief      Génère aléatoirement un insecte dans une case vide du labyrinthe mais qui doit être découverte.
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \param 	fourmi[] 					Reçoie le tableau d'insectes.
- * \param 	nb_ins 						Reçoie le nombre d'insectes du labyrinthe.
  * \param   a                 Reçoie l'emplacement x où doit être placé l'insecte
  * \param   b                 Reçoie l'emplacement y où doit être placé l'insecte
  * \return  Un 1 si on ne peut pas ajouter l'insecte à la case demandée, 0 si on peut.
  */
-int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], int nb_ins, int a, int b) {
+int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi fourmi[]) {
 	srand(time(NULL));
   if(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide)
     return 1;
@@ -51,12 +49,10 @@ int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], int n
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \param 	fourmi[] 					Reçoie le tableau d'insectes.
- * \param 	nb_ins 						Reçoie le nombre d'insectes du labyrinthe.
  */
 void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
-	int nbre;
-	for(nbre=0;nbre<10;nbre++) {
+	int i;
+	for(i=0;i<10;i++) {
 		srand(time(NULL));
 		int nombrex, nombrey, sexe;
 		nombrex = rand()%X;
@@ -65,7 +61,7 @@ void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) 
 			nombrex = rand()%X;
 			nombrey = rand()%Y;
 		}
-		gene_ins(bouffe, dureevie, lab, fourmi, nbre, nombrex, nombrey);
+		gene_ins(bouffe, dureevie, lab, nombrex, nombrey, fourmi);
 	}
 }
 
@@ -74,10 +70,8 @@ void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) 
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \param 	fourmi[] 					Reçoie le tableau d'insectes.
- * \param 	nb_ins 						Reçoie le nombre d'insectes du labyrinthe.
  */
-void bebe(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], int nb_ins) {
+void bebe(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
 	srand(time(NULL));
 	int nombrex, nombrey;
 	nombrex = rand()%X;
@@ -86,5 +80,35 @@ void bebe(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[], int nb_i
 		nombrex = rand()%X;
 		nombrey = rand()%Y;
 	}
-	gene_ins(bouffe, dureevie, lab, fourmi, nb_ins, nombrex, nombrey);
+	gene_ins(bouffe, dureevie, lab, nombrex, nombrey, fourmi);
+}
+
+/**
+ * \brief   Génère un insecte dans une case vide du labyrinthe découverte
+ *          à la demande de l'utilisateur.
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
+ * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
+ * \return  Un 0 si aucun insecte n'est placé, un 1 sinon.
+ */
+int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) {
+  int a, b;
+  srand(time(NULL));
+  int nombre = rand()%100;
+  if(nombre<50){
+    printf("Vous n'avez aucun insecte à placer");
+    return 0;
+  }
+  else {
+    printf("Vous pouvez placer un insecte\n");
+    printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
+    scanf("%i%i", &a, &b);
+    while(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide || lab[a][b].decouvert!=seen){
+      printf("Erreur, shame, recommencez\n");
+      printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
+      scanf("%i%i", &a, &b);
+    }
+    gene_ins(bouffe, dureevie, lab, a, b, fourmi);
+  }
+  return 1;
 }
