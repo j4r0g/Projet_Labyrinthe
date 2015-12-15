@@ -80,13 +80,13 @@ int lancement() {
   decouvrir(lab);
   afficher_lab(lab);
   vic=verifvictoire(lab);
-  
+
   while(vic==0){
     /* Il serait judicieux d'ajouter dans l'énumération l'emplacement de l'insecte afin de ne pas
     parcourir entièrement la matrice*/
     res=actionUser(lab, bouffe, dureevie, fourmi);
     if(res==0)
-      return 1; 
+      return 1;
 
     for(i=0;i<X;i++) {
       for(j=0;j<Y;j++) {
@@ -101,11 +101,11 @@ int lancement() {
     vic=verifvictoire(lab);
   }
   if(vic==1)
-    printf("Vous avez gagné");
+    printf("Vous avez gagné\n");
   else if(vic==2)
-    printf("Vous avez perdu");
+    printf("Vous avez perdu\n");
   else
-    printf("Erreur");
+    printf("Erreur au niveau du lancement\n");
   return 0;
 }
 
