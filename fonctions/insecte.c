@@ -122,8 +122,7 @@ int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) 
 }
 
 /**
- * \brief   Génère un insecte dans une case vide du labyrinthe découverte
- *          à la demande de l'utilisateur.
+ * \brief   Modifie la position d'un insecte
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param 	fourmi [] 				Reçoie le tableau de foumis.
  * \param 	indice						indice de la fourmi à déplacer
