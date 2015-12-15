@@ -41,6 +41,31 @@ int ajoutNourriture (t_lab lab[X][Y]) {
 }
 
 /**
+ * \brief   Permet de sauvegarder la partie en cours
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ */
+/*void sauver_lab(t_lab lab[X][Y]){
+	int tmp;
+	int i,j;
+	FILE * fic1;
+	fic1 = fopen("../doc/SAVED_GAME.txt", "w");
+
+	while(!feof(fic1))
+	{
+		for(i =0; i<X; i++){
+			for(j =0; j<Y; j++){
+				lab[i][j].etat = tmp;
+				lab[i][j].decouvert = unseen;
+				fprintf(fic1, "%c %c ", &tmp, &unseen);
+
+			}
+			fprintf(fic1, "\n");
+		}
+	}
+	fclose(fic1);
+}*/
+
+/**
  * \brief   Gére le menu d'interface utilisateur à chaque tour.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.

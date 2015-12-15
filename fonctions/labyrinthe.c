@@ -384,7 +384,7 @@ void afficher_lab(t_lab lab[X][Y]){
 						printf(" %i ", j);
 					}
 				}
-				
+
 				else if(j == 59){
 					printf("\033[1;33;40mY \033[00m");
 				}
@@ -471,4 +471,22 @@ int genelab(t_lab lab[X][Y]){
 	init_lab_rand(lab);
 	//afficher_lab(lab);
 	return 0;
+}
+
+/**
+ * \brief   Génère aléatoirement de la nourriture dans une case
+ * 					vide du labyrinthe et qui n'a pas besoin d'être dévouverte.
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ */
+
+void gene_nour(t_lab lab[X][Y]) {
+	srand(time(NULL));
+	int nombrex, nombrey;
+	nombrex = rand()%X;
+	nombrey = rand()%Y;
+	while(lab[nombrex][nombrey].etat!=vide){
+		nombrex = rand()%X;
+		nombrey = rand()%Y;
+	}
+	lab[nombrex][nombrey].etat=food;
 }
