@@ -28,7 +28,6 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 		for (j=0; j<Y; j++) {
 			if (lab[i][j].etat==food){
 				manger[nb_nourr].dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
-				printf("%i", manger[nb_nourr].dist);
 				manger[nb_nourr].x=xdir;
 				manger[nb_nourr].y=ydir;
 				nb_nourr++;
@@ -43,20 +42,18 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 	}
 
 	modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
-	/*if ((plusproche.x - pos_x) < 0 && (plusproche.y - pos_y) < 0 && lab[pos_x-1][pos_y].etat!=mur) {
-		//deplacement au nord (nord ouest)
-		modifpos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y);
-	} else if ((plusproche.x - pos_x) > 0 && (plusproche.y - pos_y) < 0 && lab[pos_x][pos_y-1].etat!=mur) {
-		//deplacement a l'ouest (sud ouest)
-		modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y-1);
-	} else if ((plusproche.x - pos_x) > 0 && (plusproche.y - pos_y) > 0 && lab[pos_x+1][pos_y].etat!=mur) {
-		//deplacement au sud (sud est)
-		modifpos(lab, fourmi, pos_x, pos_y, pos_x+1, pos_y);
-	} else if ((plusproche.x - pos_x) < 0 && (plusproche.y - pos_y) > 0 && lab[pos_x][pos_y+1].etat!=mur) {
-		//deplacement a l'est (nord est)
-		modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y+1);
-	} else {
-		printf("Erreur lors du déplacement\n");
+/*	if (lab[pos_x-1][pos_y].etat==food) {
+		printf("toto");
+		modifpos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie);
+	}else if (lab[pos_x][pos_y-1].etat==food) {
+		printf("tata");
+		modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y-1, bouffe, dureevie);
+	}else if (lab[pos_x+1][pos_y].etat==food) {
+		printf("titi");
+		modifpos(lab, fourmi, pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie);
+	}else if (lab[pos_x][pos_y+1].etat==food) {
+		printf("tutu");
+		modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie);
 	}*/
 }
 
@@ -108,15 +105,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 			}
 		}
 	}
-/*	matr_dist[xarr][yarr]='#'-'0';
-	for (i=0; i<X; i++){
-		for (j=0; j<Y; j++){
-			printf("%2d ", matr_dist[i][j]);
-		}
-		printf("\n");
-	}
-	printf("%i %i\n\n", xarr, yarr);
-*/	xcur = xarr; ycur=yarr;
+	xcur = xarr; ycur=yarr;
 	i = 0;
 	while(matr_dist[xcur][ycur] != 1){
 		//printf("on est en %d %d\n", xcur, ycur);
