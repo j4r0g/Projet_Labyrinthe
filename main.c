@@ -64,11 +64,10 @@ int regles() {
 
 /**
  * \brief   Lance le jeux avec une génération du labyrinthe, puis un lancement.
- * \return  Un 0 si l'exécution a réussi.
+ * \return  Un 0 si l'exécution a réussi, un 1 si elle a été stopée.
  */
 int lancement() {
   int i, j, vic, res=5;
-  int nbre=0;
   int bouffe=10;
   int dureevie=30;
   genelab(lab); //Génération du labyrinthe
@@ -84,15 +83,13 @@ int lancement() {
   while(vic==0){
     /* Il serait judicieux d'ajouter dans l'énumération l'emplacement de l'insecte afin de ne pas
     parcourir entièrement la matrice*/
-    res=actionUser(lab, bouffe, dureevie, fourmi, nbre);
-    if(res==0) // Si on force l'abandon
+    res=actionUser(lab, bouffe, dureevie, fourmi);
+    if(res==0)
       return 1;
-    else if(res==2) // Si on a ajouté un insecte
-      nbre++;
     for(i=0;i<X;i++) {
       for(j=0;j<Y;j++) {
         if(lab[i][j].etat==insecte){
-          prochain_deplacement(i, j, lab, fourmi, bouffe, dureevie, nbre);//deplacement(lab, i, j);
+          prochain_deplacement(i, j, lab, bouffe, dureevie, fourmi);//deplacement(lab, i, j);
           decouvrir(lab);
         }
       }
