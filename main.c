@@ -68,7 +68,7 @@ int regles() {
  */
 int lancement() {
   int i, j, vic, res=5;
-  int bouffe=10;
+  int bouffe=1;
   int dureevie=30;
   genelab(lab); 								//Génération du labyrinthe
   gene_ins_deb(bouffe, dureevie, lab, fourmi); //Génération des insectes de départ
