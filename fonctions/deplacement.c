@@ -88,10 +88,6 @@ void decouvrir(t_lab lab[X][Y]) {
           if(i-1>0 && j+1<Y)
             lab[i-1][j+1].decouvert=seen;
       }
-      /* Découverte des cases de nourriture */
-      else if(lab[i][j].etat==food) {
-        lab[i][j].decouvert=seen;
-      }
     }
   }
 }
