@@ -68,12 +68,13 @@ int regles() {
  */
 int lancement() {
   int i, j, vic, res=5;
-  int bouffe=1;
+  int bouffe=10;
   int dureevie=30;
+  int nbr_bouffe_debut = 1;
   genelab(lab); 								//Génération du labyrinthe
   gene_ins_deb(bouffe, dureevie, lab, fourmi); //Génération des insectes de départ
 
-  for(i=0;i<10;i++) {
+  for(i=0;i<nbr_bouffe_debut;i++) {
     gene_nour(lab); 							//Génération de chaque case de nourriture
   }
 
