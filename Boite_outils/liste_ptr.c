@@ -1,21 +1,12 @@
 // auteur : Keryann Bussereau
 
 #include <stdlib.h>
+#include "./../header/struct_ins.h"
 
-typedef struct element {int valeur; struct element * pred; struct element * succ;}t_element;
+typedef struct element {t_foumi fourmi; struct element * pred; struct element * succ;}t_element;
 t_element * drapeau;
 t_element * ec;
-//typedef struct {t_element * drapeau; t_element * ec; }t_liste;
-
-typedef enum {MALE, FEMELLE} t_sexe;
-typedef struct {t_element * drapeau; t_element * ec; t_sexe sexe; int nourriture; int age;} t_fourmi;
-t_fourmi fourmi[30];
-
-typedef enum {unseen=0, seen=1} t_discover;
-typedef enum {vide=' ', mur='#', food='*', insecte='%'} t_etat;
-
-typedef struct {t_discover decouvert; t_etat etat; int insecte;} t_lab;
-t_lab lab[X][Y];
+typedef struct {t_element * drapeau; t_element * ec; }t_liste;
 
 void init_liste (void) {
     /*Crée la liste constituée du seul drapeau */
