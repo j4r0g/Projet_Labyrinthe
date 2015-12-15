@@ -27,6 +27,7 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y) {
 		for (j=0; j<Y; j++) {
 			if (lab[i][j].etat==food){
 				manger[nb_nourr].dist=pluscourte_dist(lab, pos_x, pos_y, i, j);
+				printf("%i", manger[nb_nourr].dist);
 				manger[nb_nourr].x=i;
 				manger[nb_nourr].y=j;
 				nb_nourr++;
@@ -34,11 +35,11 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y) {
 		}
 	}
 	plusproche=manger[0];
-	for (i=1; i<15; i++){									//on parcourt le tableau pour trouver la nourriture la plus proche
+	/*for (i=1; i<15; i++){									//on parcourt le tableau pour trouver la nourriture la plus proche
 		if (manger[i-1].dist<manger[i].dist){
 			plusproche=manger[i-1];
 		}
-	}
+	}*/
 	if ((plusproche.x - pos_x) < 0 && (plusproche.y - pos_y) < 0 && lab[pos_x-1][pos_y].etat!=mur) {
 		//deplacement au nord (nord ouest)
 		lab[pos_x-1][pos_y].etat = insecte;
