@@ -22,7 +22,7 @@ int nbr_rand(int max){
 }
 
 //*			fonctions qui vérifient que les coordonnées mise en arguments font parties de la matrice		*//
-int coord_correctes(t_lab lab[X][Y], int i, int j){
+int coord_correctes( int i, int j){
 	return (i<(X-1) && i>0 && j<(Y-1) && j>0);
 }
 
@@ -180,7 +180,7 @@ int lissage_lab(t_lab lab[X][Y]){
 		if(direction >60){
 			i_tmp = i;
 			j_tmp = j+1;
-			if(coord_correctes(lab, i_tmp, j_tmp)){
+			if(coord_correctes( i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
@@ -191,7 +191,7 @@ int lissage_lab(t_lab lab[X][Y]){
 		else if(direction >35){
 			i_tmp = i-1;
 			j_tmp = j;
-			if(coord_correctes(lab, i_tmp, j_tmp)){
+			if(coord_correctes( i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
@@ -202,7 +202,7 @@ int lissage_lab(t_lab lab[X][Y]){
 		else if(direction > 10){
 			i_tmp = i+1;
 			j_tmp = j;
-			if(coord_correctes(lab, i_tmp, j_tmp)){
+			if(coord_correctes( i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
@@ -214,7 +214,7 @@ int lissage_lab(t_lab lab[X][Y]){
 		else {
 			i_tmp = i;
 			j_tmp = j-1;
-			if(coord_correctes(lab, i_tmp, j_tmp)){
+			if(coord_correctes( i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
@@ -265,7 +265,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 		if(direction > 75 + orientation){
 			i_tmp = i;
 			j_tmp = j-1;
-			if(coord_correctes(lab, i_tmp, j_tmp)){
+			if(coord_correctes( i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
@@ -277,7 +277,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 		else if(direction >50){
 			i_tmp = i;
 			j_tmp = j+1;
-			if(coord_correctes(lab, i_tmp, j_tmp)){
+			if(coord_correctes( i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
@@ -289,7 +289,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 		else if(direction >25){
 			i_tmp = i-1;
 			j_tmp = j;
-			if(coord_correctes(lab, i_tmp, j_tmp)){
+			if(coord_correctes( i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;
@@ -302,7 +302,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 		else{
 			i_tmp = i+1;
 			j_tmp = j;
-			if(coord_correctes(lab, i_tmp, j_tmp)){
+			if(coord_correctes( i_tmp, j_tmp)){
 				if(lab[i_tmp][j_tmp].etat == mur){
 					lab[i_tmp][j_tmp].etat = vide;
 					cases_extrude++;

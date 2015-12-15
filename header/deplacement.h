@@ -2,7 +2,7 @@
 
 void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[]);
 
-int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int yarr);
+int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int yarr, int *, int*);
 
 void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]);
 
