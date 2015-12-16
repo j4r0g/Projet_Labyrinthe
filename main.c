@@ -128,6 +128,7 @@ int main() {
       case 1 : regles() ; break;
       case 2 : lancement() ; break;
       case 3 : break;
+      default : printf("\nErreur de saisie\n\n"); break;
 
     }
   }
