@@ -93,6 +93,78 @@ void decouvrir(t_lab lab[X][Y]) {
 }
 
 /**
+ * \brief	Détecte si un insecte est adjacent
+ * \param	px									La coordonnée x de l'insecte
+ * \param	py									La coordonnée y de l'insecte
+ * \param	lab									Récupère le labyrinthe
+ * \return  Renvoie 1 si un insecte est au dessus, 2 si il y en a un à gauche, 3 à droite et 4 en dessous. Sinon renvoie 0
+ */
+
+int insecte_adjacent(int px, int py, t_lab lab[X][Y]) {
+	if (lab[px-1][py].etat == insecte) {
+		return 1;
+	} else if (lab[px][py-1].etat == insecte) {
+	   return 2;
+	} else if (lab[px][py+1].etat == insecte) {
+	   return 3;
+	} else if (lab[px+1][py].etat == insecte){
+		return 4;
+	}
+	return 0;
+}
+
+
+/**
+ * \brief	Opère un déplacement aléatoire
+ * \param	pos_x									La coordonnée x d'origine
+ * \param	pos_y									La coordonnée y d'origine
+ * \param	lab										Récupère le labyrinthe
+ * \param   bouffe									Reçoie la durée de vie de la bouffe en nombre de tour.
+ * \param   dureevie							 	Reçoie la durée de vie en nombre de tour.
+ * \param 	fourmi []								Reçoie le tableau de foumis.
+ * \return	Retourne 0 si tout s'est bien déroulé, 1 sinon
+ */
+
+int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) {
+	int ins_adj = insecte_adjacent(pos_x, pos_y, lab);
+	int issue = 2;
+	time_t t;
+	srand((unsigned) time(&t));
+	int random = rand()%100;
+
+	if (ins_adj == 1) {
+		issue=combat(pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie, lab, fourmi);
+	}
+	else if (ins_adj == 2) {
+		issue=combat(pos_x, pos_y, pos_x, pos_y-1, bouffe, dureevie, lab, fourmi);
+	}
+	else if (ins_adj == 3) {
+		issue=combat(pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie, lab, fourmi);
+	}
+	else if (ins_adj == 4) {
+		issue=combat(pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie, lab, fourmi);
+	}
+	else if (lab[pos_x-1][pos_y].etat != mur && lab[pos_x][pos_y-1].etat != mur && lab[pos_x][pos_y+1].etat != mur && lab[pos_x+1][pos_y].etat != mur) {
+		if (random >= 0 && random < 25 && lab[pos_x-1][pos_y].etat!=mur) {
+			modifpos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie);
+		}
+		else if (random >= 25 && random < 50 && lab[pos_x][pos_y-1].etat!=mur) {
+			modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y-1, bouffe, dureevie);
+		}
+		else if (random >= 50 && random < 75 && lab[pos_x][pos_y+1].etat!=mur) {
+			modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie);
+		}
+		else if (random >= 75 && random < 100 && lab[pos_x+1][pos_y].etat!=mur) {
+			modifpos(lab, fourmi, pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie);
+		}
+	}
+	if(issue==1)
+		return 1;
+	else
+		return 0;
+}
+
+/**
  * \brief	Fait se déplacer les insectes
  * \param	lab									Récupère le labyrinthe
  * \param	pos_x								La coordonnée x de l'insecte
@@ -108,23 +180,18 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 	typedef struct {int dist; int x; int y;} nourr;
 	nourr plusproche;
 	nourr interet[15];
-	for (i=0; i<X; i++) {									//on parcourt la matrice pour trouver toutes les cases de nourriture ou les insectes proches
+	for (i=0; i<X; i++) {									/*on parcourt la matrice pour trouver toutes les cases de nourriture ou les insectes proches*/
 		for (j=0; j<Y; j++) {
-			if (lab[i][j].etat==food && (pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir)<30)){
+			if (lab[i][j].etat==food && (pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir)<20)){
 				interet[nb_nourr].dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
 				interet[nb_nourr].x=xdir;
 				interet[nb_nourr].y=ydir;
 				nb_nourr++;
-			} /*else if (lab[i][j].etat==insecte && (pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir)<30)) {
-				interet[nb_nourr].dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
-				interet[nb_nourr].x=xdir;
-				interet[nb_nourr].y=ydir;
-				nb_nourr++;
-			}*/
+			}
 		}
 	}
 	plusproche=interet[0];
-	for (i=1; i<nb_nourr; i++){									//on parcourt le tableau pour trouver la nourriture la plus proche
+	for (i=1; i<nb_nourr; i++){									/*on parcourt le tableau pour trouver la nourriture la plus proche*/
 		if (interet[i].dist<plusproche.dist){
 			plusproche=interet[i];
 		}
@@ -163,7 +230,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 	int xcur, ycur;
 	int dist = 0;
 	int parcouru=0;
-	for(i=0; i<X; i++){				//initialisation de la matrice
+	for(i=0; i<X; i++){				/*initialisation de la matrice*/
 		for(j=0; j<Y; j++){
 			matr_dist[i][j]=-2;
 		}
@@ -177,7 +244,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 				if (labyrinthe[i][j].etat==mur){
 					matr_dist[i][j]=-1;
 				}
-				if (i==xdep && j==ydep && dist==1) {		//si on est au début, on fixe la distance à 0
+				if (i==xdep && j==ydep && dist==1) {		/*si on est au début, on fixe la distance à 0*/
 					if (matr_dist[i-1][j]==-2){
 						matr_dist[i-1][j]=dist;
 					}if (matr_dist[i][j-1]==-2){
@@ -187,7 +254,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 					}if (matr_dist[i+1][j]==-2) {
 						matr_dist[i+1][j]=dist;
 					}
-				} else if (matr_dist[i][j]==dist-1 && dist>1){		//sinon on indique la distance en cercles concentriques
+				} else if (matr_dist[i][j]==dist-1 && dist>1){		/*sinon on indique la distance en cercles concentriques*/
 					if (matr_dist[i-1][j]==-2 && i-1>=0){
 						matr_dist[i-1][j]=dist;
 					}if (matr_dist[i][j-1]==-2 && j-1>=0){
@@ -198,7 +265,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 						matr_dist[i+1][j]=dist;
 					}
 				}
-				if (matr_dist[i][j]==-2){							//si on a parcouru toute la matrice, on sort de la boucle
+				if (matr_dist[i][j]==-2){							/*si on a parcouru toute la matrice, on sort de la boucle*/
 					parcouru=0;
 				}
 			}
@@ -206,7 +273,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 	}
 	xcur = xarr; ycur=yarr;
 	i = 0;
-	while(matr_dist[xcur][ycur] != 1){
+	while(matr_dist[xcur][ycur] != 1){								/*On parcourt le chemin en sens inverse pour trouver le prochain déplacement*/
 		if(coord_correctes(xcur-1,ycur) && (matr_dist[xcur-1][ycur] == matr_dist[xcur][ycur]-1)){
 			xcur--;
 		}else if(coord_correctes(xcur+1,ycur) && (matr_dist[xcur+1][ycur] == matr_dist[xcur][ycur]-1)){
