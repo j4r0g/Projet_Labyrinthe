@@ -13,3 +13,5 @@ int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int
 void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y);
 
 int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]);
+
+int coord_correctes( int i, int j);
