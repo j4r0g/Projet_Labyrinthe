@@ -139,7 +139,7 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
 					charger_lab(lab);
 				} ; break;
     case 666 : decouvrirlab(lab); break;
-    default : printf("Erreur retentez\n"); choix=7;
+    default : printf("\nErreur retentez\n\n"); choix=7;
 
     }
   }

@@ -35,15 +35,15 @@ int combat(int x, int y, int a, int b, int bouffe, int dureevie, t_lab lab[X][Y]
 	}
 	else {
 		if(fourmi[lab[x][y].insecte].age>fourmi[lab[a][b].insecte].age)
-			lab[x][y].etat=food;
+			deleteinsecte(lab, fourmi, x, y);
 		else if(fourmi[lab[x][y].insecte].age<fourmi[lab[a][b].insecte].age)
-			lab[a][b].etat=food;
+			deleteinsecte(lab, fourmi, a, b);
 		else if(fourmi[lab[x][y].insecte].age==fourmi[lab[a][b].insecte].age && fourmi[lab[x][y].insecte].nourriture>fourmi[lab[a][b].insecte].nourriture)
-			lab[a][b].etat=food;
+			deleteinsecte(lab, fourmi, a, b);
 		else if(fourmi[lab[x][y].insecte].age==fourmi[lab[a][b].insecte].age && fourmi[lab[x][y].insecte].nourriture<fourmi[lab[a][b].insecte].nourriture)
-			lab[x][y].etat=food;
+			deleteinsecte(lab, fourmi, x, y);
 		else
-			lab[x][y].etat=food;
+			deleteinsecte(lab, fourmi, x, y);
 		return 0;
 	}
 }
