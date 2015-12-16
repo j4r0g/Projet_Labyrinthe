@@ -59,7 +59,10 @@ int regles() {
   printf("Vous gagnez si vous découvrez tout le labyrinthe.\n");
   printf("Vous perdez si tout vos insectes sont morts.\n");
   printf("Vous avez un certain nombre de tour de réserve de nourriture, il en va de même pour la durée de vie.\n");
-  printf("Deux insectes sur des cases adjacentes se batent ou se reproduisent.\n");
+  printf("Deux insectes sur des cases adjacentes se battent ou se reproduisent.\n");
+  printf("Lorsqu'ils vont mourrir de faim, les insectes devienent vert.\n");
+  printf("Ils deviennent rouge lorsqu'ils vont mourir de vieillesse\n");
+  printf("Ils devienent noirs lorsqu'ils meurent au prochain tour.\n");
   return 0;
 }
 

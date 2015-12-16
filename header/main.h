@@ -14,4 +14,6 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]);
 
 int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]);
 
-void sauver_lab(t_lab lab[X][Y]);
+void sauver_lab(t_lab lab[X][Y], int nb_ins, t_fourmi fourmi[]);
+
+void charger_lab(t_lab lab[X][Y], int nb_ins, t_fourmi fourmi[]);

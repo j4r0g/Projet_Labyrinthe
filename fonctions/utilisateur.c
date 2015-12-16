@@ -46,7 +46,7 @@ int ajoutNourriture (t_lab lab[X][Y]) {
  * \brief   Permet de sauvegarder la partie en cours
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  */
-void sauver_lab(t_lab lab[X][Y]){
+void sauver_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 	FILE * fic1;
 	int tmp;
 	int seen;
@@ -61,7 +61,15 @@ void sauver_lab(t_lab lab[X][Y]){
 			fprintf(fic1, "%d", seen);
 		}
 	}
-	
+	int nb_ins = nb_insecte();
+	fprintf(fic1, "%d", nb_ins);
+	for(i=0; i<nb_ins; i++){
+		fprintf(fic1, "%d", fourmi[i].sexe);
+		fprintf(fic1, "%d", fourmi[i].nourriture);
+		fprintf(fic1, "%d", fourmi[i].age);
+		fprintf(fic1, "%d", fourmi[i].x);
+		fprintf(fic1, "%d", fourmi[i].y);
+	}
 
 	fclose(fic1);
 }
@@ -70,7 +78,7 @@ void sauver_lab(t_lab lab[X][Y]){
  * \brief   Permet de charger une partie sauvegardée
  * \param 	lab[x][Y] Reçoie le labyrinthe de taille X, Y.
  */
-void charger_lab(t_lab lab[X][Y]){
+void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 	FILE * fic2;
 	char tmp;
 	int seen;
@@ -133,12 +141,12 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
 						}
 				 } ; break;
 		case 5 :{
-					sauver_lab(lab);
-				} ; break;
+					sauver_lab(lab, fourmi);
+				}
 		case 6 :{
-					charger_lab(lab);
+					charger_lab(lab, fourmi);
 				} ; break;
-    case 666 : decouvrirlab(lab); break;
+		case 666 : decouvrirlab(lab); break;
     default : printf("\nErreur retentez\n\n"); choix=7;
 
     }
