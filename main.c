@@ -16,7 +16,7 @@
 #include "./header/main.h"
 
 t_lab lab[X][Y];
-t_fourmi fourmi[40];
+t_fourmi fourmi[Z];
 
 /**
  * \brief   Gère la vérification d'une victoire, une défaite ou aucun des deux.

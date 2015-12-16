@@ -122,11 +122,29 @@ int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) 
 }
 
 /**
+ * \brief   Supprime l'insecte
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \param 	fourmi [] 				Reçoie le tableau de foumis.
+ * \param 	x									emplacement de la fourmi en x
+ * \param 	y									emplacement de la fourmi en y
+ */
+void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
+	int i;
+	int indice=lab[x][y].insecte;
+	lab[x][y].etat=food;
+	lab[x][y].insecte=-1;
+	for(i=indice; i<nb_ins; i++) {
+		fourmi[indice]=fourmi[indice+1];
+		nb_ins--;
+	}
+}
+
+/**
  * \brief   Modifie la position d'un insecte ainsi que le temps qu'il lui reste à vivre.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param 	fourmi [] 				Reçoie le tableau de foumis.
- * \param 	a									emplacement de la fourmi en x
- * \param 	b									emplacement de la fourmi en y
+ * \param 	x									emplacement de la fourmi en x
+ * \param 	y									emplacement de la fourmi en y
  * \param 	a									emplacement à donner à la fourmi en x
  * \param 	b									emplacement à donner à la fourmi en y
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
@@ -157,8 +175,7 @@ int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int
 			fourmi[indice].y=b;
 		}
 		else {
-			lab[x][y].etat=food;
-			lab[x][y].insecte=-1;
+			deleteinsecte(lab, fourmi, x, y);
 		}
 	}
 	return 0;
