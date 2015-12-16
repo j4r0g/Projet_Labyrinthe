@@ -18,6 +18,7 @@
 t_lab lab[X][Y];
 t_fourmi fourmi[40];
 
+
 /**
  * \brief   Gère la vérification d'une victoire, une défaite ou aucun des deux.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
@@ -97,6 +98,7 @@ int lancement() {
 
     afficher_lab(lab);
     vic=verifvictoire(lab);
+    printf("\e[1;1H\e[2J");
   }
   if(vic==1)
     printf("Vous avez gagné\n");
