@@ -17,6 +17,15 @@
 #include "./../header/deplacement.h"
 #include "./../header/labyrinthe.h"
 
+/**
+ * \brief	Fait se déplacer les insectes
+ * \param	lab									Récupère le labyrinthe
+ * \param	pos_x								La coordonnée x de l'insecte
+ * \param	pos_y								La coordonnée y de l'insecte
+ * \param	fourmi								Récupère le tableau de fourmis
+ * \param	bouffe								La durée de vie en nombre de tours avant la mort par inanition
+ * \param	dureevie							La durée de vie en âge avant la mort
+ */
 
 void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int bouffe, int dureevie) {
 	int i, j, xdir, ydir;
@@ -52,6 +61,17 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 	modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
 }
 
+/**
+ * \brief	Calcule la matrice des distances
+ * \param	labyrinthe								Récupère le labyrinthe
+ * \param	xdep									La coordonnée x du point d'origine
+ * \param	ydep									La coordonnée y du point d'origine
+ * \param	xarr									La coordonnée x d'arrivée
+ * \param	yarr									La coordonnée y d'arrivée
+ * \param	*xdir									La coordonnée x du prochain déplacement
+ * \param	*ydir									La coordonnée y du prochain déplacement
+ * \return	La distance de la nourriture la plus proche
+ */
 
 int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int yarr, int* xdir, int *ydir)  {
 	int matr_dist[X][Y];
@@ -103,20 +123,18 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 	xcur = xarr; ycur=yarr;
 	i = 0;
 	while(matr_dist[xcur][ycur] != 1){
-		//printf("on est en %d %d\n", xcur, ycur);
-		// chercher matr_dist[xcur][ycur]-1
-		if(coord_correctes(xcur-1,ycur) && (matr_dist[xcur-1][ycur] == matr_dist[xcur][ycur]-1))
+		if(coord_correctes(xcur-1,ycur) && (matr_dist[xcur-1][ycur] == matr_dist[xcur][ycur]-1)){
 			xcur--;
-		else if(coord_correctes(xcur+1,ycur) && (matr_dist[xcur+1][ycur] == matr_dist[xcur][ycur]-1))
+		}else if(coord_correctes(xcur+1,ycur) && (matr_dist[xcur+1][ycur] == matr_dist[xcur][ycur]-1)){
 			xcur++;
-		else if(coord_correctes(xcur,ycur-1) && (matr_dist[xcur][ycur-1] == matr_dist[xcur][ycur]-1))
+		}else if(coord_correctes(xcur,ycur-1) && (matr_dist[xcur][ycur-1] == matr_dist[xcur][ycur]-1)){
 			ycur--;
-		else if(coord_correctes(xcur,ycur+1) && (matr_dist[xcur][ycur+1] == matr_dist[xcur][ycur]-1))
+		}else if(coord_correctes(xcur,ycur+1) && (matr_dist[xcur][ycur+1] == matr_dist[xcur][ycur]-1)){
 			ycur++;
+		}
 		i++;
 		if(i>100) break;
 	}
-//	printf("il faut se deplacer en %i %i\n\n", xcur, ycur);
 	*xdir = xcur; *ydir=ycur;
 	return matr_dist[xarr][yarr];
 }

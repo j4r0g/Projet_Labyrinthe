@@ -18,6 +18,7 @@
 t_lab lab[X][Y];
 t_fourmi fourmi[Z];
 
+
 /**
  * \brief   Gère la vérification d'une victoire, une défaite ou aucun des deux.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
