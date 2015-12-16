@@ -182,7 +182,7 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 	nourr interet[15];
 	for (i=0; i<X; i++) {									/*on parcourt la matrice pour trouver toutes les cases de nourriture ou les insectes proches*/
 		for (j=0; j<Y; j++) {
-			if (lab[i][j].etat==food && (pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir)<30)){
+			if (lab[i][j].etat==food && (pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir)<20)){
 				interet[nb_nourr].dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
 				interet[nb_nourr].x=xdir;
 				interet[nb_nourr].y=ydir;
