@@ -39,28 +39,16 @@ int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int
 	}
 	else if (lab[pos_x-1][pos_y].etat != mur && lab[pos_x][pos_y-1].etat != mur && lab[pos_x][pos_y+1].etat != mur && lab[pos_x+1][pos_y].etat != mur) {
 		if (random >= 0 && random < 25 && lab[pos_x-1][pos_y].etat!=mur) {
-			lab[pos_x-1][pos_y].etat = insecte;
-			lab[pos_x][pos_y].etat = vide;
-			lab[pos_x-1][pos_y].insecte = lab[pos_x][pos_y].insecte;
-			lab[pos_x][pos_y].insecte = -1;
+			modifpos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie);
 		}
 		else if (random >= 25 && random < 50 && lab[pos_x][pos_y-1].etat!=mur) {
-			lab[pos_x][pos_y-1].etat = insecte;
-			lab[pos_x][pos_y].etat = vide;
-			lab[pos_x][pos_y-1].insecte = lab[pos_x][pos_y].insecte;
-			lab[pos_x][pos_y].insecte = -1;
+			modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y-1, bouffe, dureevie);
 		}
 		else if (random >= 50 && random < 75 && lab[pos_x][pos_y+1].etat!=mur) {
-			lab[pos_x][pos_y+1].etat = insecte;
-			lab[pos_x][pos_y].etat = vide;
-			lab[pos_x][pos_y+1].insecte = lab[pos_x][pos_y].insecte;
-			lab[pos_x][pos_y].insecte = -1;
+			modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie);
 		}
 		else if (random >= 75 && random < 100 && lab[pos_x+1][pos_y].etat!=mur) {
-			lab[pos_x+1][pos_y].etat = insecte;
-			lab[pos_x][pos_y].etat = vide;
-			lab[pos_x+1][pos_y].insecte = lab[pos_x][pos_y].insecte;
-			lab[pos_x][pos_y].insecte = -1;
+			modifpos(lab, fourmi, pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie);
 		}
 	}
 	if(issue==1)

@@ -32,21 +32,26 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 	int nb_nourr = 0;
 	typedef struct {int dist; int x; int y;} nourr;
 	nourr plusproche;
-	nourr manger[15];
-	for (i=0; i<X; i++) {									//on parcourt la matrice pour trouver toutes les cases de nourriture
+	nourr interet[15];
+	for (i=0; i<X; i++) {									//on parcourt la matrice pour trouver toutes les cases de nourriture ou les insectes proches
 		for (j=0; j<Y; j++) {
-			if (lab[i][j].etat==food){
-				manger[nb_nourr].dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
-				manger[nb_nourr].x=xdir;
-				manger[nb_nourr].y=ydir;
+			if (lab[i][j].etat==food && (pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir)<30)){
+				interet[nb_nourr].dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
+				interet[nb_nourr].x=xdir;
+				interet[nb_nourr].y=ydir;
 				nb_nourr++;
-			}
+			} /*else if (lab[i][j].etat==insecte && (pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir)<30)) {
+				interet[nb_nourr].dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
+				interet[nb_nourr].x=xdir;
+				interet[nb_nourr].y=ydir;
+				nb_nourr++;
+			}*/
 		}
 	}
-	plusproche=manger[0];
+	plusproche=interet[0];
 	for (i=1; i<nb_nourr; i++){									//on parcourt le tableau pour trouver la nourriture la plus proche
-		if (manger[i].dist<plusproche.dist){
-			plusproche=manger[i];
+		if (interet[i].dist<plusproche.dist){
+			plusproche=interet[i];
 		}
 	}
 	if (lab[pos_x-1][pos_y].etat==insecte) {
@@ -58,7 +63,11 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 	} else if (lab[pos_x][pos_y+1].etat==insecte) {
 		combat(pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie, lab, fourmi);
 	}
-	modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
+	if (pluscourte_dist(lab, pos_x, pos_y, plusproche.x, plusproche.y, &xdir, &ydir)<30) {
+		modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
+	} else {
+		prochain_deplacement(pos_x, pos_y, lab, bouffe, dureevie, fourmi);
+	}
 }
 
 /**
