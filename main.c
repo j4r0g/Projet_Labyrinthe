@@ -98,7 +98,6 @@ int lancement() {
 
     afficher_lab(lab);
     vic=verifvictoire(lab);
-    printf("\e[1;1H\e[2J");
   }
   if(vic==1)
     printf("Vous avez gagné\n");
