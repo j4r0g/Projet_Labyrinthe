@@ -40,6 +40,15 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 			plusproche=manger[i];
 		}
 	}
+	if (lab[pos_x-1][pos_y].etat==insecte) {
+		combat(pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie, lab, fourmi);
+	} else if (lab[pos_x][pos_y-1].etat==insecte ) {
+		combat(pos_x, pos_y, pos_x, pos_y-1, bouffe, dureevie, lab, fourmi);
+	} else if (lab[pos_x+1][pos_y].etat==insecte){
+		combat(pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie, lab, fourmi);
+	} else if (lab[pos_x][pos_y+1].etat==insecte) {
+		combat(pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie, lab, fourmi);
+	}
 	modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
 }
 
