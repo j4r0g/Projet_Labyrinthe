@@ -134,7 +134,7 @@ int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) 
  * \return  Un 0 si la fonction s'est exécutée avec succès, 1 si erreur.
  */
 int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int bouffe, int dureevie){
-	if(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide || lab[x][y].etat!=insecte)
+	if(a<=0 || a>=X || b<=0 || b>=Y || (lab[a][b].etat!=vide && lab[a][b].etat!=food) || lab[x][y].etat!=insecte)
     return 1;
 	else{
 		int indice=lab[x][y].insecte;
