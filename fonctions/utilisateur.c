@@ -52,7 +52,7 @@ void sauver_lab(t_lab lab[X][Y]){
 	int seen;
 	int i,j;
 	fic1 = fopen("SAVED_GAME", "w");
-	
+
 	for(i =0; i<X; i++){
 		for(j =0; j<Y; j++){
 			tmp = lab[i][j].etat;
@@ -62,7 +62,7 @@ void sauver_lab(t_lab lab[X][Y]){
 		}
 		//fprintf(fic1, "\n");
 	}
-	
+
 	fclose(fic1);
 }
 
@@ -105,7 +105,7 @@ void charger_lab(t_lab lab[X][Y]){
  * \return  Un 0 si on force l'abandon, un 1 sinon.
  */
 int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
-  int choix;
+  int choix, i, j;
   char reponse='\0';
   do {
     printf(" 1 - Ajouter de la nourriture\n");
@@ -138,6 +138,8 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
 		case 6 :{
 					charger_lab(lab);
 				} ; break;
+    case 666 : decouvrirlab(lab); break;
+    default : choix=7;
 
     }
   }
