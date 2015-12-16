@@ -40,21 +40,7 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 			plusproche=manger[i];
 		}
 	}
-
 	modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
-/*	if (lab[pos_x-1][pos_y].etat==food) {
-		printf("toto");
-		modifpos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie);
-	}else if (lab[pos_x][pos_y-1].etat==food) {
-		printf("tata");
-		modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y-1, bouffe, dureevie);
-	}else if (lab[pos_x+1][pos_y].etat==food) {
-		printf("titi");
-		modifpos(lab, fourmi, pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie);
-	}else if (lab[pos_x][pos_y+1].etat==food) {
-		printf("tutu");
-		modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie);
-	}*/
 }
 
 
