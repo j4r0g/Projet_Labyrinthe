@@ -34,8 +34,8 @@ int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi f
 	}
   else {
     lab[a][b].etat=insecte;
-  	nb_ins++;
   	lab[a][b].insecte=nb_ins;
+		nb_ins++;
 		int indice=lab[a][b].insecte;
   	int sexe=rand()%100;
   	if(sexe>=0 && sexe<50)
