@@ -41,7 +41,7 @@ int verifvictoire (t_lab lab[X][Y]) {
     }
   }
   if(victoire)
-    return 0;			//MODIF en 0 pour le test, remettre a 1 pour avoir la victoire
+    return 1;			//MODIF en 0 pour le test, remettre a 1 pour avoir la victoire
   else if(defaite)
     return 2;
   else

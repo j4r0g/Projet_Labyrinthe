@@ -503,3 +503,12 @@ void gene_nour(t_lab lab[X][Y]) {
   	lab[nombrex][nombrey].etat=food;
   }
 }
+
+void decouvrirlab(t_lab lab[X][Y]) {
+	int i, j;
+	for(i=0; i<X; i++) {
+		for(j=0; j<Y; j++) {
+			lab[i][j].decouvert=seen;
+		}
+	}
+}

@@ -148,16 +148,18 @@ int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int
 		if(fourmi[indice].nourriture!=0 && fourmi[indice].age!=0) {
 			// modif de l'état de la case
 			lab[a][b].etat=insecte;
+			lab[x][y].etat=vide;
 			// modif de l'indice de l'insecte dans la case
 			lab[a][b].insecte=indice;
+			lab[x][y].insecte=-1;
 			// maj de la position de l'insecte
 			fourmi[indice].x=a;
 			fourmi[indice].y=b;
 		}
-		// modif de l'état de la case
-		lab[x][y].etat=vide;
-		// modif de l'indice de l'insecte dans la case
-		lab[x][y].insecte=-1;
+		else {
+			lab[x][y].etat=food;
+			lab[x][y].insecte=-1;
+		}
 	}
 	return 0;
 }
