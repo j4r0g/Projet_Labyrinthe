@@ -1,7 +1,7 @@
 PROG= VieLab
 CC=gcc
 CFLAG= -g -Wall
-OBJ= ./fonctions/labyrinthe.o ./main.o ./fonctions/utilisateur.o ./fonctions/deplacement.o ./fonctions/depl1.o ./fonctions/insecte.o
+OBJ= ./fonctions/labyrinthe.o ./main.o ./fonctions/utilisateur.o ./fonctions/deplacement.o ./fonctions/insecte.o
 
 all: ${PROG}
 
@@ -19,9 +19,6 @@ utilisateur.o: ./fonctions/utilisateur.c
 
 deplacement.o: ./fonctions/deplacement.c
 	${CC} ${CFLAG} -c ./fonctions/deplacement.c
-
-depl1.o: ./fonctions/depl1.c
-	${CC} ${CFLAG} -c ./fonctions/depl1.c
 
 insecte.o: ./fonctions/insecte.c
 	${CC} ${CFLAG} -c ./fonctions/insecte.c
