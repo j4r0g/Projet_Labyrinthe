@@ -77,7 +77,7 @@ int lancement() {
   gene_nour(lab); 							//Génération de chaque case de nourriture
 
   decouvrir(lab);
-  afficher_lab(lab);
+  afficher_lab(lab, fourmi);
   vic=verifvictoire(lab);
 
   while(vic==0){
@@ -96,7 +96,7 @@ int lancement() {
         }
       }
 
-    afficher_lab(lab);
+    afficher_lab(lab, fourmi);
     vic=verifvictoire(lab);
   }
   if(vic==1)

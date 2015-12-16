@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "./../header/struct_lab.h"
+#include "./../header/struct_ins.h"
 
 //*			fonction qui renvoie un nombre aleatoire entre 0 et max			*//
 int nbr_rand(int max){
@@ -340,10 +341,10 @@ void init_lab_rand (t_lab lab[X][Y]){
 
 
 //			affichage du labyrinthe en ASCII
-void afficher_lab(t_lab lab[X][Y]){
+void afficher_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 
 	int char_unseen = '?';
-
+	int indice;
 	t_etat etat_tmp;
 	t_discover decouvert_tmp;
 	int i,j;
@@ -442,7 +443,7 @@ void afficher_lab(t_lab lab[X][Y]){
 			else if(j == -1 && i == (X)){						//*pas de nombre en bas a gauche
 				printf(" ");
 			}
-			else{									//*le else gère tout ce qui est a l'intérieur des bordures
+			else{									//*le else gère tout ce qui est a l'intérieur des bordures (insectes, nourriture)
 				etat_tmp = lab[i][j].etat;
 				decouvert_tmp = lab[i][j].decouvert;
 
@@ -457,7 +458,19 @@ void afficher_lab(t_lab lab[X][Y]){
 						printf("\033[0;37;47m%c \033[00m", etat_tmp);
 					}
 					else if(etat_tmp == insecte){
-						printf("\033[1;36;43m%c \033[00m", etat_tmp);
+						indice = lab[i][j].insecte;
+						if(fourmi[indice].age == 1 || fourmi[indice].nourriture == 1){
+							printf("\033[1;30;43m%c \033[00m", etat_tmp);
+						}
+						else if(fourmi[indice].age < 5 ){
+							printf("\033[1;31;43m%c \033[00m", etat_tmp);
+						}
+						else if(fourmi[indice].nourriture < 5){
+							printf("\033[1;32;43m%c \033[00m", etat_tmp);
+						}
+						else{
+							printf("\033[1;36;43m%c \033[00m", etat_tmp);
+						}
 					}
 					else if(etat_tmp == food){
 						printf("\033[1;34;43m%c \033[00m", etat_tmp);

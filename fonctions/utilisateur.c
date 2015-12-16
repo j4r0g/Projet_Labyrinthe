@@ -60,8 +60,8 @@ void sauver_lab(t_lab lab[X][Y]){
 			fprintf(fic1, "%c", tmp);
 			fprintf(fic1, "%d", seen);
 		}
-		//fprintf(fic1, "\n");
 	}
+	
 
 	fclose(fic1);
 }
