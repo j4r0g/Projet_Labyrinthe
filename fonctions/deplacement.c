@@ -34,9 +34,9 @@ int combat(int x, int y, int a, int b, int bouffe, int dureevie, t_lab lab[X][Y]
 		return 1;
 	}
 	else {
-		if(fourmi[lab[x][y].insecte].age>fourmi[lab[a][b].insecte].age)
+		if(fourmi[lab[x][y].insecte].age<fourmi[lab[a][b].insecte].age)
 			deleteinsecte(lab, fourmi, x, y);
-		else if(fourmi[lab[x][y].insecte].age<fourmi[lab[a][b].insecte].age)
+		else if(fourmi[lab[x][y].insecte].age>fourmi[lab[a][b].insecte].age)
 			deleteinsecte(lab, fourmi, a, b);
 		else if(fourmi[lab[x][y].insecte].age==fourmi[lab[a][b].insecte].age && fourmi[lab[x][y].insecte].nourriture>fourmi[lab[a][b].insecte].nourriture)
 			deleteinsecte(lab, fourmi, a, b);
