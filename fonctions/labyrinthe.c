@@ -17,6 +17,7 @@
 
 //*			fonction qui renvoie un nombre aleatoire entre 0 et max			*//
 int nbr_rand(int max){
+	printf("nbr_rand\n");
 	int nombre;
 	nombre = rand()%max;
 	return nombre;
@@ -24,11 +25,13 @@ int nbr_rand(int max){
 
 //*			fonctions qui vérifient que les coordonnées mise en arguments font parties de la matrice		*//
 int coord_correctes( int i, int j){
+	printf("coordcorrect\n");
 	return (i<(X-1) && i>0 && j<(Y-1) && j>0);
 }
 
 //*			initialisation du labyrinthe à partir d'un .txt			*//
 void init_lab(t_lab lab[X][Y]){
+	printf("init_lab\n");
 	int tmp;
 	int i,j;
 	FILE * fic1;
@@ -49,6 +52,7 @@ void init_lab(t_lab lab[X][Y]){
 
 //*			Cette fonction compte le nombre de cases vide			*//
 int nbr_cases_vide(t_lab lab[X][Y]){
+	printf("nbrcasevide\n");
 	int i, j;
 	int nbr_cases_vide = 0;
 	for (i=0; i<X; i++){
@@ -63,6 +67,7 @@ int nbr_cases_vide(t_lab lab[X][Y]){
 
 //*			Cette fonction "lisse" les murs. elle renvoit 1 si elle a effectué des modifications, 0 sinon		*//
 int lissage_lab(t_lab lab[X][Y]){
+	printf("lissagelab");
 	int i, j;
 	int mur_adj=0;
 	int a_lisse=0;
@@ -241,6 +246,7 @@ int lissage_lab(t_lab lab[X][Y]){
 
 //			initialisation pseudo-aléatoire du labyrinthe	(2nd essaie, par extrudage, en partant du centre)	*//
 void init_lab_rand (t_lab lab[X][Y]){
+	printf("initlabrand\s");
 	int i, j, direction, i_tmp, j_tmp, a_lisse;
 	int cases_extrude = 0;
 	int ite_gauche = 0;
@@ -343,7 +349,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 
 //			affichage du labyrinthe en ASCII
 void afficher_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
-
+	printf("afficherlab\n");
 	int char_unseen = '?';
 	int indice;
 	t_etat etat_tmp;
@@ -491,6 +497,7 @@ void afficher_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 
 
 int genelab(t_lab lab[X][Y]){
+	printf("genelab\n");
 	srand(time(NULL));
 	init_lab_rand(lab);
 	//afficher_lab(lab);
@@ -504,9 +511,10 @@ int genelab(t_lab lab[X][Y]){
  */
 
 void gene_nour(t_lab lab[X][Y]) {
+	printf("gene_nour\n");
 	srand(time(NULL));
-  int i, nb_nourr=10;
-  for(i=0; i<nb_nourr; i++) {
+	int i, nb_nourr=10;
+	for(i=0; i<nb_nourr; i++) {
     int nombrex, nombrey;
   	nombrex = rand()%X;
   	nombrey = rand()%Y;
@@ -519,6 +527,7 @@ void gene_nour(t_lab lab[X][Y]) {
 }
 
 void decouvrirlab(t_lab lab[X][Y]) {
+	printf("decouvrirlab\n");
 	int i, j;
 	for(i=0; i<X; i++) {
 		for(j=0; j<Y; j++) {
