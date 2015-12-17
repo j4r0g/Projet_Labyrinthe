@@ -245,6 +245,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 		}
 	}
 	matr_dist[xdep][ydep]=0;
+	printf("matrice initialisée\n");
 	while (parcouru==0){
 		dist++;
 		parcouru=1;
@@ -280,9 +281,11 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 			}
 		}
 	}
+	printf("matrice remplie\n");
 	xcur = xarr; ycur=yarr;
 	i = 0;
-	while(matr_dist[xcur][ycur] != 1 && i<20){								/*On parcourt le chemin en sens inverse pour trouver le prochain déplacement*/
+	while(matr_dist[xcur][ycur] != 1 && i<100){								/*On parcourt le chemin en sens inverse pour trouver le prochain déplacement*/
+		Assert2("while incorrect", matr_dist[xcur][ycur]!=1, i<100);
 		if(coord_correctes(xcur-1,ycur) && (matr_dist[xcur-1][ycur] == matr_dist[xcur][ycur]-1)){
 			Assert2("x1 incorrect", coord_correctes(xcur-1,ycur), (matr_dist[xcur-1][ycur]==matr_dist[xcur][ycur]-1));
 			xcur--;
@@ -301,6 +304,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 			break;
 		}*/
 	}
+	printf("while fini\n");
 	*xdir = xcur; *ydir=ycur;
 	return matr_dist[xarr][yarr];
 }
