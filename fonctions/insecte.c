@@ -19,7 +19,7 @@ int nb_insecte(){
 	return nb_ins;
 }
 
-void chang_nb_ins(new_nb_ins){
+void chang_nb_ins(int new_nb_ins){
 	nb_ins = new_nb_ins;
 }
 
@@ -46,6 +46,7 @@ int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi f
   	lab[a][b].insecte=nb_ins;
 		nb_ins++;
 		int indice=lab[a][b].insecte;
+		//Si on veut un choix aléatoire du sexe
 		if(choixsexe==0) {
 			int sexe=rand()%100;
 	  	if(sexe<50)
@@ -53,9 +54,11 @@ int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi f
 	  	else
 	  		fourmi[indice].sexe = FEMELLE;
 		}
+		// Si on veut un male
 		else if(choixsexe==1) {
 			fourmi[indice].sexe = MALE;
 		}
+		// Si on veut une femelle
 		else {
 			fourmi[indice].sexe = FEMELLE;
 		}
@@ -165,7 +168,7 @@ void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
 	lab[x][y].etat=food;
 	lab[x][y].insecte=-1;
 	for(i=indice; i<nb_ins; i++) {
-		fourmi[indice]=fourmi[indice+1];
+		fourmi[i]=fourmi[i+1];
 		nb_ins--;
 	}
 }
