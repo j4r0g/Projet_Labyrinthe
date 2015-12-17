@@ -300,7 +300,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 			ycur++;
 		}
 		i++;
-		/*if(i>20){ 
+		/*if(i>20){
 			break;
 		}*/
 	}

@@ -92,7 +92,7 @@ int lancement() {
     if(res==0)
       return 1;
     int nb_ins=nb_insecte();
-    for(i=0; i<nb_ins; i++) {
+    for(i=nb_ins-1; i>=0; i--) {
       int posx=fourmi[i].x;
       int posy=fourmi[i].y;
       //if(posx>=0 && posx<X && posy>=0 && posy<Y && lab[posx][posy].etat==insecte) {
