@@ -161,6 +161,8 @@ int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int
 		else if (random >= 75 && random < 100 && lab[pos_x+1][pos_y].etat!=mur) {
 			modifpos(lab, fourmi, pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie);
 		}
+	} else {
+		printf("erreur prochain_deplacement\n");
 	}
 	if(issue==1)
 		return 1;
@@ -290,7 +292,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 			ycur++;
 		}
 		i++;
-		if(i>100) break;
+		if(i>30) break;
 	}
 	*xdir = xcur; *ydir=ycur;
 	return matr_dist[xarr][yarr];
