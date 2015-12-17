@@ -246,7 +246,7 @@ int lissage_lab(t_lab lab[X][Y]){
 
 //			initialisation pseudo-aléatoire du labyrinthe	(2nd essaie, par extrudage, en partant du centre)	*//
 void init_lab_rand (t_lab lab[X][Y]){
-	printf("initlabrand\s");
+	printf("initlabrand\n");
 	int i, j, direction, i_tmp, j_tmp, a_lisse;
 	int cases_extrude = 0;
 	int ite_gauche = 0;
