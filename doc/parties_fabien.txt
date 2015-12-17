@@ -1,0 +1,24 @@
+Organisation du travail:
+Nous avons d'abord pris quelques heures pour analyser le problème avant de commencer à développer. L'intérêt majeur de cette partie était d'avoir une idée précise de ce que nous voulions faire, et être d'accord ensemble des structures que nous allions utilisé ainsi que des règles à utiliser afin de pouvoir travailler dans le même objectif.
+Nous avons défini un certain nombre de structures et trois axes majeures du programme se sont démarqués.
+Le premier axe a été le labyrinthe, les méthodes de génération et comment le sauvegarder/charger. Nous avons aussi inclus dedans la méthode d'affichage.
+Le deuxième axe a été le déplacement des insectes et les méthodes qui pouvaient faire qu'ils n'agissent pas complètement aléatoirement.
+Le troisième axe a été les insectes en eux-mêmes, leurs interactions ainsi que les interactions entre l'utilisateur et le jeu.
+Nous en avons discuté entre nous puis chacun a fait part aux autres de la partie qui l'intéressait le plus. Nous sommes tombé rapidement d'accord sur quelle partie était à la charge de qui, chacun voulant s'occuper d'une partie différente des autres. Léo a donc décidé de se charger du labyrinthe, Fabien s'est chargé des déplacements pendant que Keryann s'occupait des insectes et des interactions.
+
+
+Analyse du problème:
+1)Enoncé
+L'objectif est de créer un labyrinthe contenant des insectes et de la nourriture, dans le style "jeu de la vie". Les insectes doivent se déplacer de manière semi-aléatoire, ceux-ci devant être capables d'assurer leur propre survie. Ils doivent notamment être capable de se diriger vers de la nourriture quand il y en a à proximité. Les règles de vie et de mort des insectes n'ont pas été spécifiées, ainsi que celles gérant la génération de nouveaux insectes. Il faut aussi pouvoir sauvegarder et charger une partie et pouvoir afficher des statistiques sur la population au sein du labyrinthe.
+
+2)Compréhension
+La première chose qui nous est venu à l'esprit, c'est qu'un "jeu de la vie" ne nous semblait pas représenter suffisamment d'intérêt pour que quelqu'un ait envie d'y jouer. Nous avons décidé que nous allions laisser à l'utilisateur plus de possibilités d'influer sur la partie en pouvant placer des insectes ou de la nourriture à chaque tour.
+Ensuite nous avons réfléchit au labyrinthe, et nous avons compris que nous allions devoir utiliser une matrice mais avons immédiatement écarté l'idée d'une matrice d'entiers car, bien que plus simple, ne nous permettant pas de contenir les informations voulues. Nous nous sommes dit qu'une matrice de structure allait nous être utile pour avoir accès facilement aux informations nécessaires à nos différentes fonctions. Nous avons aussi choisit de "masquer" la partie du labyrinthe qui n'a pas été parcourue par les insectes, le but du jeu devenant de découvrir le labyrinthe avant que tous les insectes meurent.
+Nous avons aussi déterminé que les insectes allaient être des structures mais différentes des structures de la matrice afin de simplifier l'initialisation de la matrice tout en ayant toujours les informations sur les insectes que nous voulions.
+
+3)Mise en place
+Nous avons d'abord mis en place quelques types énumérés afin de simplifier la compréhension du code, tel que "t_discover" qui sert à savoir si une case a été découverte ou non, "t_sexe" pour connaître le sexe de chaque insecte et "t_etat" afin de savoir dans quel état est chaque case du labyrinthe (0 est une case vide, 1 est une case de mur, 2 est une case de nourriture et 3 est une case contenant un insecte).
+Ensuite, grâce aux types énumérés précédemment, nous avons définit la structure "t_lab" qui représente une case du labyrinthe. Cette structure contient "t_discover", "t_etat" et "int *" qui pointe sur la structure des insectes.
+Puis nous avons définis le type "t_fourmi" qui contient les informations de chaque insecte que sont "t_sexe", "int nourriture" qui contient la quantité de nourriture restante à l'insecte et "int age" qui contient le nombre de tour qu'il reste à vivre à l'insecte.
+
+Nous avons aussi définit quelques fonctions qui nous étaient nécessaires. Il nous fallait une fonction pour initialiser le labyrinthe et une autre pour l'afficher. Il nous fallait aussi une fonction pour déterminer le prochain déplacement d'un insecte et une autre pour vérifier si un autre insecte est adjacent pour appeler les interactions. Puis nous avons choisit de faire une fonction régissant la vie des insectes qui contiendrait les règles générales de naissance, de vie et de mort des insectes. Nous avons aussi choisit de faire une fonction pour vérifier si la partie est finie ou non.
