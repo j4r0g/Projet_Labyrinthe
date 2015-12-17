@@ -100,12 +100,12 @@ void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 				}
 			}
 			fscanf(fic2, "%i ", &nb_ins);
-			printf("%i", nb_ins);		
+			printf("%i", nb_ins);
 			chang_nb_ins(nb_ins);
 			for(i = 0; i<nb_ins; i++){
 				fscanf(fic2, "%i ", &tmp);
 				fourmi[i].sexe = tmp;
-				fscanf(fic2, "%i ", &tmp);	
+				fscanf(fic2, "%i ", &tmp);
 				fourmi[i].nourriture = tmp;
 				fscanf(fic2, "%i ", &tmp);
 				fourmi[i].age = tmp;
@@ -162,7 +162,7 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
 					charger_lab(lab, fourmi);
 				} ; break;
 		case 666 : decouvrirlab(lab); break;
-    default : printf("\nErreur retentez\n\n"); choix=7;
+    default : printf("\nErreur retentez\n\n"); choix=7; break;
 
     }
   }
