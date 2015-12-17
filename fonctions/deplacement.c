@@ -29,6 +29,7 @@
  * \return 	Un 1 si on a ajouté un insecte et un 0 sinon.
  */
 int combat(int x, int y, int a, int b, int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
+	printf("combat\n");
 	if(fourmi[lab[x][y].insecte].sexe!=fourmi[lab[a][b].insecte].sexe){
 		bebe(bouffe, dureevie, lab, fourmi);
 		return 1;
@@ -53,7 +54,8 @@ int combat(int x, int y, int a, int b, int bouffe, int dureevie, t_lab lab[X][Y]
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  */
 void decouvrir(t_lab lab[X][Y]) {
-  int i, j;
+	printf("decouvrir\n");
+	int i, j;
   for(i=0;i<X;i++) {
     for(j=0;j<Y;j++){
       if(lab[i][j].etat==insecte) {
@@ -101,6 +103,7 @@ void decouvrir(t_lab lab[X][Y]) {
  */
 
 int insecte_adjacent(int px, int py, t_lab lab[X][Y]) {
+	printf("insecte_adjacent\n");
 	if (lab[px-1][py].etat == insecte) {
 		return 1;
 	} else if (lab[px][py-1].etat == insecte) {
@@ -126,6 +129,7 @@ int insecte_adjacent(int px, int py, t_lab lab[X][Y]) {
  */
 
 int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) {
+	printf("prochain_deplacement\n");
 	int ins_adj = insecte_adjacent(pos_x, pos_y, lab);
 	int issue = 2;
 	time_t t;
@@ -175,6 +179,7 @@ int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int
  */
 
 void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int bouffe, int dureevie) {
+	printf("deplacement\n");
 	int i, j, xdir, ydir;
 	int nb_nourr = 0;
 	typedef struct {int dist; int x; int y;} nourr;
@@ -225,6 +230,7 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
  */
 
 int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int yarr, int* xdir, int *ydir)  {
+	printf("pluscourte_dist\n");
 	int matr_dist[X][Y];
 	int i, j;
 	int xcur, ycur;
