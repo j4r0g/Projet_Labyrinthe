@@ -1,0 +1,1 @@
+int nb_insecte();
