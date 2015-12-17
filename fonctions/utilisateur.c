@@ -89,7 +89,7 @@ void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 	}
 	else{
 		while(!feof(fic2))
-		{			
+		{
 			for(i =0; i<X; i++){
 				for(j =0; j<Y; j++){
 					fscanf(fic2, "%c", &tmp);
@@ -157,7 +157,7 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
 							scanf("%c%*c", &reponse);
 						}
 						if(reponse=='n')
-							choix=6;
+							choix=7;
 						}
 				 } ; break;
 		case 5 :{
