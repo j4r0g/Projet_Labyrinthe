@@ -1,0 +1,17 @@
+introduction:
+
+La vie dans un labyrinthe
+Faire évoluer des insectes dans un labyrinthe Générer / Sauvegarder un
+labyrinthe Mettre des insectes :
+— règles du style jeu de la vie (générations / mort / naissance)
+— déplacements semi-aléatoires
+— nourriture
+— statistiques sur la population
+
+Nous avions comme objectif de réaliser un labyrinthe de type jeu de la vie, nous avons donc décidé de rester assez proche du sujet en gardant l'idée d'insectes, ces insectes se déplacent dans un labyrinthe en étant attirés par la nourriture.
+nous avons convenus de deux manières de finir une partie : soit de découvrir l'ensemble du labyrinthe, ce qui correspond à la victoire, ou que tout les insectes meurent, ce qui correspond à la défaite. Nous avons aussi réinterprété les règles afin d'en faire un jeu plus interactif en permettant à l'utilisateur d'ajouter de la nourriture ou des insectes à chaque tour.
+Au début de la partie, nous avons fait le choix de générer 5 insectes à des endroits aléatoires du labyrinthe. Les insectes supplémentaires sont soit placés par l'utilisateur (zéro ou un, aléatoirement), soit sont le fruit de la reproduction de deux insectes de sexe différents. Les insectes meurent soit à cause de l'âge, soit par inanition, soit en se battant entre eux quand ils sont de même sexe et adjacents.
+Pour le déplacement des insectes, nous avons d'abord implémenté un mouvement aléatoire. Après cela, nous avons développé une méthode de déplacement où les insectes se dirigent vers la nourriture la plus proche avant de poser des conditions pour que les deux fonctions interviennent selon que la nourriture est plus ou moins proche d'eux.
+La nourriture est placée en début de partie, dix qui sont placées aléatoirement, puis l'utilisateur peut faire le choix d'en placer à chaque tour mais ne pourra en placer qu'entre un et trois, aléatoirement.
+Nous avons de plus intégré la possibilité de sauvegarder un labyrinthe et de pouvoir charger des parties précédentes.
+Nous n'avons pas implémenté de statistiques sur la population vu que l'utilisateur a une plus grande influence sur celle-ci que dans le sujet original.
