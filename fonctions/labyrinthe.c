@@ -484,7 +484,7 @@ void afficher_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 					}
 					else if(etat_tmp == insecte){
 						indice = lab[i][j].insecte;
-						if(fourmi[indice].age == 1 || fourmi[indice].nourriture == 1){
+						if(fourmi[indice].age <= 1 || fourmi[indice].nourriture <= 1){
 							printf("\033[1;30;43m%c \033[00m", etat_tmp);
 						}
 						else if(fourmi[indice].age < 5 ){

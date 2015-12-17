@@ -40,7 +40,7 @@ int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi f
 	srand(time(NULL));
   if(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide)
     return 1;
-	else if(nb_ins>=Z){
+	else if(nb_ins>Z){
 		printf("\nNombre maximum d'insecte atteint\n");
 	}
   else {
