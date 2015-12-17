@@ -196,9 +196,6 @@ int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int
     return 1;
 	else{
 		int indice=lab[x][y].insecte;
-		// On décrémente la nourriture de l'insecte
-		fourmi[indice].nourriture--;
-		fourmi[indice].age--;
 		// On vérifie si on va sur une case de nourriture
 		if(lab[a][b].etat==food)
 			fourmi[indice].nourriture=bouffe;
@@ -217,6 +214,9 @@ int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int
 		else {
 			deleteinsecte(lab, fourmi, x, y);
 		}
+		// On décrémente la nourriture de l'insecte
+		fourmi[indice].nourriture--;
+		fourmi[indice].age--;
 	}
 	return 0;
 }
