@@ -25,6 +25,7 @@ t_fourmi fourmi[Z];
  * \return  Un 0 si on a rien, un 1 si on a gagné et un 2 si on a perdu.
  */
 int verifvictoire (t_lab lab[X][Y]) {
+	printf("verifvictoire\n");
   int i, j;
   int victoire = 1;
   int defaite = 1;
@@ -52,6 +53,7 @@ int verifvictoire (t_lab lab[X][Y]) {
  * \return  Un 0 si l'exécution a réussi.
  */
 int regles() {
+	printf("regles\n");
   printf("\n Les règles sont les suivantes :\n\n");
   printf("A chaque tour vous pouvez choisir de :\n");
   printf("- Placer soit 0 ou 1 insecte (géré aléatoirement)\n");
@@ -71,6 +73,7 @@ int regles() {
  * \return  Un 0 si l'exécution a réussi, un 1 si elle a été stopée.
  */
 int lancement() {
+	printf("lancement\n");
   int i, vic, res=5;
   int bouffe=10;
   int dureevie=30;
