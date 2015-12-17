@@ -12,6 +12,7 @@
 #include <time.h>
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
+#include "./../Boite_outils/Outil.h"
 
 int nb_ins=0;
 
@@ -194,6 +195,9 @@ int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int
 	printf("modifpos\n");
 	if(a<=0 || a>=X || b<=0 || b>=Y || (lab[a][b].etat!=vide && lab[a][b].etat!=food) || lab[x][y].etat!=insecte) {
 		printf("insecte non déplacé\n");
+		Assert4("En dehors de la matrice\n", a<=0, a>=X, b<=0, b>=Y);
+		Assert2("Non vide et non nourriture\n", lab[a][b].etat!=vide, lab[a][b].etat!=food);
+		Assert1("Case de départ non insecte\n", lab[x][y].etat!=insecte);
     return 1;
 	}
 	else{
