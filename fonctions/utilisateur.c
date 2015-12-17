@@ -52,8 +52,6 @@ void sauver_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 	int seen;
 	int i,j;
 	fic1 = fopen("SAVED_GAME", "w");
-	fprintf(fic1, "%i ", X);
-	fprintf(fic1, "%i ", Y);
 	for(i =0; i<X; i++){
 		for(j =0; j<Y; j++){
 			tmp = lab[i][j].etat;
@@ -96,23 +94,29 @@ void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 				for(j =0; j<Y; j++){
 					fscanf(fic2, "%c", &tmp);
 					lab[i][j].etat = tmp;
-					fscanf(fic2, "%i", &seen);
+					fscanf(fic2, "%d", &seen);
 					lab[i][j].decouvert = seen;
 
 				}
 			}
 			fscanf(fic2, "%i ", &nb_ins);
+			printf("%i", nb_ins);		//
 			chang_nb_ins(nb_ins);
 			for(i = 0; i<nb_ins; i++){
 				fscanf(fic2, "%i ", &tmp);
+				printf("%i", tmp);		//
 				fourmi[i].sexe = tmp;
 				fscanf(fic2, "%i ", &tmp);
+				printf("%i", tmp);		//
 				fourmi[i].nourriture = tmp;
 				fscanf(fic2, "%i ", &tmp);
+				printf("%i", tmp);		//
 				fourmi[i].age = tmp;
 				fscanf(fic2, "%i ", &tmp);
+				printf("%i", tmp);		//
 				fourmi[i].x = tmp;
 				fscanf(fic2, "%i ", &tmp);
+				printf("%i", tmp);		//
 				fourmi[i].y = tmp;
 			}
 		}
