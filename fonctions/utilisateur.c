@@ -62,13 +62,13 @@ void sauver_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 		}
 	}
 	int nb_ins = nb_insecte();
-	fprintf(fic1, "%d", nb_ins);
+	fprintf(fic1, "%d ", nb_ins);
 	for(i=0; i<nb_ins; i++){
-		fprintf(fic1, "%d", fourmi[i].sexe);
-		fprintf(fic1, "%d", fourmi[i].nourriture);
-		fprintf(fic1, "%d", fourmi[i].age);
-		fprintf(fic1, "%d", fourmi[i].x);
-		fprintf(fic1, "%d", fourmi[i].y);
+		fprintf(fic1, "%d ", fourmi[i].sexe);
+		fprintf(fic1, "%d ", fourmi[i].nourriture);
+		fprintf(fic1, "%d ", fourmi[i].age);
+		fprintf(fic1, "%d ", fourmi[i].x);
+		fprintf(fic1, "%d ", fourmi[i].y);
 	}
 
 	fclose(fic1);
@@ -142,7 +142,7 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
 				 } ; break;
 		case 5 :{
 					sauver_lab(lab, fourmi);
-				}
+				}  ; break;
 		case 6 :{
 					charger_lab(lab, fourmi);
 				} ; break;
