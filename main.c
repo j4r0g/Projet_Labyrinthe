@@ -89,8 +89,8 @@ int lancement() {
     res=actionUser(lab, bouffe, dureevie, fourmi);
     if(res==0)
       return 1;
-
-      for(i=0; i<40; i++) {
+      int nb_ins=nb_insecte();
+      for(i=0; i<nb_ins; i++) {
         int posx=fourmi[i].x;
         int posy=fourmi[i].y;
         if(posx>=0 && posx<X && posy>=0 && posy<Y && lab[posx][posy].etat==insecte) {

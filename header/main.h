@@ -17,3 +17,5 @@ int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int
 void sauver_lab(t_lab lab[X][Y], int nb_ins, t_fourmi fourmi[]);
 
 void charger_lab(t_lab lab[X][Y], int nb_ins, t_fourmi fourmi[]);
+
+int nb_insecte();
