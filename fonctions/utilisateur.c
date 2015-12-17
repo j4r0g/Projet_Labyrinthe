@@ -24,7 +24,6 @@
  * \return  0 à la réussite de la fonction
  */
 int ajoutNourriture (t_lab lab[X][Y]) {
-	printf("ajoutNourriture\n");
   int a, b, i;
   srand(time(NULL));
   int nombre = rand()%3 + 1;
@@ -48,7 +47,6 @@ int ajoutNourriture (t_lab lab[X][Y]) {
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  */
 void sauver_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
-	printf("sauverlab\n");
 	FILE * fic1;
 	int tmp;
 	int seen;
@@ -80,7 +78,6 @@ void sauver_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
  * \param 	lab[x][Y] Reçoie le labyrinthe de taille X, Y.
  */
 void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
-	printf("chargerlab\n");
 	FILE * fic2;
 	char tmp;
 	int seen;
@@ -131,7 +128,6 @@ void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
  * \return  Un 0 si on force l'abandon, un 1 sinon.
  */
 int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
-	printf("actionuser\n");
   int choix, i, j;
   char reponse='\0';
   do {
