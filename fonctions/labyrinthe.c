@@ -17,7 +17,6 @@
 
 //*			fonction qui renvoie un nombre aleatoire entre 0 et max			*//
 int nbr_rand(int max){
-	printf("nbr_rand\n");
 	int nombre;
 	nombre = rand()%max;
 	return nombre;
@@ -25,7 +24,6 @@ int nbr_rand(int max){
 
 //*			fonctions qui vérifient que les coordonnées mise en arguments font parties de la matrice		*//
 int coord_correctes( int i, int j){
-	printf("coordcorrect\n");
 	return (i<(X-1) && i>0 && j<(Y-1) && j>0);
 }
 
