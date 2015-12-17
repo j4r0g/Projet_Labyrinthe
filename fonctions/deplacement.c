@@ -196,7 +196,9 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 		nourr interet[50];
 		for (i=0; i<X; i++) {									/*on parcourt la matrice pour trouver toutes les cases de nourriture ou les insectes proches*/
 			for (j=0; j<Y; j++) {
-				if (lab[i][j].etat==food){
+				if (coord_correctes(i, j) && lab[i][j].etat==food){
+					printf("food x=%i\n", i);
+					printf("food y=%i\n", j);
 					dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
 					if(dist<20) {
 						interet[nb_nourr].dist=dist;
@@ -213,7 +215,8 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 				plusproche=interet[i];
 			}
 		}
-		if (nourriture_pres(lab) && pluscourte_dist(lab, pos_x, pos_y, plusproche.x, plusproche.y, &xdir, &ydir)<20) {
+		dist=pluscourte_dist(lab, pos_x, pos_y, plusproche.x, plusproche.y, &xdir, &ydir);
+		if (nourriture_pres(lab) && dist<20) {
 			modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
 		} else {
 			prochain_deplacement(pos_x, pos_y, lab, bouffe, dureevie, fourmi);
@@ -286,18 +289,13 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 	xcur = xarr; ycur=yarr;
 	i = 0;
 	while(matr_dist[xcur][ycur] != 1 && i<100){								/*On parcourt le chemin en sens inverse pour trouver le prochain déplacement*/
-		Assert2("while incorrect", matr_dist[xcur][ycur]!=1, i<100);
 		if(coord_correctes(xcur-1,ycur) && (matr_dist[xcur-1][ycur] == matr_dist[xcur][ycur]-1)){
-			Assert2("x1 incorrect", coord_correctes(xcur-1,ycur), (matr_dist[xcur-1][ycur]==matr_dist[xcur][ycur]-1));
 			xcur--;
 		}else if(coord_correctes(xcur+1,ycur) && (matr_dist[xcur+1][ycur] == matr_dist[xcur][ycur]-1)){
-			Assert2("x2 incorrect", coord_correctes(xcur+1,ycur), (matr_dist[xcur+1][ycur]==matr_dist[xcur][ycur]-1));
 			xcur++;
 		}else if(coord_correctes(xcur,ycur-1) && (matr_dist[xcur][ycur-1] == matr_dist[xcur][ycur]-1)){
-			Assert2("x3 incorrect", coord_correctes(xcur,ycur-1), (matr_dist[xcur][ycur-1]==matr_dist[xcur][ycur]-1));
 			ycur--;
 		}else if(coord_correctes(xcur,ycur+1) && (matr_dist[xcur][ycur+1] == matr_dist[xcur][ycur]-1)){
-			Assert2("x4 incorrect", coord_correctes(xcur,ycur+1), (matr_dist[xcur][ycur+1]==matr_dist[xcur][ycur]-1));
 			ycur++;
 		}
 		i++;
