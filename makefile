@@ -1,7 +1,7 @@
 PROG= VieLab
 CC=gcc
 CFLAG= -g -Wall
-OBJ= ./fonctions/labyrinthe.o ./main.o ./fonctions/utilisateur.o ./fonctions/deplacement.o ./fonctions/insecte.o
+OBJ= ./fonctions/labyrinthe.o ./main.o ./fonctions/utilisateur.o ./fonctions/deplacement.o ./fonctions/insecte.o ./Boite_outils/Outil.o
 
 all: ${PROG}
 
@@ -22,6 +22,9 @@ deplacement.o: ./fonctions/deplacement.c
 
 insecte.o: ./fonctions/insecte.c
 	${CC} ${CFLAG} -c ./fonctions/insecte.c
+
+Outil.o: ./Boite_outils/Outil.c
+	${CC} ${CFLAG} -c ./Boite_outils/Outil.c
 
 #Supression des fichiers temporaires
 clean:
