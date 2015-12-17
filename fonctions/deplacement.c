@@ -148,7 +148,7 @@ int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int
 	else if (ins_adj == 4) {
 		issue=combat(pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie, lab, fourmi);
 	}
-	else if (lab[pos_x-1][pos_y].etat != mur && lab[pos_x][pos_y-1].etat != mur && lab[pos_x][pos_y+1].etat != mur && lab[pos_x+1][pos_y].etat != mur) {
+	else if (lab[pos_x-1][pos_y].etat != mur || lab[pos_x][pos_y-1].etat != mur || lab[pos_x][pos_y+1].etat != mur || lab[pos_x+1][pos_y].etat != mur) {
 		if (random >= 0 && random < 25 && lab[pos_x-1][pos_y].etat!=mur) {
 			modifpos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie);
 		}
