@@ -15,6 +15,7 @@
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
 #include "./../header/deplacement.h"
+#include "./../Boite_outils/Outil.h"
 
 /**
  * \brief   Gère la rencontre entre deux fourmis
@@ -281,18 +282,24 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 	}
 	xcur = xarr; ycur=yarr;
 	i = 0;
-	while(matr_dist[xcur][ycur] != 1){								/*On parcourt le chemin en sens inverse pour trouver le prochain déplacement*/
+	while(matr_dist[xcur][ycur] != 1 && i<20){								/*On parcourt le chemin en sens inverse pour trouver le prochain déplacement*/
 		if(coord_correctes(xcur-1,ycur) && (matr_dist[xcur-1][ycur] == matr_dist[xcur][ycur]-1)){
+			Assert2("x1 incorrect", coord_correctes(xcur-1,ycur), (matr_dist[xcur-1][ycur]==matr_dist[xcur][ycur]-1));
 			xcur--;
 		}else if(coord_correctes(xcur+1,ycur) && (matr_dist[xcur+1][ycur] == matr_dist[xcur][ycur]-1)){
+			Assert2("x2 incorrect", coord_correctes(xcur+1,ycur), (matr_dist[xcur+1][ycur]==matr_dist[xcur][ycur]-1));
 			xcur++;
 		}else if(coord_correctes(xcur,ycur-1) && (matr_dist[xcur][ycur-1] == matr_dist[xcur][ycur]-1)){
+			Assert2("x3 incorrect", coord_correctes(xcur,ycur-1), (matr_dist[xcur][ycur-1]==matr_dist[xcur][ycur]-1));
 			ycur--;
 		}else if(coord_correctes(xcur,ycur+1) && (matr_dist[xcur][ycur+1] == matr_dist[xcur][ycur]-1)){
+			Assert2("x4 incorrect", coord_correctes(xcur,ycur+1), (matr_dist[xcur][ycur+1]==matr_dist[xcur][ycur]-1));
 			ycur++;
 		}
 		i++;
-		if(i>30) break;
+		/*if(i>20){ 
+			break;
+		}*/
 	}
 	*xdir = xcur; *ydir=ycur;
 	return matr_dist[xarr][yarr];

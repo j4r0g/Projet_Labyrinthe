@@ -24,6 +24,7 @@ int nbr_rand(int max){
 
 //*			fonctions qui vérifient que les coordonnées mise en arguments font parties de la matrice		*//
 int coord_correctes( int i, int j){
+	//printf("%i", (i<(X-1) && i>0 && j<(Y-1) && j>0));
 	return (i<(X-1) && i>0 && j<(Y-1) && j>0);
 }
 
