@@ -96,25 +96,30 @@ void decouvrir(t_lab lab[X][Y]) {
 }
 
 /**
- * \brief	Détecte si un insecte est adjacent
+ * \brief	Détecte si un insecte est adjacent, si c'est le cas lance un combat.
+ * 				Si il y a un combat on ne décrémente pas la vie de l'insecte c'est
+ * 				sa récompense de victoire.
  * \param	px									La coordonnée x de l'insecte
  * \param	py									La coordonnée y de l'insecte
  * \param	lab									Récupère le labyrinthe
- * \return  Renvoie 1 si un insecte est au dessus, 2 si il y en a un à gauche, 3 à droite et 4 en dessous. Sinon renvoie 0
+ * \return  Renvoie 1 si il y a un insecte adjacent, 0 sinon
  */
 
-int insecte_adjacent(int px, int py, t_lab lab[X][Y]) {
+int insecte_adjacent(int px, int py, t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) {
 	printf("insecte_adjacent\n");
 	if (lab[px-1][py].etat == insecte) {
-		return 1;
+		combat(px, py, px-1, py, bouffe, dureevie, lab, fourmi);
 	} else if (lab[px][py-1].etat == insecte) {
-	   return 2;
+	   combat(px, py, px, py-1, bouffe, dureevie, lab, fourmi);
 	} else if (lab[px][py+1].etat == insecte) {
-	   return 3;
+	   combat(px, py, px, py+1, bouffe, dureevie, lab, fourmi);
 	} else if (lab[px+1][py].etat == insecte){
-		return 4;
+		combat(px, py, px+1, py, bouffe, dureevie, lab, fourmi);
 	}
-	return 0;
+	else {
+		return 0;
+	}
+	return 1;
 }
 
 
@@ -131,25 +136,12 @@ int insecte_adjacent(int px, int py, t_lab lab[X][Y]) {
 
 int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) {
 	printf("prochain_deplacement\n");
-	int ins_adj = insecte_adjacent(pos_x, pos_y, lab);
-	int issue = 2;
+	int ins_adj = insecte_adjacent(pos_x, pos_y, lab, bouffe, dureevie, fourmi);
 	time_t t;
 	srand((unsigned) time(&t));
 	int random = rand()%100;
 
-	if (ins_adj == 1) {
-		issue=combat(pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie, lab, fourmi);
-	}
-	else if (ins_adj == 2) {
-		issue=combat(pos_x, pos_y, pos_x, pos_y-1, bouffe, dureevie, lab, fourmi);
-	}
-	else if (ins_adj == 3) {
-		issue=combat(pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie, lab, fourmi);
-	}
-	else if (ins_adj == 4) {
-		issue=combat(pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie, lab, fourmi);
-	}
-	else if (lab[pos_x-1][pos_y].etat != mur || lab[pos_x][pos_y-1].etat != mur || lab[pos_x][pos_y+1].etat != mur || lab[pos_x+1][pos_y].etat != mur) {
+	if (lab[pos_x-1][pos_y].etat != mur || lab[pos_x][pos_y-1].etat != mur || lab[pos_x][pos_y+1].etat != mur || lab[pos_x+1][pos_y].etat != mur && ins_adj==0) {
 		if (random >= 0 && random < 25 && lab[pos_x-1][pos_y].etat!=mur) {
 			modifpos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie);
 		}
@@ -164,11 +156,20 @@ int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int
 		}
 	} else {
 		printf("erreur prochain_deplacement\n");
-	}
-	if(issue==1)
 		return 1;
-	else
-		return 0;
+	}
+	return 0;
+}
+
+int nourriture_pres(t_lab lab[X][Y]){
+	int i, j;
+	for(i=0; i<X; i++) {
+		for(j=0; j<Y; j++) {
+			if(lab[i][j].etat=food)
+				return 1;
+		}
+	}
+	return 0;
 }
 
 /**
@@ -184,39 +185,33 @@ int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int
 void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int bouffe, int dureevie) {
 	printf("deplacement\n");
 	int i, j, xdir, ydir;
-	int nb_nourr = 0;
-	typedef struct {int dist; int x; int y;} nourr;
-	nourr plusproche;
-	nourr interet[50];
-	for (i=0; i<X; i++) {									/*on parcourt la matrice pour trouver toutes les cases de nourriture ou les insectes proches*/
-		for (j=0; j<Y; j++) {
-			if (lab[i][j].etat==food && (pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir)<20)){
-				interet[nb_nourr].dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
-				interet[nb_nourr].x=xdir;
-				interet[nb_nourr].y=ydir;
-				nb_nourr++;
+	int ins_adj = insecte_adjacent(pos_x, pos_y, lab, bouffe, dureevie, fourmi);
+	if(ins_adj==0) {
+		int nb_nourr = 0;
+		typedef struct {int dist; int x; int y;} nourr;
+		nourr plusproche;
+		nourr interet[50];
+		for (i=0; i<X; i++) {									/*on parcourt la matrice pour trouver toutes les cases de nourriture ou les insectes proches*/
+			for (j=0; j<Y; j++) {
+				if (lab[i][j].etat==food && (pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir)<20)){
+					interet[nb_nourr].dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
+					interet[nb_nourr].x=xdir;
+					interet[nb_nourr].y=ydir;
+					nb_nourr++;
+				}
 			}
 		}
-	}
-	plusproche=interet[0];
-	for (i=1; i<nb_nourr; i++){									/*on parcourt le tableau pour trouver la nourriture la plus proche*/
-		if (interet[i].dist<plusproche.dist){
-			plusproche=interet[i];
+		plusproche=interet[0];
+		for (i=1; i<nb_nourr; i++){									/*on parcourt le tableau pour trouver la nourriture la plus proche*/
+			if (interet[i].dist<plusproche.dist){
+				plusproche=interet[i];
+			}
 		}
-	}
-	if (lab[pos_x-1][pos_y].etat==insecte) {
-		combat(pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie, lab, fourmi);
-	} else if (lab[pos_x][pos_y-1].etat==insecte ) {
-		combat(pos_x, pos_y, pos_x, pos_y-1, bouffe, dureevie, lab, fourmi);
-	} else if (lab[pos_x+1][pos_y].etat==insecte){
-		combat(pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie, lab, fourmi);
-	} else if (lab[pos_x][pos_y+1].etat==insecte) {
-		combat(pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie, lab, fourmi);
-	}
-	if (pluscourte_dist(lab, pos_x, pos_y, plusproche.x, plusproche.y, &xdir, &ydir)<20) {
-		modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
-	} else {
-		prochain_deplacement(pos_x, pos_y, lab, bouffe, dureevie, fourmi);
+		if (nourriture_pres(lab) && pluscourte_dist(lab, pos_x, pos_y, plusproche.x, plusproche.y, &xdir, &ydir)<20) {
+			modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
+		} else {
+			prochain_deplacement(pos_x, pos_y, lab, bouffe, dureevie, fourmi);
+		}
 	}
 }
 
