@@ -42,7 +42,7 @@ int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi f
 		nb_ins++;
 		int indice=lab[a][b].insecte;
   	int sexe=rand()%100;
-  	if(sexe>=0 && sexe<50)
+  	if(sexe<50)
   		fourmi[indice].sexe = MALE;
   	else
   		fourmi[indice].sexe = FEMELLE;
