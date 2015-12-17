@@ -31,9 +31,10 @@ void chang_nb_ins(new_nb_ins){
  * \param   a                 Reçoie l'emplacement x où doit être placé l'insecte
  * \param   b                 Reçoie l'emplacement y où doit être placé l'insecte
  * \param 	fourmi [] 				Reçoie le tableau de foumis.
+ * \param		booléen						Si choixsexe=0 génération aléatoire,sinon si choixsexe=1 MALE et si choixsexe!=1 && choixsexe!=0 FEMELLE
  * \return  Un 1 si on ne peut pas ajouter l'insecte à la case demandée, 0 si on peut.
  */
-int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi fourmi[]) {
+int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi fourmi[], int choixsexe) {
 	srand(time(NULL));
   if(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide)
     return 1;
@@ -45,11 +46,19 @@ int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi f
   	lab[a][b].insecte=nb_ins;
 		nb_ins++;
 		int indice=lab[a][b].insecte;
-  	int sexe=rand()%100;
-  	if(sexe<50)
-  		fourmi[indice].sexe = MALE;
-  	else
-  		fourmi[indice].sexe = FEMELLE;
+		if(choixsexe==0) {
+			int sexe=rand()%100;
+	  	if(sexe<50)
+	  		fourmi[indice].sexe = MALE;
+	  	else
+	  		fourmi[indice].sexe = FEMELLE;
+		}
+		else if(choixsexe==1) {
+			fourmi[indice].sexe = MALE;
+		}
+		else {
+			fourmi[indice].sexe = FEMELLE;
+		}
 
   	fourmi[indice].nourriture = bouffe;
   	fourmi[indice].age = dureevie;
@@ -69,8 +78,10 @@ int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi f
 void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
 	int i;
 	int nbr_ins_deb = 5;
+	srand(time(NULL));
+	int sexemaj = rand()%2+1;
+	int sexe;
 	for(i=0;i<nbr_ins_deb;i++) {
-		srand(time(NULL));
 		int nombrex, nombrey, sexe;
 		nombrex = rand()%X;
 		nombrey = rand()%Y;
@@ -78,7 +89,16 @@ void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) 
 			nombrex = rand()%X;
 			nombrey = rand()%Y;
 		}
-		gene_ins(bouffe, dureevie, lab, nombrex, nombrey, fourmi);
+		if(i%2==1){ //Sexe des insectes impairs (donc sexe minoritaire)
+			if(sexemaj==1)
+				sexe=2;
+			else if(sexemaj==2)
+				sexe=1;
+		}
+		else { // Sexe des insectes pairs (donc sexe majoritaire)
+			sexe=sexemaj;
+		}
+		gene_ins(bouffe, dureevie, lab, nombrex, nombrey, fourmi, sexe);
 	}
 }
 
@@ -98,7 +118,7 @@ void bebe(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
 		nombrex = rand()%X;
 		nombrey = rand()%Y;
 	}
-	gene_ins(bouffe, dureevie, lab, nombrex, nombrey, fourmi);
+	gene_ins(bouffe, dureevie, lab, nombrex, nombrey, fourmi, 0);
 }
 
 /**
@@ -127,7 +147,7 @@ int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) 
       printf("Entrez les coordonnées x et y de l'insecte séparées par un espace : ");
       scanf("%i%i", &a, &b);
     }
-    gene_ins(bouffe, dureevie, lab, a, b, fourmi);
+    gene_ins(bouffe, dureevie, lab, a, b, fourmi, 0);
   }
   return 1;
 }
