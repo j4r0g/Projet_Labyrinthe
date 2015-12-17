@@ -19,3 +19,5 @@ void sauver_lab(t_lab lab[X][Y], int nb_ins, t_fourmi fourmi[]);
 void charger_lab(t_lab lab[X][Y], int nb_ins, t_fourmi fourmi[]);
 
 int nb_insecte();
+
+void afficherstats(t_lab lab[X][Y], t_fourmi fourmi[]);

@@ -83,6 +83,7 @@ int lancement() {
   gene_nour(lab); 							//Génération de chaque case de nourriture
 
   decouvrir(lab);
+	afficherstats(lab, fourmi);
   afficher_lab(lab, fourmi);
   vic=verifvictoire(lab);
 
@@ -99,7 +100,7 @@ int lancement() {
         decouvrir(lab);
       //}
     }
-
+		afficherstats(lab, fourmi);
     afficher_lab(lab, fourmi);
     vic=verifvictoire(lab);
   }

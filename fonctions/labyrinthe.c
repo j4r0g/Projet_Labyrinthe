@@ -12,8 +12,32 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
+#include "./../header/labyrinthe.h"
+
+void afficherstats(t_lab lab[X][Y], t_fourmi fourmi[]) {
+	int nb_ins=nb_insecte();
+	int i;
+	char male[10] = "male";
+	char femelle[10] = "femelle";
+	char sexe[10];
+	printf("\nIl y a actuellement %i insecte dans le labyrinthe\n", nb_ins);
+	for(i=0;i<nb_ins;i++){
+		if(fourmi[i].sexe==0){
+			strcpy(sexe, male);
+		}
+		else {
+			strcpy(sexe, femelle);
+		}
+		int nourriture=fourmi[i].nourriture;
+		int age = fourmi[i].age;
+		int x=fourmi[i].x;
+		int y=fourmi[i].y;
+		printf("La fourmi %i est de sexe %s à encore pour %i tours de nourriture et %i tours de vie, elle est en x=%i et y=%i.\n", i, sexe, nourriture, age, x, y);
+	}
+}
 
 //*			fonction qui renvoie un nombre aleatoire entre 0 et max			*//
 int nbr_rand(int max){

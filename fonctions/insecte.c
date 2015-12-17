@@ -173,7 +173,7 @@ void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
 	int indice=lab[x][y].insecte;
 	lab[x][y].etat=food;
 	lab[x][y].insecte=-1;
-	for(i=indice; i<nb_ins; i++) {
+	for(i=indice; i<nb_ins-1; i++) {
 		fourmi[i]=fourmi[i+1];
 	}
 	nb_ins--;
