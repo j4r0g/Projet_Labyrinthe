@@ -19,6 +19,10 @@ int nb_insecte(){
 	return nb_ins;
 }
 
+void chang_nb_ins(new_nb_ins){
+	nb_ins = new_nb_ins;
+}
+
 /**
  * \brief   Génère aléatoirement un insecte dans une case vide du labyrinthe mais qui doit être découverte.
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
