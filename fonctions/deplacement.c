@@ -102,6 +102,9 @@ void decouvrir(t_lab lab[X][Y]) {
  * \param	px									La coordonnée x de l'insecte
  * \param	py									La coordonnée y de l'insecte
  * \param	lab									Récupère le labyrinthe
+ * \param   bouffe									Reçoie la durée de vie de la bouffe en nombre de tour.
+ * \param   dureevie							 	Reçoie la durée de vie en nombre de tour.
+ * \param 	fourmi []								Reçoie le tableau de foumis.
  * \return  Renvoie 1 si il y a un insecte adjacent, 0 sinon
  */
 
@@ -184,7 +187,7 @@ int nourriture_pres(t_lab lab[X][Y]){
 
 void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int bouffe, int dureevie) {
 	printf("deplacement\n");
-	int i, j, xdir, ydir;
+	int i, j, xdir, ydir, dist;
 	int ins_adj = insecte_adjacent(pos_x, pos_y, lab, bouffe, dureevie, fourmi);
 	if(ins_adj==0) {
 		int nb_nourr = 0;
@@ -193,11 +196,14 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 		nourr interet[50];
 		for (i=0; i<X; i++) {									/*on parcourt la matrice pour trouver toutes les cases de nourriture ou les insectes proches*/
 			for (j=0; j<Y; j++) {
-				if (lab[i][j].etat==food && (pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir)<20)){
-					interet[nb_nourr].dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
-					interet[nb_nourr].x=xdir;
-					interet[nb_nourr].y=ydir;
-					nb_nourr++;
+				if (lab[i][j].etat==food){
+					dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
+					if(dist<20) {
+						interet[nb_nourr].dist=dist;
+						interet[nb_nourr].x=xdir;
+						interet[nb_nourr].y=ydir;
+						nb_nourr++;
+					}
 				}
 			}
 		}
