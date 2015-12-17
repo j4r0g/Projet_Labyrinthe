@@ -193,6 +193,7 @@ void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
 int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int bouffe, int dureevie){
 	printf("modifpos\n");
 	if(a<=0 || a>=X || b<=0 || b>=Y || (lab[a][b].etat!=vide && lab[a][b].etat!=food) || lab[x][y].etat!=insecte)
+		printf("insecte non déplacé\n");
     return 1;
 	else{
 		int indice=lab[x][y].insecte;
@@ -210,9 +211,11 @@ int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int
 			// maj de la position de l'insecte
 			fourmi[indice].x=a;
 			fourmi[indice].y=b;
+			printf("insecte déplacé\n");
 		}
 		else {
 			deleteinsecte(lab, fourmi, x, y);
+			printf("insecte supprimé\n");
 		}
 		// On décrémente la nourriture de l'insecte
 		fourmi[indice].nourriture--;
