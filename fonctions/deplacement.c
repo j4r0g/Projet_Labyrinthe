@@ -184,7 +184,7 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 	int nb_nourr = 0;
 	typedef struct {int dist; int x; int y;} nourr;
 	nourr plusproche;
-	nourr interet[15];
+	nourr interet[50];
 	for (i=0; i<X; i++) {									/*on parcourt la matrice pour trouver toutes les cases de nourriture ou les insectes proches*/
 		for (j=0; j<Y; j++) {
 			if (lab[i][j].etat==food && (pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir)<20)){
@@ -210,7 +210,7 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 	} else if (lab[pos_x][pos_y+1].etat==insecte) {
 		combat(pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie, lab, fourmi);
 	}
-	if (pluscourte_dist(lab, pos_x, pos_y, plusproche.x, plusproche.y, &xdir, &ydir)<30) {
+	if (pluscourte_dist(lab, pos_x, pos_y, plusproche.x, plusproche.y, &xdir, &ydir)<20) {
 		modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
 	} else {
 		prochain_deplacement(pos_x, pos_y, lab, bouffe, dureevie, fourmi);
