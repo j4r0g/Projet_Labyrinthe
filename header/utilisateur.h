@@ -4,4 +4,4 @@ void decouvrirlab(t_lab lab[X][Y]);
 
 int nb_insecte();
 
-void chang_nb_ins(new_nb_ins);
+void chang_nb_ins(int new_nb_ins);
