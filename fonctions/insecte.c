@@ -193,10 +193,10 @@ void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
  */
 int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int bouffe, int dureevie){
 	printf("modifpos\n");
-	printf("insecte x= %i\n", &x);
-	printf("insecte y= %i\n", &y);
-	printf("nouvinsecte x= %i\n", &a);
-	printf("nouvinsecte y= %i\n", &b);
+	printf("insecte x= %i\n", x);
+	printf("insecte y= %i\n", y);
+	printf("nouvinsecte x= %i\n", a);
+	printf("nouvinsecte y= %i\n", b);
 	if(a<=0 || a>=X || b<=0 || b>=Y || (lab[a][b].etat!=vide && lab[a][b].etat!=food) || lab[x][y].etat!=insecte) {
 		printf("insecte non déplacé");
 		Assert4("En dehors de la matrice", a<=0, a>=X, b<=0, b>=Y);
