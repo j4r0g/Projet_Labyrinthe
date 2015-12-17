@@ -94,10 +94,10 @@ int lancement() {
     for(i=0; i<nb_ins; i++) {
       int posx=fourmi[i].x;
       int posy=fourmi[i].y;
-      if(posx>=0 && posx<X && posy>=0 && posy<Y && lab[posx][posy].etat==insecte) {
+      //if(posx>=0 && posx<X && posy>=0 && posy<Y && lab[posx][posy].etat==insecte) {
         deplacement(lab, posx, posy, fourmi, bouffe, dureevie);
         decouvrir(lab);
-      }
+      //}
     }
 
     afficher_lab(lab, fourmi);
