@@ -35,6 +35,7 @@ void chang_nb_ins(int new_nb_ins){
  * \return  Un 1 si on ne peut pas ajouter l'insecte à la case demandée, 0 si on peut.
  */
 int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi fourmi[], int choixsexe) {
+	printf("gene_ins\n");
 	srand(time(NULL));
   if(a<=0 || a>=X || b<=0 || b>=Y || lab[a][b].etat!=vide)
     return 1;
@@ -79,6 +80,7 @@ int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi f
  * \param 	fourmi [] 				Reçoie le tableau de foumis.
  */
 void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
+	printf("gene_ins_deb\n");
 	int i;
 	int nbr_ins_deb = 5;
 	srand(time(NULL));
@@ -113,6 +115,7 @@ void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) 
  * \param 	fourmi [] 				Reçoie le tableau de foumis.
  */
 void bebe(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
+	printf("bebe\n");
 	srand(time(NULL));
 	int nombrex, nombrey;
 	nombrex = rand()%X;
@@ -134,7 +137,8 @@ void bebe(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
  * \return  Un 0 si aucun insecte n'est placé, un 1 sinon.
  */
 int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) {
-  int a, b;
+	printf("ajoutInsecte\n");
+	int a, b;
   srand(time(NULL));
   int nombre = rand()%100;
   if(nombre<50){
@@ -163,6 +167,7 @@ int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) 
  * \param 	y									emplacement de la fourmi en y
  */
 void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
+	printf("deleteinsecte\n");
 	int i;
 	int indice=lab[x][y].insecte;
 	lab[x][y].etat=food;
@@ -186,6 +191,7 @@ void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
  * \return  Un 0 si la fonction s'est exécutée avec succès, 1 si erreur.
  */
 int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int bouffe, int dureevie){
+	printf("modifpos\n");
 	if(a<=0 || a>=X || b<=0 || b>=Y || (lab[a][b].etat!=vide && lab[a][b].etat!=food) || lab[x][y].etat!=insecte)
     return 1;
 	else{
