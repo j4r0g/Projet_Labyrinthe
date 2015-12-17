@@ -249,6 +249,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 	for(i =0; i<X; i++){		//Ce bloque place des murs partout
 		for(j =0; j<Y; j++){
 			lab[i][j].etat = mur;
+			lab[i][j].insecte = -1;
 			if(j==0 || i==0 || j==(Y-1) || i==(X-1)){
 				lab[i][j].decouvert = seen;
 			}
