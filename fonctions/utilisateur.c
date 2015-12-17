@@ -24,6 +24,7 @@
  * \return  0 à la réussite de la fonction
  */
 int ajoutNourriture (t_lab lab[X][Y]) {
+	printf("ajoutNourriture\n");
   int a, b, i;
   srand(time(NULL));
   int nombre = rand()%3 + 1;
@@ -47,6 +48,7 @@ int ajoutNourriture (t_lab lab[X][Y]) {
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  */
 void sauver_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
+	printf("sauverlab\n");
 	FILE * fic1;
 	int tmp;
 	int seen;
@@ -62,13 +64,13 @@ void sauver_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 	}
 	int nb_ins = nb_insecte();
 	fprintf(fic1, "%d ", nb_ins);
-	for(i=0; i<nb_ins; i++){
+	/*for(i=0; i<nb_ins; i++){
 		fprintf(fic1, "%d ", fourmi[i].sexe);
 		fprintf(fic1, "%d ", fourmi[i].nourriture);
 		fprintf(fic1, "%d ", fourmi[i].age);
 		fprintf(fic1, "%d ", fourmi[i].x);
 		fprintf(fic1, "%d ", fourmi[i].y);
-	}
+	}*/
 
 	fclose(fic1);
 }
@@ -78,6 +80,7 @@ void sauver_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
  * \param 	lab[x][Y] Reçoie le labyrinthe de taille X, Y.
  */
 void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
+	printf("chargerlab\n");
 	FILE * fic2;
 	char tmp;
 	int seen;
@@ -89,34 +92,29 @@ void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 	}
 	else{
 		while(!feof(fic2))
-		{			
+		{
 			for(i =0; i<X; i++){
 				for(j =0; j<Y; j++){
 					fscanf(fic2, "%c", &tmp);
-					lab[i][j].etat = tmp;
 					fscanf(fic2, "%d", &seen);
+					lab[i][j].etat = tmp;
 					lab[i][j].decouvert = seen;
 
 				}
 			}
 			fscanf(fic2, "%i ", &nb_ins);
-			printf("%i", nb_ins);		//
+			printf("%i", nb_ins);		
 			chang_nb_ins(nb_ins);
 			for(i = 0; i<nb_ins; i++){
 				fscanf(fic2, "%i ", &tmp);
-				printf("%i", tmp);		//
 				fourmi[i].sexe = tmp;
-				fscanf(fic2, "%i ", &tmp);
-				printf("%i", tmp);		//
+				fscanf(fic2, "%i ", &tmp);	
 				fourmi[i].nourriture = tmp;
 				fscanf(fic2, "%i ", &tmp);
-				printf("%i", tmp);		//
 				fourmi[i].age = tmp;
 				fscanf(fic2, "%i ", &tmp);
-				printf("%i", tmp);		//
 				fourmi[i].x = tmp;
 				fscanf(fic2, "%i ", &tmp);
-				printf("%i", tmp);		//
 				fourmi[i].y = tmp;
 			}
 		}
@@ -133,6 +131,7 @@ void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
  * \return  Un 0 si on force l'abandon, un 1 sinon.
  */
 int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
+	printf("actionuser\n");
   int choix, i, j;
   char reponse='\0';
   do {
@@ -157,7 +156,7 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
 							scanf("%c%*c", &reponse);
 						}
 						if(reponse=='n')
-							choix=6;
+							choix=7;
 						}
 				 } ; break;
 		case 5 :{
