@@ -1,0 +1,435 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.10"/>
+<title>Projet Labyrinthe: Référence du fichier fonctions/labyrinthe.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet Labyrinthe
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Un projet Labyrinthe de L2 SPI, réalisé par Boisson Léo, Bussereau Keryann et Ciron Fabien</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.10 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1da341ca2736582eeb08d845a8ba64dc.html">fonctions</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier labyrinthe.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>génère un labyrinthe aléatoire  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &quot;./../header/struct_lab.h&quot;</code><br />
+<code>#include &quot;./../header/struct_ins.h&quot;</code><br />
+<code>#include &quot;./../header/labyrinthe.h&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a09b215037346e9809467d865f51d068a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#a09b215037346e9809467d865f51d068a">afficherstats</a> (t_lab lab[X][Y], t_fourmi fourmi[])</td></tr>
+<tr class="memdesc:a09b215037346e9809467d865f51d068a"><td class="mdescLeft">&#160;</td><td class="mdescRight">affiche les statistiques des fourmis  <a href="#a09b215037346e9809467d865f51d068a">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a09b215037346e9809467d865f51d068a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a172a612b5c76bb787d91bf1ac670dc25"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#a172a612b5c76bb787d91bf1ac670dc25">nbr_rand</a> (int max)</td></tr>
+<tr class="memdesc:a172a612b5c76bb787d91bf1ac670dc25"><td class="mdescLeft">&#160;</td><td class="mdescRight">renvoie un nombre aléatoire entre 0 et max  <a href="#a172a612b5c76bb787d91bf1ac670dc25">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a172a612b5c76bb787d91bf1ac670dc25"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a69756342b8b78767c3ddc89d91aed4ba"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#a69756342b8b78767c3ddc89d91aed4ba">coord_correctes</a> (int i, int j)</td></tr>
+<tr class="memdesc:a69756342b8b78767c3ddc89d91aed4ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Vérifie que la case dans laquelle on regarde fait bien partie de la matrice.  <a href="#a69756342b8b78767c3ddc89d91aed4ba">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a69756342b8b78767c3ddc89d91aed4ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd705eea68149fe5cf9d412f6c668301"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#afd705eea68149fe5cf9d412f6c668301">init_lab</a> (t_lab lab[X][Y])</td></tr>
+<tr class="memdesc:afd705eea68149fe5cf9d412f6c668301"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialise la matrice a partir d'un fichier texte (utilisé pour tester le jeu au tout début)  <a href="#afd705eea68149fe5cf9d412f6c668301">Plus de détails...</a><br /></td></tr>
+<tr class="separator:afd705eea68149fe5cf9d412f6c668301"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f2ba86f0753dc79765a931fba65664f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#a2f2ba86f0753dc79765a931fba65664f">nbr_cases_vide</a> (t_lab lab[X][Y])</td></tr>
+<tr class="memdesc:a2f2ba86f0753dc79765a931fba65664f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Compte le nombre de cases vide.  <a href="#a2f2ba86f0753dc79765a931fba65664f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a2f2ba86f0753dc79765a931fba65664f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79985412db8a9c306e0eb3aa835cd33c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#a79985412db8a9c306e0eb3aa835cd33c">lissage_lab</a> (t_lab lab[X][Y])</td></tr>
+<tr class="memdesc:a79985412db8a9c306e0eb3aa835cd33c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cette fonction "lisse" les murs. (supprime les blocs de murs isolés)  <a href="#a79985412db8a9c306e0eb3aa835cd33c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a79985412db8a9c306e0eb3aa835cd33c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4783d1ef86ff68e3ba798a33f33f091e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#a4783d1ef86ff68e3ba798a33f33f091e">init_lab_rand</a> (t_lab lab[X][Y])</td></tr>
+<tr class="memdesc:a4783d1ef86ff68e3ba798a33f33f091e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialisation pseudo-aléatoire du labyrinthe (1er essai, par "ilots")  <a href="#a4783d1ef86ff68e3ba798a33f33f091e">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a4783d1ef86ff68e3ba798a33f33f091e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a372ac6df7cc84d06566c7737fa22ccbf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#a372ac6df7cc84d06566c7737fa22ccbf">afficher_lab</a> (t_lab lab[X][Y], t_fourmi fourmi[])</td></tr>
+<tr class="memdesc:a372ac6df7cc84d06566c7737fa22ccbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affichage du labyrinthe en ASCII.  <a href="#a372ac6df7cc84d06566c7737fa22ccbf">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a372ac6df7cc84d06566c7737fa22ccbf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4e1eb806d200a35d3d09cb93131c763"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#ab4e1eb806d200a35d3d09cb93131c763">gene_nour</a> (t_lab lab[X][Y])</td></tr>
+<tr class="memdesc:ab4e1eb806d200a35d3d09cb93131c763"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère aléatoirement de la nourriture dans une case vide du labyrinthe et qui n'a pas besoin d'être dévouverte.  <a href="#ab4e1eb806d200a35d3d09cb93131c763">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab4e1eb806d200a35d3d09cb93131c763"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab23bb613d8e2b41fc1bcdd8d0dfef267"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="labyrinthe_8c.html#ab23bb613d8e2b41fc1bcdd8d0dfef267">decouvrirlab</a> (t_lab lab[X][Y])</td></tr>
+<tr class="memdesc:ab23bb613d8e2b41fc1bcdd8d0dfef267"><td class="mdescLeft">&#160;</td><td class="mdescRight">Découvre toutes les cases du labyrinthe (utilisé pour le débuggage)  <a href="#ab23bb613d8e2b41fc1bcdd8d0dfef267">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ab23bb613d8e2b41fc1bcdd8d0dfef267"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>génère un labyrinthe aléatoire </p>
+<dl class="section author"><dt>Auteur</dt><dd>Boisson Léo </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 décembre 2015</dd></dl>
+<p>Ce module génère un labyrinthe de manière aléatoire. Sa taille est définie dans struct_lab.h </p>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="a372ac6df7cc84d06566c7737fa22ccbf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficher_lab </td>
+          <td>(</td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">t_fourmi&#160;</td>
+          <td class="paramname"><em>fourmi</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Affichage du labyrinthe en ASCII. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+    <tr><td class="paramname">fourmi</td><td>[] Reçoie le tableau de foumis. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a09b215037346e9809467d865f51d068a"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void afficherstats </td>
+          <td>(</td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">t_fourmi&#160;</td>
+          <td class="paramname"><em>fourmi</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>affiche les statistiques des fourmis </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+    <tr><td class="paramname">fourmi</td><td>[] Reçoie le tableau de foumis. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a69756342b8b78767c3ddc89d91aed4ba"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int coord_correctes </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>i</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>j</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Vérifie que la case dans laquelle on regarde fait bien partie de la matrice. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>coordonnée en X </td></tr>
+    <tr><td class="paramname">j</td><td>coordonnée en Y </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>renvoie un 1 si la coordonnée fait bien partie de la matrice, 0 autrement </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="ab23bb613d8e2b41fc1bcdd8d0dfef267"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void decouvrirlab </td>
+          <td>(</td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Découvre toutes les cases du labyrinthe (utilisé pour le débuggage) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="ab4e1eb806d200a35d3d09cb93131c763"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gene_nour </td>
+          <td>(</td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère aléatoirement de la nourriture dans une case vide du labyrinthe et qui n'a pas besoin d'être dévouverte. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="afd705eea68149fe5cf9d412f6c668301"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_lab </td>
+          <td>(</td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialise la matrice a partir d'un fichier texte (utilisé pour tester le jeu au tout début) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Un 1 si on a ajouté un insecte et un 0 sinon. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a4783d1ef86ff68e3ba798a33f33f091e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void init_lab_rand </td>
+          <td>(</td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialisation pseudo-aléatoire du labyrinthe (1er essai, par "ilots") </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. Initialisation pseudo-aléatoire du labyrinthe (3eme essaie, de gauche a droite) </td></tr>
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. Initialisation pseudo-aléatoire du labyrinthe (2nd essaie, par extrudage, en partant du centre) </td></tr>
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a79985412db8a9c306e0eb3aa835cd33c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int lissage_lab </td>
+          <td>(</td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cette fonction "lisse" les murs. (supprime les blocs de murs isolés) </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Renvoit 1 si elle a effectué des modifications, 0 sinon </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a2f2ba86f0753dc79765a931fba65664f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nbr_cases_vide </td>
+          <td>(</td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y]</td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Compte le nombre de cases vide. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Renvoie le nombre de cases vides dans le labyrinthe </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a172a612b5c76bb787d91bf1ac670dc25"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nbr_rand </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>renvoie un nombre aléatoire entre 0 et max </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">max</td><td>borne haute </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Le nombre aléatoire compris entre 0 et max </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.10
+</small></address>
+</body>
+</html>
