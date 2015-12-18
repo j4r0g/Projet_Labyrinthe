@@ -15,11 +15,18 @@
 #include "./../Boite_outils/Outil.h"
 
 int nb_ins=0;
-
+/**
+	* \brief 		Fonction donnant le nombre d'insectes présents
+	* \return 	Le nombre d'insecte
+*/
 int nb_insecte(){
 	return nb_ins;
 }
 
+/**
+	* \brief Fonction changeant le nombre d'insecte
+	* \param new_nb_ins 	Reçoie le nouveau nombre d'insecte à affecter.
+*/
 void chang_nb_ins(int new_nb_ins){
 	nb_ins = new_nb_ins;
 }

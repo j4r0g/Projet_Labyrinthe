@@ -2,7 +2,7 @@ void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]);
 
 void gene_nour(t_lab lab[X][Y]);
 
-void init_lab_rand(t_lab lab[X][Y]);	
+void init_lab_rand(t_lab lab[X][Y]);
 
 void decouvrir(t_lab lab[X][Y]);
 
@@ -21,3 +21,5 @@ void charger_lab(t_lab lab[X][Y], int nb_ins, t_fourmi fourmi[]);
 int nb_insecte();
 
 void afficherstats(t_lab lab[X][Y], t_fourmi fourmi[]);
+
+void chang_nb_ins(int new_nb_ins);
