@@ -1,4 +1,19 @@
 /**
+ * \mainpage Index du Projet Labyrinthe
+ *
+ * \section intro_sec Introduction
+ *
+ * Ce projet a pour but de réaliser un Labyrinthe en C, dans le style d'un "jeu de la vie" où des insectes évoluent.
+ *
+ * \section install_sec Installation
+ *
+ * \subsection step1 Etape 1: Télécharger le projet
+ * \subsection step2 Etape 2: Ouvrir un terminal
+ * \subsection step3 Etape 3: Dans le terminal, se placer à la racine du projet
+ * \subsection step4 Etape 4: Taper 'make'
+ * \subsection step5 Etape 5: Taper './Vielab'
+ *
+ *
  * \file 			main.c
  * \author    Boisson Léo, Bussereau Keryann, Ciron Fabien
  * \version   1.0
