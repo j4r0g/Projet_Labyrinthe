@@ -205,45 +205,29 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 		for (i=0; i<X; i++) {														//on parcourt la matrice pour trouver toutes les cases de nourriture ou les insectes proches
 			for (j=0; j<Y; j++) {
 				if (coord_correctes(i, j) && lab[i][j].etat==food){
-					printf("dans deplacement : i = %i\n", i);
-					printf("dans deplacement : j = %i\n", j);
-				
+
 					dist=pluscourte_dist(lab, pos_x, pos_y, i, j, &xdir, &ydir);
-					printf("dans deplacement : xdir = %i\n", xdir);
-					printf("dans deplacement : ydir = %i\n", ydir);
-			
+
 						interet[nb_nourr].dist=dist;
 						interet[nb_nourr].x=xdir;
 						interet[nb_nourr].y=ydir;
-						printf("dans deplacement : interet[nb_nourr].dist = %i\n", interet[nb_nourr].dist);
-						printf("dans deplacement : interet[nb_nourr].x = %i\n", interet[nb_nourr].x);
-						printf("dans deplacement : interet[nb_nourr].y = %i\n", interet[nb_nourr].y);
 						nb_nourr++;
 
 				}
 			}
 		}
-		
+
 		plusproche.dist=interet[0].dist;
 		plusproche.x=interet[0].x;
 		plusproche.y=interet[0].y;
-		printf("dans deplacement : nb_nourr = %i\n", nb_nourr);
-		for(i=0; i<nb_nourr; i++){
-			printf("dans deplacement : interet[%i].dist = %i\n", i, interet[i].dist);
-			printf("dans deplacement : interet[%i].x = %i\n", i, interet[i].x);
-			printf("dans deplacement : interet[%i].y = %i\n", i, interet[i].y);
-		}
 		for (i=1; i<nb_nourr; i++){									/*on parcourt le tableau pour trouver la nourriture la plus proche*/
-		printf("dans deplacement : indice bouffe = %i\n", i);
 			if (interet[i].dist<plusproche.dist){
 				plusproche.dist=interet[i].dist;
 				plusproche.x=interet[i].x;
 				plusproche.y=interet[i].y;
-				
+
 			}
 		}
-		printf("dans deplacement : plusproche.x = %i\n", plusproche.x);
-		printf("dans deplacement : plusproche.y = %i\n", plusproche.y);
 		dist=pluscourte_dist(lab, pos_x, pos_y, plusproche.x, plusproche.y, &xdir, &ydir);
 		if (nourriture_pres(lab) && dist<20) {
 			modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
@@ -266,8 +250,8 @@ void matrice (int matr_dist[X][Y]){
 			else{
 				printf(" %c", (matr_dist[i][j])+48);
 			}
-		}	
-		printf("\n");	
+		}
+		printf("\n");
 	}
 }
 
@@ -284,7 +268,6 @@ void matrice (int matr_dist[X][Y]){
  * \return	La distance de la nourriture la plus proche
  */
 int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int yarr, int* xdir, int *ydir)  {
-	printf("pluscourte_dist\n");
 	int matr_dist[X][Y];
 	int i, j;
 	int xcur, ycur;
@@ -295,14 +278,9 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 			matr_dist[i][j]=-2;
 		}
 	}
-	
+
 	matr_dist[xdep][ydep]=0;
-	printf("pcd : jusqu'ici tout va bien\n");
-	printf("pcd : xarr r= %i\n", xarr);
-	printf("pcd : yarr r= %i\n", yarr);
-	printf("pcd : xdep r= %i\n", xdep);
-	printf("pcd : ydep r= %i\n", ydep);
-	
+
 	while (parcouru==0){
 		//printf("dist : %i\n", dist);
 		dist++;
@@ -323,7 +301,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 					}if (matr_dist[i+1][j]==-2) {
 						matr_dist[i+1][j]=dist;
 					}
-				} 
+				}
 				else if (matr_dist[i][j]==dist-1 && dist>1){		/*sinon on indique la distance en cercles concentriques*/
 					if (matr_dist[i-1][j]==-2 && i-1>=0){
 						matr_dist[i-1][j]=dist;
@@ -341,8 +319,7 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 			}
 		}
 	}
-	
-	printf("pcd : matrice remplie\n");
+
 	xcur = xarr; ycur=yarr;
 	i = 0;
 	while(matr_dist[xcur][ycur] != 1 && i<100){								/*On parcourt le chemin en sens inverse pour trouver le prochain déplacement*/
@@ -360,7 +337,6 @@ int pluscourte_dist(t_lab labyrinthe[X][Y], int xdep, int ydep, int xarr, int ya
 			break;
 		}*/
 	}
-	printf("pcd : while fini\n");
 	*xdir = xcur; *ydir=ycur;
 	return matr_dist[xarr][yarr];
 }
