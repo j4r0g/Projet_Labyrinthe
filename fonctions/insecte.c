@@ -182,10 +182,11 @@ void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
 	int i, a, b;
 	int indice=lab[x][y].insecte;
 	for(i=indice; i<nb_ins-1; i++) {
+		// Mise à jour du labyrinthe
 		a=fourmi[i+1].x;
 		b=fourmi[i+1].y;
 		lab[a][b].insecte=i;
-
+		// Mise à jour des cases du tableau de fourmi
 		fourmi[i].sexe=fourmi[i+1].sexe;
 		fourmi[i].nourriture=fourmi[i+1].nourriture;
 		fourmi[i].age=fourmi[i+1].age;
