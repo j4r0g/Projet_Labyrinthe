@@ -2,7 +2,7 @@ void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]);
 
 void gene_nour(t_lab lab[X][Y]);
 
-int genelab(t_lab lab[X][Y]);
+void init_lab_rand(t_lab lab[X][Y]);	
 
 void decouvrir(t_lab lab[X][Y]);
 
