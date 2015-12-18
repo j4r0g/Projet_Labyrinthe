@@ -147,7 +147,7 @@ void bebe(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
  * \param 	fourmi  					Reçoie le tableau de foumis.
  * \return  Un 0 si aucun insecte n'est placé, un 1 sinon.
  */
-int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) {
+int ajout_insecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) {
 	int a, b;
   srand(time(NULL));
   int nombre = rand()%100;
@@ -178,7 +178,7 @@ int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) 
  * \param 	x									emplacement de la fourmi en x
  * \param 	y									emplacement de la fourmi en y
  */
-void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
+void delete_insecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
 	int i, a, b;
 	int indice=lab[x][y].insecte;
 	for(i=indice; i<nb_ins-1; i++) {
@@ -212,7 +212,7 @@ void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
  * \return  Un 0 si la fonction s'est exécutée avec succès, 1 si erreur.
  */
-int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int bouffe, int dureevie){
+int modif_pos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int bouffe, int dureevie){
 		int indice=lab[x][y].insecte;
 		// On vérifie si on va sur une case de nourriture
 		if(lab[a][b].etat==food)
@@ -233,7 +233,7 @@ int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int
 			fourmi[indice].y=b;
 		}
 		else {
-			deleteinsecte(lab, fourmi, x, y);
+			delete_insecte(lab, fourmi, x, y);
 		}
 	return 0;
 }

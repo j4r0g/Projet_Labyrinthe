@@ -1,6 +1,6 @@
-int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]);
+int ajout_insecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]);
 
-void decouvrirlab(t_lab lab[X][Y]);
+void decouvrir_lab(t_lab lab[X][Y]);
 
 int nb_insecte();
 

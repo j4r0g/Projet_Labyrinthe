@@ -8,9 +8,9 @@ int combat(int x, int y, int a, int b, int bouffe, int dureevie, t_lab lab[X][Y]
 
 void bebe(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]);
 
-int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int bouffe, int dureevie);
+int modif_pos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int bouffe, int dureevie);
 
-void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y);
+void delete_insecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y);
 
 int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]);
 

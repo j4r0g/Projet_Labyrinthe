@@ -39,7 +39,7 @@ t_fourmi fourmi[Z];
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \return  Un 0 si on a rien, un 1 si on a gagné et un 2 si on a perdu.
  */
-int verifvictoire (t_lab lab[X][Y]) {
+int verif_victoire (t_lab lab[X][Y]) {
 	int i, j;
 	int victoire = 1;
 	int defaite = 1;
@@ -108,14 +108,14 @@ int lancement() {
 
 	decouvrir(lab);								//Cette fonction actualise la découverte du labyrinthe
 
-	afficherstats(lab, fourmi);
+	afficher_stats(lab, fourmi);
 	afficher_lab(lab, fourmi);					//Cette fonction affiche le labyrinthe
 
 
-	vic=verifvictoire(lab);						//Cette fonction vérifie si on est en situation de victoire (labyrinthe découvert)
+	vic=verif_victoire(lab);						//Cette fonction vérifie si on est en situation de victoire (labyrinthe découvert)
 
 	while(vic==0){
-		res=actionUser(lab, bouffe, dureevie, fourmi);
+		res=action_user(lab, bouffe, dureevie, fourmi);
 		if(res==0) return 1;
 		nb_ins=nb_insecte();
 
@@ -127,9 +127,9 @@ int lancement() {
 				decouvrir(lab);
 			}
 		}
-		afficherstats(lab, fourmi);
+		afficher_stats(lab, fourmi);
 		afficher_lab(lab, fourmi);
-		vic=verifvictoire(lab);
+		vic=verif_victoire(lab);
 	}
 
 	if(vic==1)

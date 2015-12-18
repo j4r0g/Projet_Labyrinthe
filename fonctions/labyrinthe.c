@@ -23,7 +23,7 @@
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param 	fourmi [] 				Reçoie le tableau de foumis.
  */
-void afficherstats(t_lab lab[X][Y], t_fourmi fourmi[]) {
+void afficher_stats(t_lab lab[X][Y], t_fourmi fourmi[]) {
 	int nb_ins=nb_insecte();
 	int i;
 	char male[10] = "male";
@@ -600,7 +600,7 @@ void gene_nour(t_lab lab[X][Y]) {
  * \brief   Découvre toutes les cases du labyrinthe (utilisé pour le débuggage)
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  */
-void decouvrirlab(t_lab lab[X][Y]) {
+void decouvrir_lab(t_lab lab[X][Y]) {
 	int i, j;
 	for(i=0; i<X; i++) {
 		for(j=0; j<Y; j++) {

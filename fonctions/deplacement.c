@@ -38,15 +38,15 @@ int combat(int x, int y, int a, int b, int bouffe, int dureevie, t_lab lab[X][Y]
 	}
 	else {
 		if(fourmi[lab[x][y].insecte].age<fourmi[lab[a][b].insecte].age)
-			deleteinsecte(lab, fourmi, x, y);
+			delete_insecte(lab, fourmi, x, y);
 		else if(fourmi[lab[x][y].insecte].age>fourmi[lab[a][b].insecte].age)
-			deleteinsecte(lab, fourmi, a, b);
+			delete_insecte(lab, fourmi, a, b);
 		else if(fourmi[lab[x][y].insecte].age==fourmi[lab[a][b].insecte].age && fourmi[lab[x][y].insecte].nourriture>fourmi[lab[a][b].insecte].nourriture)
-			deleteinsecte(lab, fourmi, a, b);
+			delete_insecte(lab, fourmi, a, b);
 		else if(fourmi[lab[x][y].insecte].age==fourmi[lab[a][b].insecte].age && fourmi[lab[x][y].insecte].nourriture<fourmi[lab[a][b].insecte].nourriture)
-			deleteinsecte(lab, fourmi, x, y);
+			delete_insecte(lab, fourmi, x, y);
 		else
-			deleteinsecte(lab, fourmi, x, y);
+			delete_insecte(lab, fourmi, x, y);
 		return 0;
 	}
 }
@@ -150,19 +150,19 @@ int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int
 	if (lab[pos_x-1][pos_y].etat != mur || lab[pos_x][pos_y-1].etat != mur || lab[pos_x][pos_y+1].etat != mur || (lab[pos_x+1][pos_y].etat != mur && ins_adj==0)) {
 		while(depl==0) {
 			if (random >= 0 && random < 25 && lab[pos_x-1][pos_y].etat!=mur && lab[pos_x-1][pos_y].etat!=insecte) {
-				modifpos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie);
+				modif_pos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie);
 				depl=1;
 			}
 			else if (random >= 25 && random < 50 && lab[pos_x][pos_y-1].etat!=mur && lab[pos_x][pos_y-1].etat!=insecte) {
-				modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y-1, bouffe, dureevie);
+				modif_pos(lab, fourmi, pos_x, pos_y, pos_x, pos_y-1, bouffe, dureevie);
 				depl=1;
 			}
 			else if (random >= 50 && random < 75 && lab[pos_x][pos_y+1].etat!=mur && lab[pos_x][pos_y+1].etat!=insecte) {
-				modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie);
+				modif_pos(lab, fourmi, pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie);
 				depl=1;
 			}
 			else if (random >= 75 && random < 100 && lab[pos_x+1][pos_y].etat!=mur && lab[pos_x+1][pos_y].etat!=insecte) {
-				modifpos(lab, fourmi, pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie);
+				modif_pos(lab, fourmi, pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie);
 				depl=1;
 			}
 		}
@@ -234,7 +234,7 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 		}
 		dist=pluscourte_dist(lab, pos_x, pos_y, plusproche.x, plusproche.y, &xdir, &ydir);
 		if (nourriture_pres(lab) && dist<20) {
-			modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
+			modif_pos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
 		}
 		else {
 			prochain_deplacement(pos_x, pos_y, lab, bouffe, dureevie, fourmi);

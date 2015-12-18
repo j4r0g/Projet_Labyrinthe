@@ -27,7 +27,7 @@
  * \param 	fourmi    				Reçoie le tableau de foumis.
  * \return  0 à la réussite de la fonction
  */
-int ajoutNourriture (t_lab lab[X][Y]) {
+int ajout_nourriture (t_lab lab[X][Y]) {
   int a, b, i;
   srand(time(NULL));
   int nombre = rand()%3 + 1;
@@ -138,7 +138,7 @@ void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
  * \param 	fourmi    				Reçoie le tableau de foumis.
  * \return  Un 0 si on force l'abandon, un 1 sinon.
  */
-int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
+int action_user(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
   int choix, i, j;
   char reponse='\0';
   do {
@@ -152,8 +152,8 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
     scanf("%i%*c", &choix);
 
     switch(choix) {
-		case 1 : ajoutNourriture(lab) ; break;
-		case 2 : ajoutInsecte(lab, bouffe, dureevie, fourmi) ; break;
+		case 1 : ajout_nourriture(lab) ; break;
+		case 2 : ajout_insecte(lab, bouffe, dureevie, fourmi) ; break;
 		case 3 : break;
 		case 4 : {  printf("Souhaitez vous vraiment abandonner la partie ? (y/n) : ");
 					scanf("%c%*c", &reponse);
@@ -172,7 +172,7 @@ int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
 		case 6 :{
 					charger_lab(lab, fourmi);
 				} ; break;
-		case 666 : decouvrirlab(lab); break;
+		case 666 : decouvrir_lab(lab); break;
     default : printf("\nErreur retentez\n\n"); choix=7; break;
 
     }
