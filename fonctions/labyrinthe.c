@@ -75,7 +75,6 @@ int coord_correctes( int i, int j){
 /**
  * \brief   Initialise la matrice a partir d'un fichier texte  (utilisé pour tester le jeu au tout début)
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \return 	Un 1 si on a ajouté un insecte et un 0 sinon.
  */
 void init_lab(t_lab lab[X][Y]){
 	int tmp;
@@ -101,7 +100,7 @@ void init_lab(t_lab lab[X][Y]){
 /**
  * \brief   Compte le nombre de cases vide
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \return 	Renvoie le nombre de cases vides dans le labyrinthe
+ * \return 	Le nombre de cases vides dans le labyrinthe
  */
 int nbr_cases_vide(t_lab lab[X][Y]){
 	int i, j;
@@ -121,7 +120,7 @@ int nbr_cases_vide(t_lab lab[X][Y]){
 /**
  * \brief   Cette fonction "lisse" les murs. (supprime les blocs de murs isolés)
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \return  Renvoit 1 si elle a effectué des modifications, 0 sinon
+ * \return  1 si elle a effectuée des modifications, 0 sinon
  */
 int lissage_lab(t_lab lab[X][Y]){
 	int i, j;
@@ -426,7 +425,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 /**
  * \brief   Affichage du labyrinthe en ASCII
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \param 	fourmi [] 				Reçoie le tableau de foumis.
+ * \param 	fourmi 		 				Reçoie le tableau de foumis.
  */
 void afficher_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 	int char_unseen = '?';

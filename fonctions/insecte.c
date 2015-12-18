@@ -31,7 +31,7 @@ void chang_nb_ins(int new_nb_ins){
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param   a                 Reçoie l'emplacement x où doit être placé l'insecte
  * \param   b                 Reçoie l'emplacement y où doit être placé l'insecte
- * \param 	fourmi [] 				Reçoie le tableau de foumis.
+ * \param 	fourmi 		 				Reçoie le tableau de foumis.
  * \param		booléen						Si choixsexe=0 génération aléatoire,sinon si choixsexe=1 MALE et si choixsexe!=1 && choixsexe!=0 FEMELLE
  * \return  Un 1 si on ne peut pas ajouter l'insecte à la case demandée, 0 si on peut.
  */
@@ -79,7 +79,7 @@ int gene_ins(int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi f
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \param 	fourmi [] 				Reçoie le tableau de foumis.
+ * \param 	fourmi 		 				Reçoie le tableau de foumis.
  */
 void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
 	int i;
@@ -115,7 +115,7 @@ void gene_ins_deb(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) 
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \param 	fourmi [] 				Reçoie le tableau de foumis.
+ * \param 	fourmi 						Reçoie le tableau de foumis.
  */
 void bebe(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
 	srand(time(NULL));
@@ -137,7 +137,7 @@ void bebe(int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
- * \param 	fourmi [] 				Reçoie le tableau de foumis.
+ * \param 	fourmi  					Reçoie le tableau de foumis.
  * \return  Un 0 si aucun insecte n'est placé, un 1 sinon.
  */
 int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) {
@@ -167,7 +167,7 @@ int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) 
 /**
  * \brief   Supprime l'insecte
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \param 	fourmi [] 				Reçoie le tableau de foumis.
+ * \param 	fourmi 		 				Reçoie le tableau de foumis.
  * \param 	x									emplacement de la fourmi en x
  * \param 	y									emplacement de la fourmi en y
  */
@@ -195,7 +195,7 @@ void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
 /**
  * \brief   Modifie la position d'un insecte ainsi que le temps qu'il lui reste à vivre.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \param 	fourmi [] 				Reçoie le tableau de foumis.
+ * \param 	fourmi 		 				Reçoie le tableau de foumis.
  * \param 	x									emplacement de la fourmi en x
  * \param 	y									emplacement de la fourmi en y
  * \param 	a									emplacement à donner à la fourmi en x

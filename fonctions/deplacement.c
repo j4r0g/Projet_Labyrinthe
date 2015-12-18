@@ -3,7 +3,7 @@
  * \author    Boisson Léo, Bussereau Keryann, Ciron Fabien
  * \version   1.0
  * \date      14 décembre 2015
- * \brief     Gère les déplcement des fourmis
+ * \brief     Gère les déplacements des fourmis
  * \details   Ce module à pour but de gérer les déplacements des fourmis.
  * 						ainsi que leurs actions lorsqu'elles croisent d'autres insectes
  * 						elle gère aussi les défloutage des cases.
@@ -28,7 +28,7 @@
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
- * \param 	fourmi [] 				Reçoie le tableau de foumis.
+ * \param 	fourmi[] 	 				Reçoie le tableau de foumis.
  * \return 	Un 1 si on a ajouté un insecte et un 0 sinon.
  */
 int combat(int x, int y, int a, int b, int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[]) {
@@ -109,7 +109,7 @@ void decouvrir(t_lab lab[X][Y]) {
  * \param	lab									Récupère le labyrinthe
  * \param   bouffe									Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie							 	Reçoie la durée de vie en nombre de tour.
- * \param 	fourmi []								Reçoie le tableau de foumis.
+ * \param 	fourmi[] 								Reçoie le tableau de foumis.
  * \return  Renvoie 1 si il y a un insecte adjacent, 0 sinon
  */
 int insecte_adjacent(int px, int py, t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) {
@@ -137,7 +137,7 @@ int insecte_adjacent(int px, int py, t_lab lab[X][Y], int bouffe, int dureevie, 
  * \param	lab										Récupère le labyrinthe
  * \param   bouffe									Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie							 	Reçoie la durée de vie en nombre de tour.
- * \param 	fourmi []								Reçoie le tableau de foumis.
+ * \param 	fourmi[] 								Reçoie le tableau de foumis.
  * \return	Retourne 0 si tout s'est bien déroulé, 1 sinon
  */
 int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) {
@@ -194,7 +194,7 @@ int nourriture_pres(t_lab lab[X][Y]){
  * \param	lab									Récupère le labyrinthe
  * \param	pos_x								La coordonnée x de l'insecte
  * \param	pos_y								La coordonnée y de l'insecte
- * \param	fourmi								Récupère le tableau de fourmis
+ * \param	fourmi[] 						Récupère le tableau de fourmis
  * \param	bouffe								La durée de vie en nombre de tours avant la mort par inanition
  * \param	dureevie							La durée de vie en âge avant la mort
  */

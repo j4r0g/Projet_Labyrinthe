@@ -24,6 +24,7 @@
  * \brief   Génère de la nourriture dans une case vide du labyrinthe découverte
  *          à la demande de l'utilisateur.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \param 	fourmi    				Reçoie le tableau de foumis.
  * \return  0 à la réussite de la fonction
  */
 int ajoutNourriture (t_lab lab[X][Y]) {
@@ -49,6 +50,7 @@ int ajoutNourriture (t_lab lab[X][Y]) {
 /**
  * \brief   Permet de sauvegarder la partie en cours
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \param 	fourmi    				Reçoie le tableau de foumis.
  */
 void sauver_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 	FILE * fic1;
@@ -81,7 +83,8 @@ void sauver_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 
 /**
  * \brief   Permet de charger une partie sauvegardée
- * \param 	lab[x][Y] Reçoie le labyrinthe de taille X, Y.
+ * \param 	lab[x][Y]        Reçoie le labyrinthe de taille X, Y.
+ * \param 	fourmi  				 Reçoie le tableau de foumis.
  */
 void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 	FILE * fic2;
@@ -132,6 +135,7 @@ void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param   bouffe						Reçoie la durée de vie de la bouffe en nombre de tour.
  * \param   dureevie         	Reçoie la durée de vie en nombre de tour.
+ * \param 	fourmi    				Reçoie le tableau de foumis.
  * \return  Un 0 si on force l'abandon, un 1 sinon.
  */
 int actionUser(t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]){
