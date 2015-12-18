@@ -41,7 +41,7 @@ int verifvictoire (t_lab lab[X][Y]) {
 	}
 	}
 	if(victoire)
-	return 0;					// !!! 0 pour le test, remettre 1
+	return 1;
 	else if(defaite)
 	return 2;
 	else
@@ -71,7 +71,7 @@ int regles() {
 
 
 
- 
+
 /**
  * \brief   Lance le jeux avec une génération du labyrinthe, puis un lancement.
  * \return  Un 0 si l'exécution a réussi, un 1 si elle a été stopée.
@@ -83,8 +83,8 @@ int lancement() {
 	int nb_ins;
 	int posx;
 	int posy;
-	
-	
+
+
 	init_lab_rand(lab);							//Initialise le labyrinthe
 
 	gene_ins_deb(bouffe, dureevie, lab, fourmi);//Génération des insectes de départ
@@ -100,21 +100,23 @@ int lancement() {
 	vic=verifvictoire(lab);						//Cette fonction vérifie si on est en situation de victoire (labyrinthe découvert)
 
 	while(vic==0){
-		res=actionUser(lab, bouffe, dureevie, fourmi);	
-		if(res==0) return 1;	
+		res=actionUser(lab, bouffe, dureevie, fourmi);
+		if(res==0) return 1;
 		nb_ins=nb_insecte();
-		
-		for(i=0; i<nb_ins; i++) {					//Cette boucle gère le déplacement des insectes
+
+		for(i=nb_ins-1; i>=0; i--) {					//Cette boucle gère le déplacement des insectes
 			posx=fourmi[i].x;
 			posy=fourmi[i].y;
-			deplacement(lab, posx, posy, fourmi, bouffe, dureevie);
-			decouvrir(lab);
+			if(posx>=0 && posx<X && posy>=0 && posy<Y && lab[posx][posy].etat==insecte) {
+				deplacement(lab, posx, posy, fourmi, bouffe, dureevie);
+				decouvrir(lab);
+			}
 		}
 		afficherstats(lab, fourmi);
 		afficher_lab(lab, fourmi);
 		vic=verifvictoire(lab);
 	}
-	
+
 	if(vic==1)
 	printf("Vous avez gagné\n");
 	else if(vic==2)

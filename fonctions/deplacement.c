@@ -141,27 +141,31 @@ int insecte_adjacent(int px, int py, t_lab lab[X][Y], int bouffe, int dureevie, 
  * \return	Retourne 0 si tout s'est bien déroulé, 1 sinon
  */
 int prochain_deplacement (int pos_x, int pos_y, t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) {
+	printf("prochian_deplacement\n");
 	int ins_adj = insecte_adjacent(pos_x, pos_y, lab, bouffe, dureevie, fourmi);
+	int depl=0;
 	time_t t;
 	srand((unsigned) time(&t));
 	int random = rand()%100;
-
 	if (lab[pos_x-1][pos_y].etat != mur || lab[pos_x][pos_y-1].etat != mur || lab[pos_x][pos_y+1].etat != mur || (lab[pos_x+1][pos_y].etat != mur && ins_adj==0)) {
-		if (random >= 0 && random < 25 && lab[pos_x-1][pos_y].etat!=mur) {
-			modifpos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie);
+		while(depl==0) {
+			if (random >= 0 && random < 25 && lab[pos_x-1][pos_y].etat!=mur && lab[pos_x-1][pos_y].etat!=insecte) {
+				modifpos(lab, fourmi, pos_x, pos_y, pos_x-1, pos_y, bouffe, dureevie);
+				depl=1;
+			}
+			else if (random >= 25 && random < 50 && lab[pos_x][pos_y-1].etat!=mur && lab[pos_x][pos_y-1].etat!=insecte) {
+				modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y-1, bouffe, dureevie);
+				depl=1;
+			}
+			else if (random >= 50 && random < 75 && lab[pos_x][pos_y+1].etat!=mur && lab[pos_x][pos_y+1].etat!=insecte) {
+				modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie);
+				depl=1;
+			}
+			else if (random >= 75 && random < 100 && lab[pos_x+1][pos_y].etat!=mur && lab[pos_x+1][pos_y].etat!=insecte) {
+				modifpos(lab, fourmi, pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie);
+				depl=1;
+			}
 		}
-		else if (random >= 25 && random < 50 && lab[pos_x][pos_y-1].etat!=mur) {
-			modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y-1, bouffe, dureevie);
-		}
-		else if (random >= 50 && random < 75 && lab[pos_x][pos_y+1].etat!=mur) {
-			modifpos(lab, fourmi, pos_x, pos_y, pos_x, pos_y+1, bouffe, dureevie);
-		}
-		else if (random >= 75 && random < 100 && lab[pos_x+1][pos_y].etat!=mur) {
-			modifpos(lab, fourmi, pos_x, pos_y, pos_x+1, pos_y, bouffe, dureevie);
-		}
-	} else {
-		printf("erreur prochain_deplacement\n");
-		return 1;
 	}
 	return 0;
 }
@@ -231,6 +235,9 @@ void deplacement (t_lab lab[X][Y], int pos_x, int pos_y, t_fourmi fourmi[], int 
 		dist=pluscourte_dist(lab, pos_x, pos_y, plusproche.x, plusproche.y, &xdir, &ydir);
 		if (nourriture_pres(lab) && dist<20) {
 			modifpos(lab, fourmi, pos_x, pos_y, plusproche.x, plusproche.y, bouffe, dureevie);
+		}
+		else {
+			prochain_deplacement(pos_x, pos_y, lab, bouffe, dureevie, fourmi);
 		}
 	}
 	else {

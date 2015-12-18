@@ -41,7 +41,7 @@ void afficherstats(t_lab lab[X][Y], t_fourmi fourmi[]) {
 		int age = fourmi[i].age;
 		int x=fourmi[i].x;
 		int y=fourmi[i].y;
-		printf("La fourmi %i est de sexe %s à encore pour %i tours de nourriture et %i tours de vie, elle est en x=%i et y=%i.\n", i, sexe, nourriture, age, x, y);
+		printf("La fourmi %i est de sexe %s à encore pour %i tours de nourriture et %i tours de vie, elle est en x=%i et y=%i.\n", i, sexe, nourriture+1, age+1, x, y);
 	}
 }
 
@@ -351,7 +351,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 				j = j_tmp;
 			}
 		}
-		
+
 		else if(direction >50){
 			i_tmp = i;
 			j_tmp = j+1;
@@ -364,7 +364,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 				j = j_tmp;
 			}
 		}
-		
+
 		else if(direction >25){					//Envoie vers le haut le curseur.
 			i_tmp = i-1;
 			j_tmp = j;
@@ -378,7 +378,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 
 			}
 		}
-		
+
 		else{							//Envoie le curseur vers le bas
 			i_tmp = i+1;
 			j_tmp = j;
@@ -391,14 +391,14 @@ void init_lab_rand (t_lab lab[X][Y]){
 				i = i_tmp;
 			}
 		}
-		
+
 		if(j>3*(Y/5)){			//Ici, on regarde à chaques itérations si le curseur  est plutot du côté droit ou gauche (on incrémente ite_droite ou gauche en conséquence)
 			ite_droite++;
 		}
 		else if(j<(Y/5)){
 			ite_gauche++;
 		}
-		
+
 		if(ite_droite> (X*Y)/4 ){	//Lorsque le curseur a extrudé plus d'un quart des murs a droite ou a gauche, on le remet au centre. On remet les statistiques a 0, mais on va utiliser la variable orientation
 			i = X/2;				//Pour le faire partir préférentiellement du côté ou il a le moins "extrudé"
 			j = Y/2;
@@ -414,7 +414,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 			orientation = 10;
 		}
 	}
-	
+
 	a_lisse = lissage_lab(lab);	//Enfin, une fois que l'on a "extrudé" la moitié des murs, on utilise la fonction de "lissage", pour supprimer les murs trop abrupts
 	while(a_lisse){
 		a_lisse = lissage_lab(lab);
@@ -427,7 +427,7 @@ void init_lab_rand (t_lab lab[X][Y]){
  * \brief   Affichage du labyrinthe en ASCII
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  * \param 	fourmi [] 				Reçoie le tableau de foumis.
- */			
+ */
 void afficher_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 	int char_unseen = '?';
 	int indice;
@@ -577,7 +577,7 @@ void afficher_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 
 
 /**
- * \brief   Génère aléatoirement de la nourriture dans une case vide du labyrinthe et qui n'a pas besoin d'être dévouverte.	
+ * \brief   Génère aléatoirement de la nourriture dans une case vide du labyrinthe et qui n'a pas besoin d'être dévouverte.
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  */
 void gene_nour(t_lab lab[X][Y]) {

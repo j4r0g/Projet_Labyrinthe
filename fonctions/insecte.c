@@ -172,13 +172,21 @@ int ajoutInsecte (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[]) 
  * \param 	y									emplacement de la fourmi en y
  */
 void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
-	int i;
+	int i, a, b;
 	int indice=lab[x][y].insecte;
+	for(i=indice; i<nb_ins-1; i++) {
+		a=fourmi[i+1].x;
+		b=fourmi[i+1].y;
+		lab[a][b].insecte=i;
+
+		fourmi[i].sexe=fourmi[i+1].sexe;
+		fourmi[i].nourriture=fourmi[i+1].nourriture;
+		fourmi[i].age=fourmi[i+1].age;
+		fourmi[i].x=fourmi[i+1].x;
+		fourmi[i].y=fourmi[i+1].y;
+	}
 	lab[x][y].etat=food;
 	lab[x][y].insecte=-1;
-	for(i=indice; i<nb_ins-1; i++) {
-		fourmi[i]=fourmi[i+1];
-	}
 	nb_ins--;
 }
 
@@ -197,24 +205,15 @@ void deleteinsecte(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y) {
  * \return  Un 0 si la fonction s'est exécutée avec succès, 1 si erreur.
  */
 int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int bouffe, int dureevie){
-	printf("insecte x= %i\n", x);
-	printf("insecte y= %i\n", y);
-	printf("nouvinsecte x= %i\n", a);
-	printf("nouvinsecte y= %i\n", b);
-	/*if(a<=0 || a>=X || b<=0 || b>=Y || (lab[a][b].etat!=vide && lab[a][b].etat!=food) || lab[x][y].etat!=insecte) {
-		printf("insecte non déplacé");
-		Assert4("En dehors de la matrice", a<=0, a>=X, b<=0, b>=Y);
-		Assert2("Non vide et non nourriture", lab[a][b].etat!=vide, lab[a][b].etat!=food);
-		Assert1("Case de départ non insecte", lab[x][y].etat!=insecte);
-    return 1;
-	}
-	else{*/
 		int indice=lab[x][y].insecte;
 		// On vérifie si on va sur une case de nourriture
 		if(lab[a][b].etat==food)
 			fourmi[indice].nourriture=bouffe;
 
-		if(fourmi[indice].nourriture!=0 && fourmi[indice].age!=0) {
+		if(fourmi[indice].nourriture>0 && fourmi[indice].age>0) {
+			// On décrémente la nourriture de l'insecte
+			fourmi[indice].nourriture=fourmi[indice].nourriture-1;
+			fourmi[indice].age=fourmi[indice].age-1;
 			// modif de l'état de la case
 			lab[a][b].etat=insecte;
 			lab[x][y].etat=vide;
@@ -224,15 +223,9 @@ int modifpos(t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int
 			// maj de la position de l'insecte
 			fourmi[indice].x=a;
 			fourmi[indice].y=b;
-			printf("insecte déplacé\n");
 		}
 		else {
 			deleteinsecte(lab, fourmi, x, y);
-			printf("insecte supprimé\n");
 		}
-		// On décrémente la nourriture de l'insecte
-		fourmi[indice].nourriture--;
-		fourmi[indice].age--;
-	//}
 	return 0;
 }
