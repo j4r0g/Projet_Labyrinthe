@@ -1,3 +1,7 @@
+/**\enum t_discover
+ * \enum t_etat
+ * \struct t_lab ./header/struct_lab.h
+*/
 #define X 30
 #define Y 60
 
