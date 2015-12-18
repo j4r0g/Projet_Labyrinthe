@@ -106,11 +106,11 @@ var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Fonctions</h2></td></tr>
-<tr class="memitem:a60381dcd07f14af9f74284ccabb94819"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60381dcd07f14af9f74284ccabb94819"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>nb_insecte</b> ()</td></tr>
+<tr class="memitem:a60381dcd07f14af9f74284ccabb94819"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="insecte_8c.html#a60381dcd07f14af9f74284ccabb94819">nb_insecte</a> ()</td></tr>
+<tr class="memdesc:a60381dcd07f14af9f74284ccabb94819"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction donnant le nombre d'insectes présents.  <a href="#a60381dcd07f14af9f74284ccabb94819">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a60381dcd07f14af9f74284ccabb94819"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7768da5b0b259b6c466feb51c2c32dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7768da5b0b259b6c466feb51c2c32dc"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>chang_nb_ins</b> (int new_nb_ins)</td></tr>
+<tr class="memitem:aa7768da5b0b259b6c466feb51c2c32dc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="insecte_8c.html#aa7768da5b0b259b6c466feb51c2c32dc">chang_nb_ins</a> (int new_nb_ins)</td></tr>
+<tr class="memdesc:aa7768da5b0b259b6c466feb51c2c32dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fonction changeant le nombre d'insecte.  <a href="#aa7768da5b0b259b6c466feb51c2c32dc">Plus de détails...</a><br /></td></tr>
 <tr class="separator:aa7768da5b0b259b6c466feb51c2c32dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98168d5cadb59aa5219ad8e1932561d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="insecte_8c.html#a98168d5cadb59aa5219ad8e1932561d4">gene_ins</a> (int bouffe, int dureevie, <a class="el" href="structt__lab.html">t_lab</a> lab[X][Y], int a, int b, <a class="el" href="structt__fourmi.html">t_fourmi</a> fourmi[], int choixsexe)</td></tr>
 <tr class="memdesc:a98168d5cadb59aa5219ad8e1932561d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère aléatoirement un insecte dans une case vide du labyrinthe mais qui doit être découverte.  <a href="#a98168d5cadb59aa5219ad8e1932561d4">Plus de détails...</a><br /></td></tr>
@@ -236,6 +236,30 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>nb_ins</b> =0</td></tr
     <tr><td class="paramname">dureevie</td><td>Reçoie la durée de vie en nombre de tour. </td></tr>
     <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
     <tr><td class="paramname">fourmi</td><td>Reçoie le tableau de foumis. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="aa7768da5b0b259b6c466feb51c2c32dc"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void chang_nb_ins </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>new_nb_ins</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction changeant le nombre d'insecte. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">new_nb_ins</td><td>Reçoie le nouveau nombre d'insecte à affecter. </td></tr>
   </table>
   </dd>
 </dl>
@@ -486,6 +510,24 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>nb_ins</b> =0</td></tr
   </dd>
 </dl>
 <dl class="section return"><dt>Renvoie</dt><dd>Un 0 si la fonction s'est exécutée avec succès, 1 si erreur. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a60381dcd07f14af9f74284ccabb94819"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nb_insecte </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Fonction donnant le nombre d'insectes présents. </p>
+<dl class="section return"><dt>Renvoie</dt><dd>Le nombre d'insecte </dd></dl>
 
 </div>
 </div>
