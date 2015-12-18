@@ -161,7 +161,11 @@ int main() {
 
 	switch(choix) {
 	  case 1 : regles() ; break;
-	  case 2 : lancement() ; break;
+	  case 2 : { 	lancement();
+								//Réinitialisation des paramètres
+								chang_nb_ins(0);
+								break;
+							}
 	  case 3 : break;
 	  default : printf("\nErreur de saisie\n\n"); break;
 
