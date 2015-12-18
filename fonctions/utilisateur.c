@@ -9,6 +9,8 @@
  *            également d'ajouter de la nourriture ou un insecte si l'utilisateur le demande
  */
 
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -16,6 +18,7 @@
 #include "./../header/struct_lab.h"
 #include "./../header/struct_ins.h"
 #include "./../header/utilisateur.h"
+
 
 /**
  * \brief   Génère de la nourriture dans une case vide du labyrinthe découverte
@@ -40,6 +43,7 @@ int ajoutNourriture (t_lab lab[X][Y]) {
   }
   return 0;
 }
+
 
 
 /**
@@ -72,6 +76,8 @@ void sauver_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 
 	fclose(fic1);
 }
+
+
 
 /**
  * \brief   Permet de charger une partie sauvegardée
@@ -118,6 +124,7 @@ void charger_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 		fclose(fic2);
 	}
 }
+
 
 
 /**

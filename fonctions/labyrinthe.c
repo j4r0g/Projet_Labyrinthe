@@ -17,6 +17,12 @@
 #include "./../header/struct_ins.h"
 #include "./../header/labyrinthe.h"
 
+
+/**
+ * \brief   affiche les statistiques des fourmis
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \param 	fourmi [] 				Reçoie le tableau de foumis.
+ */
 void afficherstats(t_lab lab[X][Y], t_fourmi fourmi[]) {
 	int nb_ins=nb_insecte();
 	int i;
@@ -39,20 +45,38 @@ void afficherstats(t_lab lab[X][Y], t_fourmi fourmi[]) {
 	}
 }
 
-//*			fonction qui renvoie un nombre aleatoire entre 0 et max			*//
+
+
+/**
+ * \brief   renvoie un nombre aléatoire entre 0 et max
+ * \param 	max									borne haute
+ * \return 	Le nombre aléatoire compris entre 0 et max
+ */
 int nbr_rand(int max){
 	int nombre;
 	nombre = rand()%max;
 	return nombre;
 }
 
-//*			fonctions qui vérifient que les coordonnées mise en arguments font parties de la matrice		*//
+
+
+/**
+ * \brief   Vérifie que la case dans laquelle on regarde fait bien partie de la matrice
+ * \param 	i									coordonnée en X
+ * \param 	j									coordonnée en Y
+ * \return 	renvoie un 1 si la coordonnée fait bien partie de la matrice, 0 autrement
+ */
 int coord_correctes( int i, int j){
-	//printf("%i", (i<(X-1) && i>0 && j<(Y-1) && j>0));
 	return (i<(X-1) && i>0 && j<(Y-1) && j>0);
 }
 
-//*			initialisation du labyrinthe à partir d'un .txt			*//
+
+
+/**
+ * \brief   Initialise la matrice a partir d'un fichier texte  (utilisé pour tester le jeu au tout début)
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \return 	Un 1 si on a ajouté un insecte et un 0 sinon.
+ */
 void init_lab(t_lab lab[X][Y]){
 	int tmp;
 	int i,j;
@@ -72,7 +96,13 @@ void init_lab(t_lab lab[X][Y]){
 	fclose(fic1);
 }
 
-//*			Cette fonction compte le nombre de cases vide			*//
+
+
+/**
+ * \brief   Compte le nombre de cases vide
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \return 	Renvoie le nombre de cases vides dans le labyrinthe
+ */
 int nbr_cases_vide(t_lab lab[X][Y]){
 	int i, j;
 	int nbr_cases_vide = 0;
@@ -86,7 +116,13 @@ int nbr_cases_vide(t_lab lab[X][Y]){
 	return nbr_cases_vide;
 }
 
-//*			Cette fonction "lisse" les murs. elle renvoit 1 si elle a effectué des modifications, 0 sinon		*//
+
+
+/**
+ * \brief   Cette fonction "lisse" les murs. (supprime les blocs de murs isolés)
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \return  Renvoit 1 si elle a effectué des modifications, 0 sinon
+ */
 int lissage_lab(t_lab lab[X][Y]){
 	int i, j;
 	int mur_adj=0;
@@ -120,7 +156,11 @@ int lissage_lab(t_lab lab[X][Y]){
 }
 
 
-//*			initialisation pseudo-aléatoire du labyrinthe	(1er essai, par "ilots")		*//
+
+/**
+ * \brief   Initialisation pseudo-aléatoire du labyrinthe	(1er essai, par "ilots")
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ */
 /*void init_lab_rand (t_lab lab[X][Y]){
 	int i,j, x, y, x_tmp, y_tmp, compteur_ilot, branche, rand_branche, a_lisse;
 	int nbr_ilot=0;
@@ -186,7 +226,11 @@ int lissage_lab(t_lab lab[X][Y]){
 	}
 }*/
 
-//*			initialisation pseudo-aléatoire du labyrinthe	(3eme essaie, de gauche a droite)			*//
+
+/**
+ * \brief   Initialisation pseudo-aléatoire du labyrinthe	(3eme essaie, de gauche a droite)
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ */
 /*void init_lab_rand_2 (t_lab lab[X][Y]){
 	int i, j, direction, i_tmp, j_tmp, a_lisse;
 	int cases_extrude = 0;
@@ -264,14 +308,20 @@ int lissage_lab(t_lab lab[X][Y]){
 	printf("bas : %d\n", bas);
 }*/
 
-//			initialisation pseudo-aléatoire du labyrinthe	(2nd essaie, par extrudage, en partant du centre)	*//
+
+
+/**
+ * \brief   Initialisation pseudo-aléatoire du labyrinthe	(2nd essaie, par extrudage, en partant du centre)
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ */
 void init_lab_rand (t_lab lab[X][Y]){
+	srand(time(NULL));
 	int i, j, direction, i_tmp, j_tmp, a_lisse;
 	int cases_extrude = 0;
 	int ite_gauche = 0;
 	int ite_droite = 0;
 	int orientation = 0;
-	for(i =0; i<X; i++){		//Ce bloque place des murs partout
+	for(i =0; i<X; i++){		//Ce bloc place des murs partout
 		for(j =0; j<Y; j++){
 			lab[i][j].etat = mur;
 			lab[i][j].insecte = -1;
@@ -279,17 +329,17 @@ void init_lab_rand (t_lab lab[X][Y]){
 				lab[i][j].decouvert = seen;
 			}
 			else{
-				lab[i][j].decouvert = unseen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe
+				lab[i][j].decouvert = unseen;		//Cette ligne initialise "discover" pour toutes les cases du labyrinthe (au début, rien n'est découvert)
 			}
 		}
 	}
 	i = X/2;
 	j = Y/2;
-	while(cases_extrude < (X*Y)/2){
+	while(cases_extrude < (X*Y)/2){			//Ce while va "extruder" des cases avec des murs, tant que la moitié du labyrinthe n'as pas été extrudé.
 		lab[i][j].etat = vide;
 		direction = nbr_rand(100);
 
-		if(direction > 75 + orientation){
+		if(direction > 75 + orientation){	//le "+orientation" sert a faire partir le curseur qui va extruder vers la droite ou la gauche, lorsqu'on le replace au centre
 			i_tmp = i;
 			j_tmp = j-1;
 			if(coord_correctes( i_tmp, j_tmp)){
@@ -301,6 +351,7 @@ void init_lab_rand (t_lab lab[X][Y]){
 				j = j_tmp;
 			}
 		}
+		
 		else if(direction >50){
 			i_tmp = i;
 			j_tmp = j+1;
@@ -313,7 +364,8 @@ void init_lab_rand (t_lab lab[X][Y]){
 				j = j_tmp;
 			}
 		}
-		else if(direction >25){
+		
+		else if(direction >25){					//Envoie vers le haut le curseur.
 			i_tmp = i-1;
 			j_tmp = j;
 			if(coord_correctes( i_tmp, j_tmp)){
@@ -326,7 +378,8 @@ void init_lab_rand (t_lab lab[X][Y]){
 
 			}
 		}
-		else{
+		
+		else{							//Envoie le curseur vers le bas
 			i_tmp = i+1;
 			j_tmp = j;
 			if(coord_correctes( i_tmp, j_tmp)){
@@ -338,14 +391,16 @@ void init_lab_rand (t_lab lab[X][Y]){
 				i = i_tmp;
 			}
 		}
-		if(j>3*(Y/5)){
+		
+		if(j>3*(Y/5)){			//Ici, on regarde à chaques itérations si le curseur  est plutot du côté droit ou gauche (on incrémente ite_droite ou gauche en conséquence)
 			ite_droite++;
 		}
 		else if(j<(Y/5)){
 			ite_gauche++;
 		}
-		if(ite_droite> (X*Y)/4 ){
-			i = X/2;
+		
+		if(ite_droite> (X*Y)/4 ){	//Lorsque le curseur a extrudé plus d'un quart des murs a droite ou a gauche, on le remet au centre. On remet les statistiques a 0, mais on va utiliser la variable orientation
+			i = X/2;				//Pour le faire partir préférentiellement du côté ou il a le moins "extrudé"
 			j = Y/2;
 			ite_gauche = 0;
 			ite_droite = 0;
@@ -359,14 +414,20 @@ void init_lab_rand (t_lab lab[X][Y]){
 			orientation = 10;
 		}
 	}
-	a_lisse = lissage_lab(lab);
+	
+	a_lisse = lissage_lab(lab);	//Enfin, une fois que l'on a "extrudé" la moitié des murs, on utilise la fonction de "lissage", pour supprimer les murs trop abrupts
 	while(a_lisse){
 		a_lisse = lissage_lab(lab);
 	}
 }
 
 
-//			affichage du labyrinthe en ASCII
+
+/**
+ * \brief   Affichage du labyrinthe en ASCII
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ * \param 	fourmi [] 				Reçoie le tableau de foumis.
+ */			
 void afficher_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 	int char_unseen = '?';
 	int indice;
@@ -514,34 +575,32 @@ void afficher_lab(t_lab lab[X][Y], t_fourmi fourmi[]){
 }
 
 
-int genelab(t_lab lab[X][Y]){
-	srand(time(NULL));
-	init_lab_rand(lab);
-	//afficher_lab(lab);
-	return 0;
-}
 
 /**
- * \brief   Génère aléatoirement de la nourriture dans une case
- * 					vide du labyrinthe et qui n'a pas besoin d'être dévouverte.
+ * \brief   Génère aléatoirement de la nourriture dans une case vide du labyrinthe et qui n'a pas besoin d'être dévouverte.	
  * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
  */
-
 void gene_nour(t_lab lab[X][Y]) {
+	int nombrex, nombrey;
 	srand(time(NULL));
 	int i, nb_nourr=10;
 	for(i=0; i<nb_nourr; i++) {
-    int nombrex, nombrey;
-  	nombrex = rand()%X;
-  	nombrey = rand()%Y;
-  	while(lab[nombrex][nombrey].etat!=vide){
-  		nombrex = rand()%X;
-  		nombrey = rand()%Y;
-  	}
-  	lab[nombrex][nombrey].etat=food;
-  }
+		nombrex = rand()%X;
+		nombrey = rand()%Y;
+		while(lab[nombrex][nombrey].etat!=vide || !coord_correctes(nombrex, nombrey)){
+			nombrex = rand()%X;
+			nombrey = rand()%Y;
+		}
+		lab[nombrex][nombrey].etat=food;
+	}
 }
 
+
+
+/**
+ * \brief   Découvre toutes les cases du labyrinthe (utilisé pour le débuggage)
+ * \param 	lab[x][Y] 				Reçoie le labyrinthe de taille X, Y.
+ */
 void decouvrirlab(t_lab lab[X][Y]) {
 	int i, j;
 	for(i=0; i<X; i++) {
