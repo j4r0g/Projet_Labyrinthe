@@ -1,0 +1,500 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.10"/>
+<title>Projet Labyrinthe: Référence du fichier fonctions/insecte.c</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { init_search(); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet Labyrinthe
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">Un projet Labyrinthe de L2 SPI, réalisé par Boisson Léo, Bussereau Keryann et Ciron Fabien</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.8.10 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Page&#160;principale</span></a></li>
+      <li><a href="pages.html"><span>Pages&#160;associées</span></a></li>
+      <li><a href="annotated.html"><span>Structures&#160;de&#160;données</span></a></li>
+      <li class="current"><a href="files.html"><span>Fichiers</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Recherche" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Liste&#160;des&#160;fichiers</span></a></li>
+      <li><a href="globals.html"><span>Variables&#160;globale</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_1da341ca2736582eeb08d845a8ba64dc.html">fonctions</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Fonctions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle">
+<div class="title">Référence du fichier insecte.c</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Gère les insectes.  
+<a href="#details">Plus de détails...</a></p>
+<div class="textblock"><code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;stdlib.h&gt;</code><br />
+<code>#include &lt;time.h&gt;</code><br />
+<code>#include &quot;./../header/struct_lab.h&quot;</code><br />
+<code>#include &quot;./../header/struct_ins.h&quot;</code><br />
+<code>#include &quot;./../Boite_outils/Outil.h&quot;</code><br />
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Fonctions</h2></td></tr>
+<tr class="memitem:a60381dcd07f14af9f74284ccabb94819"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a60381dcd07f14af9f74284ccabb94819"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nb_insecte</b> ()</td></tr>
+<tr class="separator:a60381dcd07f14af9f74284ccabb94819"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa7768da5b0b259b6c466feb51c2c32dc"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa7768da5b0b259b6c466feb51c2c32dc"></a>
+void&#160;</td><td class="memItemRight" valign="bottom"><b>chang_nb_ins</b> (int new_nb_ins)</td></tr>
+<tr class="separator:aa7768da5b0b259b6c466feb51c2c32dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98168d5cadb59aa5219ad8e1932561d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="insecte_8c.html#a98168d5cadb59aa5219ad8e1932561d4">gene_ins</a> (int bouffe, int dureevie, t_lab lab[X][Y], int a, int b, t_fourmi fourmi[], int choixsexe)</td></tr>
+<tr class="memdesc:a98168d5cadb59aa5219ad8e1932561d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère aléatoirement un insecte dans une case vide du labyrinthe mais qui doit être découverte.  <a href="#a98168d5cadb59aa5219ad8e1932561d4">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a98168d5cadb59aa5219ad8e1932561d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adf54a5beeb2d7a7952b895611cbc1fb8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="insecte_8c.html#adf54a5beeb2d7a7952b895611cbc1fb8">gene_ins_deb</a> (int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[])</td></tr>
+<tr class="memdesc:adf54a5beeb2d7a7952b895611cbc1fb8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère aléatoirement un insecte dans une case vide du labyrinthe et qui n'a pas besoin d'être dévouverte.  <a href="#adf54a5beeb2d7a7952b895611cbc1fb8">Plus de détails...</a><br /></td></tr>
+<tr class="separator:adf54a5beeb2d7a7952b895611cbc1fb8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a8a0b3c06498f89748b2fafbb91d015"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="insecte_8c.html#a9a8a0b3c06498f89748b2fafbb91d015">bebe</a> (int bouffe, int dureevie, t_lab lab[X][Y], t_fourmi fourmi[])</td></tr>
+<tr class="memdesc:a9a8a0b3c06498f89748b2fafbb91d015"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère aléatoirement un insecte dans une case vide du labyrinthe mais qui doit être découverte.  <a href="#a9a8a0b3c06498f89748b2fafbb91d015">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a9a8a0b3c06498f89748b2fafbb91d015"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae8a14821e2c2bc85a34562e06fd3fcc6"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="insecte_8c.html#ae8a14821e2c2bc85a34562e06fd3fcc6">ajoutInsecte</a> (t_lab lab[X][Y], int bouffe, int dureevie, t_fourmi fourmi[])</td></tr>
+<tr class="memdesc:ae8a14821e2c2bc85a34562e06fd3fcc6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Génère un insecte dans une case vide du labyrinthe découverte à la demande de l'utilisateur.  <a href="#ae8a14821e2c2bc85a34562e06fd3fcc6">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ae8a14821e2c2bc85a34562e06fd3fcc6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adcd4b83ad659f1ef736d24e2a80efd3f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="insecte_8c.html#adcd4b83ad659f1ef736d24e2a80efd3f">deleteinsecte</a> (t_lab lab[X][Y], t_fourmi fourmi[], int x, int y)</td></tr>
+<tr class="memdesc:adcd4b83ad659f1ef736d24e2a80efd3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Supprime l'insecte.  <a href="#adcd4b83ad659f1ef736d24e2a80efd3f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:adcd4b83ad659f1ef736d24e2a80efd3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53fe63fab21430e17f149204c1d860df"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="insecte_8c.html#a53fe63fab21430e17f149204c1d860df">modifpos</a> (t_lab lab[X][Y], t_fourmi fourmi[], int x, int y, int a, int b, int bouffe, int dureevie)</td></tr>
+<tr class="memdesc:a53fe63fab21430e17f149204c1d860df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Modifie la position d'un insecte ainsi que le temps qu'il lui reste à vivre.  <a href="#a53fe63fab21430e17f149204c1d860df">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a53fe63fab21430e17f149204c1d860df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a1954d962c9ab031adfabdc73f25df43c"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a1954d962c9ab031adfabdc73f25df43c"></a>
+int&#160;</td><td class="memItemRight" valign="bottom"><b>nb_ins</b> =0</td></tr>
+<tr class="separator:a1954d962c9ab031adfabdc73f25df43c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
+<div class="textblock"><p>Gère les insectes. </p>
+<dl class="section author"><dt>Auteur</dt><dd>Boisson Léo, Bussereau Keryann, Ciron Fabien </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>1.0 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>14 décembre 2015 </dd></dl>
+</div><h2 class="groupheader">Documentation des fonctions</h2>
+<a class="anchor" id="ae8a14821e2c2bc85a34562e06fd3fcc6"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int ajoutInsecte </td>
+          <td>(</td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bouffe</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dureevie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">t_fourmi&#160;</td>
+          <td class="paramname"><em>fourmi</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère un insecte dans une case vide du labyrinthe découverte à la demande de l'utilisateur. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+    <tr><td class="paramname">bouffe</td><td>Reçoie la durée de vie de la bouffe en nombre de tour. </td></tr>
+    <tr><td class="paramname">dureevie</td><td>Reçoie la durée de vie en nombre de tour. </td></tr>
+    <tr><td class="paramname">fourmi</td><td>[] Reçoie le tableau de foumis. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Un 0 si aucun insecte n'est placé, un 1 sinon. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="a9a8a0b3c06498f89748b2fafbb91d015"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void bebe </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bouffe</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dureevie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">t_fourmi&#160;</td>
+          <td class="paramname"><em>fourmi</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère aléatoirement un insecte dans une case vide du labyrinthe mais qui doit être découverte. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bouffe</td><td>Reçoie la durée de vie de la bouffe en nombre de tour. </td></tr>
+    <tr><td class="paramname">dureevie</td><td>Reçoie la durée de vie en nombre de tour. </td></tr>
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+    <tr><td class="paramname">fourmi</td><td>[] Reçoie le tableau de foumis. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="adcd4b83ad659f1ef736d24e2a80efd3f"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void deleteinsecte </td>
+          <td>(</td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">t_fourmi&#160;</td>
+          <td class="paramname"><em>fourmi</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Supprime l'insecte. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+    <tr><td class="paramname">fourmi</td><td>[] Reçoie le tableau de foumis. </td></tr>
+    <tr><td class="paramname">x</td><td>emplacement de la fourmi en x </td></tr>
+    <tr><td class="paramname">y</td><td>emplacement de la fourmi en y </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a98168d5cadb59aa5219ad8e1932561d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int gene_ins </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bouffe</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dureevie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">t_fourmi&#160;</td>
+          <td class="paramname"><em>fourmi</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>choixsexe</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère aléatoirement un insecte dans une case vide du labyrinthe mais qui doit être découverte. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bouffe</td><td>Reçoie la durée de vie de la bouffe en nombre de tour. </td></tr>
+    <tr><td class="paramname">dureevie</td><td>Reçoie la durée de vie en nombre de tour. </td></tr>
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+    <tr><td class="paramname">a</td><td>Reçoie l'emplacement x où doit être placé l'insecte </td></tr>
+    <tr><td class="paramname">b</td><td>Reçoie l'emplacement y où doit être placé l'insecte </td></tr>
+    <tr><td class="paramname">fourmi</td><td>[] Reçoie le tableau de foumis. </td></tr>
+    <tr><td class="paramname">booléen</td><td>Si choixsexe=0 génération aléatoire,sinon si choixsexe=1 MALE et si choixsexe!=1 &amp;&amp; choixsexe!=0 FEMELLE </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Un 1 si on ne peut pas ajouter l'insecte à la case demandée, 0 si on peut. </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="adf54a5beeb2d7a7952b895611cbc1fb8"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gene_ins_deb </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bouffe</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dureevie</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">t_fourmi&#160;</td>
+          <td class="paramname"><em>fourmi</em>[]&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Génère aléatoirement un insecte dans une case vide du labyrinthe et qui n'a pas besoin d'être dévouverte. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">bouffe</td><td>Reçoie la durée de vie de la bouffe en nombre de tour. </td></tr>
+    <tr><td class="paramname">dureevie</td><td>Reçoie la durée de vie en nombre de tour. </td></tr>
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+    <tr><td class="paramname">fourmi</td><td>[] Reçoie le tableau de foumis. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a53fe63fab21430e17f149204c1d860df"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int modifpos </td>
+          <td>(</td>
+          <td class="paramtype">t_lab&#160;</td>
+          <td class="paramname"><em>lab</em>[X][Y], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">t_fourmi&#160;</td>
+          <td class="paramname"><em>fourmi</em>[], </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>x</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>y</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>a</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>bouffe</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>dureevie</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Modifie la position d'un insecte ainsi que le temps qu'il lui reste à vivre. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lab[x][Y]</td><td>Reçoie le labyrinthe de taille X, Y. </td></tr>
+    <tr><td class="paramname">fourmi</td><td>[] Reçoie le tableau de foumis. </td></tr>
+    <tr><td class="paramname">x</td><td>emplacement de la fourmi en x </td></tr>
+    <tr><td class="paramname">y</td><td>emplacement de la fourmi en y </td></tr>
+    <tr><td class="paramname">a</td><td>emplacement à donner à la fourmi en x </td></tr>
+    <tr><td class="paramname">b</td><td>emplacement à donner à la fourmi en y </td></tr>
+    <tr><td class="paramname">bouffe</td><td>Reçoie la durée de vie de la bouffe en nombre de tour. </td></tr>
+    <tr><td class="paramname">dureevie</td><td>Reçoie la durée de vie en nombre de tour. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Renvoie</dt><dd>Un 0 si la fonction s'est exécutée avec succès, 1 si erreur. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Généré par &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.10
+</small></address>
+</body>
+</html>
