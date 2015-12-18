@@ -1,0 +1,18 @@
+Objectifs:
+	->(Générer un labyrinthe, dans un second temps)
+	->Gérer les entités (déplacements, règles de vie)
+	->Sauvegarde des statistiques (et plus tard de l'état)
+	->(Interactivité: l'utilisateur choisit à chaque tour de rajouter de la nourriture ou une entité)
+	->Conditions de victoire & défaite (tout le labyrinthe découvert: victoire; toutes les entités mortes: défaite)
+
+*********************************************************************
+
+Règles des insectes:
+	->Si deux insectes (sexe1!=sexe2), apparition d'un nouvel insecte
+	->Si deux insectes (sexe1==sexe2), mort de l'un des deux
+	->Si [nourriture] arrive à 0, l'insecte meurt
+	->Si l'insecte arrive sur une case de nourriture, [nourriture] revient à l'état initial
+	->Si un insecte ne peut pas se déplacer, il meurt
+	->(Plusieurs types d'insectes: aventuriers, bagarreurs, mangeurs)
+	->Quand [nourriture] passe sous un certain seuil, l'insecte se dirige vers la nourriture la plus proche
+	->

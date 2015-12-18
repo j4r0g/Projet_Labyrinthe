@@ -1,5 +1,0 @@
-***   A FAIRE   ***
-
-- Initialiser/Afficher une matrice (avec un labyrinthe pré-fait) -> DONE
-- Declarer les structures "insecte" et "labyrinthe" -> DONE
-- Faire la fonction de déplacement des insectes 
